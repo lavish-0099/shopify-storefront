@@ -182,53 +182,40 @@
   position: absolute;
   top: 100%;
   left: 0;
-
-  /* panel look */
-  width: 720px;                 /* adjust to taste */
   background: var(--color-white);
   border: 1px solid var(--color-soft-blush);
-  border-radius: 10px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-
-  padding: 16px 14px;
-  margin: 12px 0 0 0;
-
-  /* multi-column layout */
-  column-count: 3;              /* 3 columns like Shopify */
-  column-gap: 24px;
-
-  z-index: 1250;
-  max-height: 60vh;             /* scroll if too tall */
-  overflow: auto;
+  min-width: 200px;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 1200;
 }
 
 /* each item becomes a block; prevent column breaks inside a row */
 .dropdown-menu li {
-  break-inside: avoid;
-  padding: 0;                   /* we’ll pad the link instead */
-  margin: 0 0 6px 0;
-  white-space: nowrap;
+  padding: 0;
 }
 
 /* link look inside mega panel */
 .dropdown-menu li a {
   display: block;
-  padding: 8px 10px;
+  padding: 10px 16px;
   color: var(--color-deep-mauve);
   text-decoration: none;
   font-size: 0.9rem;
-  border-radius: 6px;
-  transition: background .18s ease, color .18s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
-.dropdown-menu li a:hover,
-.dropdown-menu li a:focus {
+
+.dropdown-menu li a:hover {
   background: #f6f6f6;
   color: #000;
-  outline: none;
 }
 
 /* open state (JS adds .is-open) */
-.dropdown-menu.is-open { display: block; }
+.dropdown-menu.is-open {
+  display: block;
+}
 
 /* also open on pure hover as a graceful fallback */
 .dropdown:hover > .dropdown-menu { display: block; }

@@ -147,11 +147,12 @@
   height: 100%;
 }
 .main-nav > ul > li {
-  margin: 0;
   position: relative;
   display: flex;
   align-items: center;
+  margin: 0 2px;               /* tight pill-like spacing */
 }
+
 .main-nav a {
   padding: 10px 20px;
   text-decoration: none;
@@ -175,7 +176,34 @@
 .dropdown .dropdown-menu.is-open ~ .arrow { /* fallback */
   transform: rotate(180deg);
 }
-
+.dropdown-trigger {
+  background: none;
+  border: 0;
+  padding: 10px 20px;          /* match .main-nav a */
+  margin: 0;
+  font: inherit;
+  color: var(--color-deep-mauve);
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  appearance: none;            /* remove default button UI */
+  -webkit-appearance: none;
+}
+.dropdown-trigger:hover,
+.dropdown-trigger:focus {
+  color: #333;                 /* same hover as .main-nav a */
+  outline: none;
+}
+.dropdown .arrow {
+  font-size: 12px;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+.dropdown:hover .arrow,
+.dropdown.open .arrow { transform: rotate(180deg); }
 /* =========  MEGA DROPDOWN (replaces the old single-column)  ========= */
 .dropdown-menu {
   display: none;
@@ -184,12 +212,13 @@
   left: 0;
   background: var(--color-white);
   border: 1px solid var(--color-soft-blush);
-  min-width: 200px;
+  min-width: 220px;
   list-style: none;
   padding: 8px 0;
-  margin: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 4px 0 0 0;           /* small gap under trigger */
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
   z-index: 1200;
+  border-radius: 8px;
 }
 
 /* each item becomes a block; prevent column breaks inside a row */
@@ -204,18 +233,28 @@
   color: var(--color-deep-mauve);
   text-decoration: none;
   font-size: 0.9rem;
-  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  transition: background .2s ease, color .2s ease;
 }
 
-.dropdown-menu li a:hover {
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus {
   background: #f6f6f6;
   color: #000;
+  outline: none;
+}
+.main-nav a,
+.dropdown-trigger {
+  border-radius: 6px;
+}
+/* open state (JS adds .is-open) */
+.main-nav a:hover,
+.dropdown-trigger:hover {
+  background: rgba(0,0,0,0.03);
 }
 
-/* open state (JS adds .is-open) */
-.dropdown-menu.is-open {
-  display: block;
-}
+.dropdown-menu.is-open,
+.dropdown:hover > .dropdown-menu { display: block; }
 
 /* also open on pure hover as a graceful fallback */
 .dropdown:hover > .dropdown-menu { display: block; }

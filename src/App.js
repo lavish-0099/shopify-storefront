@@ -1,4 +1,5 @@
 import TrackOrderPage from './components/TrackOrder';
+import ContactUs from "./components/ContactUs";
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -99,6 +100,7 @@ function App() {
             <CartProvider>
               <Routes>
                 <Route path="/tools/track-order" element={<MainLayout><TrackOrderPage /></MainLayout>} />
+                <Route path="/contact" element={<MainLayout><ContactUs /></MainLayout>} />
 
                 {/* Main Routes */}
                 <Route path="/" element={<MainLayout><HomePage /></MainLayout>} />

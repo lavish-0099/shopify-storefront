@@ -161,7 +161,8 @@ const Header = () => {
               </ul>
             </li>
             <li><Link to="/collections/offers">OUR OFFERS</Link></li>
-            <li><Link to="/pages/contact-us">CONTACT US</Link></li>
+            <li><Link to="/contact">CONTACT US</Link></li>
+
           </ul>
         </nav>
       </header>

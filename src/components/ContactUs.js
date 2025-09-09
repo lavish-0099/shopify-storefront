@@ -1,6 +1,13 @@
 import React from "react";
 import "./ContactUs.css";
 
+/**
+ * This posts directly to Shopify, which sends the email to your store's contact email.
+ * Replace the shop domain below if different.
+ * Example: https://YOUR-SHOP.myshopify.com/contact#contact_form
+ */
+const SHOPIFY_CONTACT_URL = "https://delanl.myshopify.com/contact#contact_form";
+
 export default function ContactUs() {
   return (
     <div className="contact-container">
@@ -10,7 +17,15 @@ export default function ContactUs() {
         will get back to you as soon as possible.
       </p>
 
-      <form method="post" action="/contact" className="contact-form">
+      {/* IMPORTANT: HTML POST to Shopify (no fetch), with required hidden fields */}
+      <form method="post" action={SHOPIFY_CONTACT_URL} className="contact-form">
+        {/* Required by Shopify */}
+        <input type="hidden" name="form_type" value="contact" />
+        <input type="hidden" name="utf8" value="✓" />
+
+        {/* Honeypot to reduce bots (Shopify ignores unknown fields) */}
+        <input type="text" name="contact[website]" style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
+
         <label>
           Name:
           <input type="text" name="contact[name]" required />

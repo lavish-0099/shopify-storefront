@@ -9,8 +9,8 @@ import {
   FaShoppingCart,
   FaUser,
   FaTruck,
-  FaBars, // Hamburger Icon
-  FaTimes, // Close Icon
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
 
 const GET_COLLECTIONS = gql`
@@ -32,13 +32,12 @@ const Header = () => {
   const { cart } = useCart();
   const { customer, logout } = useAuth();
 
-  // State for desktop dropdown
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  // --- NEW: State for mobile sidebar ---
+  // Mobile sidebar
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isProductsOpen, setIsProductsOpen] = useState(false); // For sidebar accordion
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   const cartItemCount = cart
     ? cart.lines.edges.reduce((total, edge) => total + edge.node.quantity, 0)
@@ -50,7 +49,6 @@ const Header = () => {
       (edge) => !excludedHandles.includes(edge.node.handle)
     ) || [];
 
-  // --- NEW: Handlers for sidebar ---
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
   const toggleProducts = () => setIsProductsOpen(!isProductsOpen);
@@ -61,10 +59,11 @@ const Header = () => {
         {/* Top Bar */}
         <div className="top-bar">
           <div className="top-bar-left">
-            {/* --- NEW: Hamburger Menu Icon --- */}
             <button className="hamburger-menu" onClick={toggleSidebar}>
               <FaBars />
             </button>
+
+            {/* CASE FIX: track-order link is lowercase to match your route */}
             <Link to="/tools/track-order" className="header-link track-order-link">
               <FaTruck /> <span>Track Order</span>
             </Link>
@@ -102,7 +101,7 @@ const Header = () => {
                 <button
                   className="header-link user-button"
                   onMouseEnter={() => setIsUserMenuOpen(true)}
-                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)} // For mobile click
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 >
                   <FaUser />
                   <span className="user-name">{customer.firstName}</span>
@@ -132,10 +131,11 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Main Nav (for desktop) */}
+        {/* Main Nav (Desktop) */}
         <nav className="main-nav">
           <ul>
             <li><Link to="/">HOME</Link></li>
+
             <li
               className="dropdown"
               onMouseEnter={() => setOpenDropdown("products")}
@@ -160,18 +160,18 @@ const Header = () => {
                 ))}
               </ul>
             </li>
+
             <li><Link to="/collections/offers">OUR OFFERS</Link></li>
             <li><Link to="/contact">CONTACT US</Link></li>
-
           </ul>
         </nav>
       </header>
 
-      {/* --- NEW: Sidebar for Mobile --- */}
+      {/* Sidebar (Mobile) */}
       <div
         className={`sidebar-overlay ${isSidebarOpen ? "open" : ""}`}
         onClick={closeSidebar}
-      ></div>
+      />
       <aside className={`sidebar-container ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h3>Menu</h3>
@@ -179,14 +179,17 @@ const Header = () => {
             <FaTimes />
           </button>
         </div>
+
         <nav className="sidebar-nav">
           <ul>
             <li><Link to="/" onClick={closeSidebar}>Home</Link></li>
+
             <li className="sidebar-dropdown">
               <div className="sidebar-dropdown-toggle" onClick={toggleProducts}>
                 Our Products
                 <span className={`arrow ${isProductsOpen ? "up" : "down"}`}>▼</span>
               </div>
+
               {isProductsOpen && (
                 <ul className="sidebar-dropdown-menu">
                   {loading && <li>Loading...</li>}
@@ -204,20 +207,52 @@ const Header = () => {
                 </ul>
               )}
             </li>
-            <li><Link to="/collections/offers" onClick={closeSidebar}>Our Offers</Link></li>
-            <li><li><Link to="/contact">CONTACT US</Link></li></li>
+
+            <li>
+              <Link to="/collections/offers" onClick={closeSidebar}>
+                Our Offers
+              </Link>
+            </li>
+
+            {/* FIX: remove nested <li> and keep route case correct */}
+            <li>
+              <Link to="/contact" onClick={closeSidebar}>
+                Contact Us
+              </Link>
+            </li>
+
             <li className="sidebar-divider"><hr /></li>
-            <li><Link to="/tools/TrackOrder" onClick={closeSidebar}><FaTruck /> Track Order</Link></li>
+
+            <li>
+              <Link to="/tools/track-order" onClick={closeSidebar}>
+                <FaTruck /> Track Order
+              </Link>
+            </li>
+
             {customer ? (
-                <>
-                    <li><Link to="/account" onClick={closeSidebar}><FaUser /> My Account</Link></li>
-                    <li><button onClick={() => { logout(); closeSidebar(); }} className="sidebar-logout-button">Log Out</button></li>
-                </>
+              <>
+                <li>
+                  <Link to="/account" onClick={closeSidebar}>
+                    <FaUser /> My Account
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      logout();
+                      closeSidebar();
+                    }}
+                    className="sidebar-logout-button"
+                  >
+                    Log Out
+                  </button>
+                </li>
+              </>
             ) : (
-                <>
-                    <li><Link to="/account/login" onClick={closeSidebar}>Login</Link></li>
-                    <li><Link to="/account/register" onClick={closeSidebar}>Sign Up</Link></li>
-                </>
+              <>
+                <li><Link to="/account/login" onClick={closeSidebar}>Login</Link></li>
+                <li><Link to="/account/register" onClick={closeSidebar}>Sign Up</Link></li>
+              </>
             )}
           </ul>
         </nav>

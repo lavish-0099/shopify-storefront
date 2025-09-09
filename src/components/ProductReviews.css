@@ -1,0 +1,42 @@
+/* src/components/ProductReviews.css */
+
+.product-reviews-section {
+  background-color: #FDF6F7; /* A very light, soft blush */
+  padding: 80px 5%;
+}
+
+.section-title {
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--color-deep-mauve);
+  margin: 0 auto 50px auto;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments for tablet and mobile */
+@media (max-width: 992px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+  .product-reviews-section {
+    padding: 60px 5%;
+  }
+}

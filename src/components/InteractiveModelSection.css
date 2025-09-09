@@ -1,0 +1,33 @@
+/* src/components/InteractiveModelSection.css */
+.interactive-section {
+  height: 400vh;
+  position: relative;
+  /* --- Style Updates Below --- */
+  background-image: url('/public/images/bg.jpg'); /* The new background image */
+  background-size: cover; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Optional: Creates a parallax effect on scroll */
+}
+
+.sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.usp-text {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: var(--color-deep-mauve);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+  font-family: var(--font-secondary);
+}

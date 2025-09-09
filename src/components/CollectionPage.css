@@ -1,0 +1,15 @@
+/* src/components/CollectionPage.css */
+.collection-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px 5%;
+}
+
+.collection-title {
+  font-family: var(--font-primary);
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 50px;
+  
+}

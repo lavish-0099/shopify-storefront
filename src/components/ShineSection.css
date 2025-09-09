@@ -1,0 +1,45 @@
+/* --- Keyframe animation for the moving background texture --- */
+@keyframes move-texture {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -500px -500px;
+  }
+}
+
+.shine-section {
+  /* Make the section background light so the text stands out */
+  background-color: #f5f5f5; /* light gray (you can pick any light tone) */
+  padding: 100px 5%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.shine-text {
+  font-family: var(--font-primary);
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+
+  /* Stronger #642c44 texture */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' fill='%23642c44' opacity='0.8'/%3E%3C/svg%3E");
+  animation: move-texture 30s linear infinite;
+  background-color: #642c44;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .shine-text {
+    font-size: 2rem;
+  }
+  .shine-section {
+    padding: 80px 5%;
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test</title>
+    <style>
+        body { margin: 0; background-color: #000; }
+        video { width: 100vw; height: 100vh; object-fit: cover; }
+    </style>
+</head>
+<body>
+    <video id="my-video" src="/videos/intro.mp4" muted playsinline></video>
+
+    <script>
+        const video = document.getElementById('my-video');
+        console.log('Video element selected:', video);
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                console.log('Enter key pressed. Attempting to play video...');
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Video playback started successfully.');
+                    }).catch(error => {
+                        console.error('Error attempting to play video:', error);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+.blog-post-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 5%;
+  font-family: var(--font-secondary);
+}
+
+.blog-post-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.blog-post-title {
+  font-family: var(--font-primary);
+  font-size: 3rem;
+  color: var(--color-deep-mauve);
+  margin: 0 0 15px 0;
+}
+
+.blog-post-meta {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.blog-post-meta span {
+  margin: 0 5px;
+}
+
+.blog-post-image {
+  margin-bottom: 40px;
+}
+
+.blog-post-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.blog-post-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Basic styling for content coming from Shopify's Rich Text Editor */
+.blog-post-content h2 {
+  font-family: var(--font-primary);
+  font-size: 2rem;
+  margin: 40px 0 20px 0;
+}
+.blog-post-content p {
+  margin-bottom: 20px;
+}
+.blog-post-content a {
+  color: var(--color-deep-mauve);
+  text-decoration: underline;
+}
+
+.back-to-blog-link {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.back-to-blog-link a {
+  color: var(--color-deep-mauve);
+  text-decoration: none;
+  font-weight: 600;
+}
+.back-to-blog-link a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,72 @@
+/* src/components/WhyChooseUs.css */
+.why-choose-us-section {
+  padding: 80px 5%;
+  background-color: var(--color-white);
+}
+
+.why-choose-us-section .section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background-color: var(--color-soft-blush);
+  padding: 30px;
+  border-radius: 15px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.info-card h3 {
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  color: var(--color-deep-mauve);
+  margin: 0 0 15px 0;
+}
+
+.info-card p {
+  font-family: var(--font-secondary);
+  line-height: 1.6;
+  color: var(--color-deep-mauve);
+  opacity: 0.9;
+}
+
+/* Special hover effect for the fabric card */
+.fabric-card {
+  transition: background-image 0.5s ease-in-out;
+}
+.fabric-card:hover {
+  background-image: url('../assets/images/fabric-texture.jpg');
+  background-size: cover;
+}
+
+/* Styles for the Lottie animation */
+.lottie-container {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+/* Responsive adjustments for the grid */
+@media (max-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+}

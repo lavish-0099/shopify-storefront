@@ -1,0 +1,99 @@
+/* AffiliateRegisterForm.css */
+
+.affiliate-form-wrapper {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.affiliate-form-wrapper h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+}
+
+.affiliate-form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row input {
+    width: 100%;
+}
+
+.affiliate-form-wrapper input {
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.affiliate-form-wrapper input:focus {
+    outline: none;
+    border-color: #cda274;
+    box-shadow: 0 0 0 3px rgba(205, 162, 116, 0.2);
+}
+
+.affiliate-form-wrapper button {
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.affiliate-form-wrapper button:hover:not(:disabled) {
+    background-color: #333;
+}
+
+.affiliate-form-wrapper button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.form-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.form-message.success {
+    background-color: #e6f4ea;
+    color: #3c763d;
+}
+
+.form-message.error {
+    background-color: #f2dede;
+    color: #a94442;
+}

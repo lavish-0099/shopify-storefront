@@ -1,0 +1,89 @@
+/* src/App.css */
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-banner .hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Using Deep Mauve for the overlay for brand consistency */
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(100, 44, 68, 0.3); /* Transparent Deep Mauve */
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  color: var(--color-white);
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  text-transform: none; /* More elegant than uppercase */
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin: 0;
+  font-family: var(--font-secondary);
+}
+
+.next-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-deep-mauve);
+  color: var(--color-white);
+  text-align: center;
+}
+
+.next-section h2 {
+    font-size: 3rem;
+    font-family: var(--font-primary);
+    font-weight: 600;
+}
+
+/* In src/index.css or src/App.css */
+:root {
+  /* -- NEW COLOR THEME -- */
+  --color-deep-mauve: #642c44;
+  --color-soft-blush: #f5e6e0;
+  
+  /* -- Supporting Colors & Fonts (ensure these are set) -- */
+  --color-white: #ffffff;
+  --color-dark-text: #333333;
+  --color-accent-gold: #f5a623;
+  
+  /* -- Fonts (ensure these match your project) -- */
+  --font-primary: 'Playfair Display', serif;
+  --font-secondary: 'Montserrat', sans-serif;
+}

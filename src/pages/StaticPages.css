@@ -1,0 +1,29 @@
+.static-page-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 5%;
+  font-family: var(--font-secondary);
+  color: #333;
+}
+
+.static-page-title {
+  font-family: var(--font-primary);
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--color-deep-mauve);
+}
+
+.static-page-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.static-page-content p {
+  margin-bottom: 20px;
+}
+
+.static-page-content a {
+  color: var(--color-deep-mauve);
+  text-decoration: underline;
+}

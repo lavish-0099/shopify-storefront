@@ -1,0 +1,47 @@
+// src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+// runtime-first, fall back to build-time env
+const SHOPIFY_API_ENDPOINT =
+  (typeof window !== 'undefined' && window.SHOPIFY_API_ENDPOINT) ||
+  process.env.REACT_APP_SHOPIFY_API_ENDPOINT;
+
+const SHOPIFY_STOREFRONT_TOKEN =
+  (typeof window !== 'undefined' && window.SHOPIFY_STOREFRONT_TOKEN) ||
+  process.env.REACT_APP_SHOPIFY_STOREFRONT_TOKEN; // note exact name
+
+const httpLink = createHttpLink({
+  uri: SHOPIFY_API_ENDPOINT,
+});
+
+const authLink = setContext((_, { headers }) => ({
+  headers: {
+    ...headers,
+    'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_TOKEN || '',
+    'Content-Type': 'application/json'
+  }
+}));
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </React.StrictMode>
+);

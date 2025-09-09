@@ -204,7 +204,7 @@ const Header = () => {
               )}
             </li>
             <li><Link to="/collections/offers" onClick={closeSidebar}>Our Offers</Link></li>
-            <li><Link to="/contact">CONTACT US</Link></li>
+            <li><li><Link to="/contact">CONTACT US</Link></li></li>
             <li className="sidebar-divider"><hr /></li>
             <li><Link to="/tools/TrackOrder" onClick={closeSidebar}><FaTruck /> Track Order</Link></li>
             {customer ? (

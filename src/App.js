@@ -100,7 +100,6 @@ function App() {
             <CartProvider>
               <Routes>
                 <Route path="/tools/track-order" element={<MainLayout><TrackOrderPage /></MainLayout>} />
-                <Route path="/contact" element={<MainLayout><ContactUs /></MainLayout>} />
 
                 {/* Main Routes */}
                 <Route path="/" element={<MainLayout><HomePage /></MainLayout>} />

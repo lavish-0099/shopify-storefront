@@ -6,7 +6,7 @@ import "./ContactUs.css";
  * Replace the shop domain below if different.
  * Example: https://YOUR-SHOP.myshopify.com/contact#contact_form
  */
-const SHOPIFY_CONTACT_URL = "https://delanl.myshopify.com/contact#contact_form";
+const SHOPIFY_CONTACT_URL = "https://delan1.myshopify.com/contact#contact_form";
 
 export default function ContactUs() {
   return (

@@ -121,62 +121,44 @@ export default function TrackOrderPage() {
           <p className="mt-2 text-lg text-gray-600">Enter your order details below to see its status.</p>
         </div>
 
-       {/* Form */}
-<div className="bg-white p-6 sm:p-8 rounded-2xl shadow-md mb-8">
-  <form 
-    onSubmit={handleTrackOrder} 
-    className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end"
-  >
-    {/* Order Number */}
-    <div>
-      <label htmlFor="orderNumber" className="block text-sm font-medium text-gray-700 mb-1">
-        Order Number
-      </label>
-      <input
-        type="text"
-        id="orderNumber"
-        value={orderNumber}
-        onChange={(e) => setOrderNumber(e.target.value)}
-        placeholder="#1001"
-        required
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm 
-                   focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
-                   text-gray-800 placeholder-gray-400"
-      />
-    </div>
+        {/* Form */}
+        <div className="track-form-container">
+        <form onSubmit={handleTrackOrder} className="track-form">
+            {/* Order Number */}
+            <div className="form-group">
+            <label htmlFor="orderNumber">Order Number</label>
+            <input
+                type="text"
+                id="orderNumber"
+                value={orderNumber}
+                onChange={(e) => setOrderNumber(e.target.value)}
+                placeholder="#1001"
+                required
+            />
+            </div>
 
-    {/* Email */}
-    <div>
-      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-        Email Address
-      </label>
-      <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="you@example.com"
-        required
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm 
-                   focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
-                   text-gray-800 placeholder-gray-400"
-      />
-    </div>
+            {/* Email */}
+            <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+            />
+            </div>
 
-    {/* Button */}
-    <div className="mt-2 md:mt-0">
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full flex items-center justify-center gap-2 bg-indigo-600 
-                   text-white font-semibold py-2.5 px-4 rounded-lg shadow 
-                   hover:bg-indigo-700 transition disabled:bg-indigo-300"
-      >
-        {isLoading ? "Tracking..." : (<><SearchIcon /> Track</>)}
-      </button>
-    </div>
-  </form>
-</div>
+            {/* Button */}
+            <div className="form-group">
+            <button type="submit" disabled={isLoading} className="track-btn">
+                {isLoading ? "Tracking..." : "Track"}
+            </button>
+            </div>
+        </form>
+        </div>
+
 
 
         {/* Errors */}

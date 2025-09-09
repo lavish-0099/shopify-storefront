@@ -1,6 +1,6 @@
 // src/components/Header/Header.jsx
-import React, { useMemo, useState, useEffect } from "react";
-import { useQuery, gql } from "@apollo/client";
+import React, { useEffect, useMemo, useState } from "react";
+import { gql, useQuery } from "@apollo/client";
 import { Link, useLocation } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
@@ -14,71 +14,95 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-const GET_COLLECTIONS = gql`
-  query GetCollections {
-    collections(first: 100, sortKey: TITLE) {
-      edges {
-        node {
-          id
+/**
+ * Storefront API: fetch a navigation menu by handle.
+ * Your Shopify Admin → Navigation → "Main menu" has handle: "main-menu"
+ */
+const GET_MENU = gql`
+  query getMenu($handle: String!) {
+    menu(handle: $handle) {
+      id
+      items {
+        title
+        url
+        items {
           title
-          handle
+          url
+          items {
+            title
+            url
+          }
         }
       }
     }
   }
 `;
 
-function chunkInto(arr, size) {
-  const out = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
+/** Convert Shopify navigation URLs to SPA-relative paths */
+function toRelative(url) {
+  if (!url) return "#";
+  // Already relative?
+  if (url.startsWith("/")) return url;
+
+  try {
+    const u = new URL(url);
+    // Common Shopify resource types we expect in nav
+    // /collections/... , /products/... , /pages/... , /blogs/... , /policies/...
+    if (
+      u.pathname.startsWith("/collections") ||
+      u.pathname.startsWith("/products") ||
+      u.pathname.startsWith("/pages") ||
+      u.pathname.startsWith("/blogs") ||
+      u.pathname.startsWith("/policies")
+    ) {
+      return u.pathname + u.search + u.hash;
+    }
+    // Fallback: external link
+    return url;
+  } catch {
+    return url;
+  }
 }
 
-const Header = () => {
+export default function Header() {
   const location = useLocation();
-  const { loading, error, data } = useQuery(GET_COLLECTIONS);
+
+  // --- Fetch Shopify Main Menu ---
+  const { loading, error, data } = useQuery(GET_MENU, {
+    variables: { handle: "main-menu" },
+  });
+
+  const menuItems = useMemo(() => data?.menu?.items ?? [], [data]);
+
+  // --- App contexts ---
   const { cart } = useCart();
   const { customer, logout } = useAuth();
 
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const cartItemCount = cart
+    ? cart.lines.edges.reduce((n, e) => n + e.node.quantity, 0)
+    : 0;
+
+  // --- Desktop dropdown state ---
+  const [openDropdown, setOpenDropdown] = useState(null); // index of open parent or null
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  // Mobile sidebar
+  // --- Mobile sidebar state ---
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [openMobileGroups, setOpenMobileGroups] = useState({}); // {index: bool}
 
-  // Close any open menus on route change
+  // Close menus on route change
   useEffect(() => {
     setOpenDropdown(null);
     setIsUserMenuOpen(false);
     setIsSidebarOpen(false);
+    setOpenMobileGroups({});
   }, [location.pathname]);
-
-  const cartItemCount = cart
-    ? cart.lines.edges.reduce((total, edge) => total + edge.node.quantity, 0)
-    : 0;
-
-  const excludedHandles = ["home-page"];
-  const navCollections = useMemo(() => {
-    const edges = data?.collections.edges || [];
-    const filtered = edges.filter(
-      (edge) => !excludedHandles.includes(edge.node.handle)
-    );
-    // de-dupe by handle (just in case)
-    const seen = new Set();
-    return filtered.filter(({ node }) => {
-      if (seen.has(node.handle)) return false;
-      seen.add(node.handle);
-      return true;
-    });
-  }, [data]);
-
-  // Layout: n columns (8 items per column looks close to your reference)
-  const columns = useMemo(() => chunkInto(navCollections, 8), [navCollections]);
 
   const toggleSidebar = () => setIsSidebarOpen((s) => !s);
   const closeSidebar = () => setIsSidebarOpen(false);
-  const toggleProducts = () => setIsProductsOpen((s) => !s);
+
+  const toggleMobileGroup = (idx) =>
+    setOpenMobileGroups((m) => ({ ...m, [idx]: !m[idx] }));
 
   return (
     <>
@@ -86,11 +110,18 @@ const Header = () => {
         {/* Top Bar */}
         <div className="top-bar">
           <div className="top-bar-left">
-            <button className="hamburger-menu" onClick={toggleSidebar} aria-label="Open menu">
+            <button
+              className="hamburger-menu"
+              onClick={toggleSidebar}
+              aria-label="Open menu"
+            >
               <FaBars />
             </button>
 
-            <Link to="/tools/track-order" className="header-link track-order-link">
+            <Link
+              to="/tools/track-order"
+              className="header-link track-order-link"
+            >
               <FaTruck /> <span>Track Order</span>
             </Link>
           </div>
@@ -108,13 +139,15 @@ const Header = () => {
 
           {/* Right Icons */}
           <div className="top-bar-right">
-            <Link to="/search" className="header-icon" title="Search" aria-label="Search">
+            <Link to="/search" className="header-icon" title="Search">
               <FaSearch />
             </Link>
 
-            <Link to="/cart" className="header-icon cart-icon" title="Cart" aria-label="Cart">
+            <Link to="/cart" className="header-icon cart-icon" title="Cart">
               <FaShoppingCart />
-              {cartItemCount > 0 && <span className="cart-count">{cartItemCount}</span>}
+              {cartItemCount > 0 && (
+                <span className="cart-count">{cartItemCount}</span>
+              )}
             </Link>
 
             {customer ? (
@@ -145,9 +178,13 @@ const Header = () => {
               </div>
             ) : (
               <div className="login-signup-links">
-                <Link to="/account/login" className="header-link">Login</Link>
+                <Link to="/account/login" className="header-link">
+                  Login
+                </Link>
                 <span>/</span>
-                <Link to="/account/register" className="header-link">Sign Up</Link>
+                <Link to="/account/register" className="header-link">
+                  Sign Up
+                </Link>
               </div>
             )}
           </div>
@@ -156,54 +193,57 @@ const Header = () => {
         {/* Main Nav (Desktop) */}
         <nav className="main-nav" aria-label="Primary">
           <ul>
-            <li><Link to="/">New Arrivals</Link></li>
+            {loading && <li>Loading…</li>}
+            {error && <li>Error loading menu</li>}
 
-            <li
-              className={`dropdown ${openDropdown === "categories" ? "open" : ""}`}
-              onMouseEnter={() => setOpenDropdown("categories")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <button
-                className="dropdown-trigger"
-                aria-expanded={openDropdown === "categories"}
-                aria-haspopup="true"
-              >
-                Shop by Category <span className="arrow">▾</span>
-              </button>
+            {!loading &&
+              !error &&
+              menuItems.map((item, idx) => {
+                const hasChildren = (item.items?.length ?? 0) > 0;
+                const isOpen = openDropdown === idx;
 
-              <div
-                className={`mega ${openDropdown === "categories" ? "is-open" : ""}`}
-                role="menu"
-              >
-                <div className="mega-inner">
-                  {loading && <div className="mega-col"><div className="skeleton" /></div>}
-                  {error && <div className="mega-col">Error loading collections</div>}
+                const TopLink = (
+                  <Link to={toRelative(item.url)}>{item.title}</Link>
+                );
 
-                  {!loading && !error && columns.map((col, i) => (
-                    <div className="mega-col" key={i}>
-                      <ul className="mega-list">
-                        {col.map(({ node }) => (
-                          <li key={node.id}>
-                            <Link
-                              to={`/collections/${node.handle}`}
-                              className="mega-link"
-                              role="menuitem"
-                            >
-                              {node.title}
-                            </Link>
+                return (
+                  <li
+                    key={`${item.title}-${idx}`}
+                    className={`dropdown ${hasChildren ? "has-children" : ""}`}
+                    onMouseEnter={() => hasChildren && setOpenDropdown(idx)}
+                    onMouseLeave={() => hasChildren && setOpenDropdown(null)}
+                  >
+                    {hasChildren ? (
+                      <button
+                        className="dropdown-trigger"
+                        aria-expanded={isOpen}
+                        aria-haspopup="true"
+                        onClick={() =>
+                          setOpenDropdown((v) => (v === idx ? null : idx))
+                        }
+                      >
+                        {item.title} <span className="arrow">▾</span>
+                      </button>
+                    ) : (
+                      TopLink
+                    )}
+
+                    {hasChildren && (
+                      <ul className={`dropdown-menu ${isOpen ? "is-open" : ""}`}>
+                        {item.items.map((sub, sIdx) => (
+                          <li key={`${sub.title}-${sIdx}`}>
+                            <Link to={toRelative(sub.url)}>{sub.title}</Link>
                           </li>
                         ))}
                       </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </li>
+                    )}
+                  </li>
+                );
+              })}
 
-            <li><Link to="/collections">Shop by Season</Link></li>
-            <li><Link to="/collections/offers">Curated Collections</Link></li>
-            <li><Link to="/collections/offers">Sale</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            {/* You can add extra static items if needed:
+                <li><Link to="/contact">Contact</Link></li>
+            */}
           </ul>
         </nav>
       </header>
@@ -216,45 +256,67 @@ const Header = () => {
       <aside className={`sidebar-container ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h3>Menu</h3>
-          <button className="close-sidebar-btn" onClick={closeSidebar} aria-label="Close menu">
+          <button
+            className="close-sidebar-btn"
+            onClick={closeSidebar}
+            aria-label="Close menu"
+          >
             <FaTimes />
           </button>
         </div>
 
         <nav className="sidebar-nav" aria-label="Mobile">
           <ul>
-            <li><Link to="/" onClick={closeSidebar}>Home</Link></li>
+            {loading && <li>Loading…</li>}
+            {error && <li>Error loading menu</li>}
 
-            <li className="sidebar-dropdown">
-              <div className="sidebar-dropdown-toggle" onClick={toggleProducts}>
-                Shop by Category
-                <span className={`arrow ${isProductsOpen ? "up" : "down"}`}>▾</span>
-              </div>
+            {!loading &&
+              !error &&
+              menuItems.map((item, idx) => {
+                const hasChildren = (item.items?.length ?? 0) > 0;
+                const open = !!openMobileGroups[idx];
 
-              {isProductsOpen && (
-                <ul className="sidebar-dropdown-menu">
-                  {loading && <li>Loading…</li>}
-                  {error && <li>Error loading collections.</li>}
-                  {navCollections.map(({ node }) => (
-                    <li key={node.id}>
-                      <Link
-                        to={`/collections/${node.handle}`}
-                        onClick={closeSidebar}
-                      >
-                        {node.title}
+                if (!hasChildren) {
+                  return (
+                    <li key={`${item.title}-${idx}`}>
+                      <Link to={toRelative(item.url)} onClick={closeSidebar}>
+                        {item.title}
                       </Link>
                     </li>
-                  ))}
-                </ul>
-              )}
+                  );
+                }
+
+                return (
+                  <li key={`${item.title}-${idx}`} className="sidebar-dropdown">
+                    <div
+                      className="sidebar-dropdown-toggle"
+                      onClick={() => toggleMobileGroup(idx)}
+                    >
+                      {item.title}
+                      <span className={`arrow ${open ? "up" : "down"}`}>▾</span>
+                    </div>
+
+                    {open && (
+                      <ul className="sidebar-dropdown-menu">
+                        {item.items.map((sub, sIdx) => (
+                          <li key={`${sub.title}-${sIdx}`}>
+                            <Link
+                              to={toRelative(sub.url)}
+                              onClick={closeSidebar}
+                            >
+                              {sub.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
+
+            <li className="sidebar-divider">
+              <hr />
             </li>
-
-            <li><Link to="/collections" onClick={closeSidebar}>Shop by Season</Link></li>
-            <li><Link to="/collections/offers" onClick={closeSidebar}>Curated Collections</Link></li>
-            <li><Link to="/collections/offers" onClick={closeSidebar}>Sale</Link></li>
-            <li><Link to="/contact" onClick={closeSidebar}>Contact</Link></li>
-
-            <li className="sidebar-divider"><hr /></li>
 
             <li>
               <Link to="/tools/track-order" onClick={closeSidebar}>
@@ -264,10 +326,17 @@ const Header = () => {
 
             {customer ? (
               <>
-                <li><Link to="/account" onClick={closeSidebar}><FaUser /> My Account</Link></li>
+                <li>
+                  <Link to="/account" onClick={closeSidebar}>
+                    <FaUser /> My Account
+                  </Link>
+                </li>
                 <li>
                   <button
-                    onClick={() => { logout(); closeSidebar(); }}
+                    onClick={() => {
+                      logout();
+                      closeSidebar();
+                    }}
                     className="sidebar-logout-button"
                   >
                     Log Out
@@ -276,8 +345,16 @@ const Header = () => {
               </>
             ) : (
               <>
-                <li><Link to="/account/login" onClick={closeSidebar}>Login</Link></li>
-                <li><Link to="/account/register" onClick={closeSidebar}>Sign Up</Link></li>
+                <li>
+                  <Link to="/account/login" onClick={closeSidebar}>
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/account/register" onClick={closeSidebar}>
+                    Sign Up
+                  </Link>
+                </li>
               </>
             )}
           </ul>
@@ -285,6 +362,4 @@ const Header = () => {
       </aside>
     </>
   );
-};
-
-export default Header;
+}

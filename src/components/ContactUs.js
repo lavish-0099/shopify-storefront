@@ -1,75 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ContactUs.css";
 
 export default function ContactUs() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-
-  const [status, setStatus] = useState("");
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
-
-    // Example with EmailJS (replace with your service)
-    // emailjs.send("service_id", "template_id", formData, "user_id")
-    //   .then(() => setStatus("Message sent successfully!"))
-    //   .catch(() => setStatus("Failed to send. Try again."));
-
-    console.log("Form submitted:", formData);
-    setStatus("Your message has been sent! ✅ (currently console only)");
-  };
-
   return (
     <div className="contact-container">
       <h1>Contact Us</h1>
-      <p>We’d love to hear from you. Fill out the form below:</p>
+      <p>
+        If you have any questions, please fill out the form below and our team
+        will get back to you as soon as possible.
+      </p>
 
-      <form onSubmit={handleSubmit} className="contact-form">
-        <div className="form-group">
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <form method="post" action="/contact" className="contact-form">
+        <label>
+          Name:
+          <input type="text" name="contact[name]" required />
+        </label>
 
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <label>
+          Email:
+          <input type="email" name="contact[email]" required />
+        </label>
 
-        <div className="form-group full">
-          <label>Message</label>
-          <textarea
-            name="message"
-            rows="5"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
+        <label>
+          Phone (optional):
+          <input type="text" name="contact[phone]" />
+        </label>
 
-        <button type="submit" className="contact-btn">Send Message</button>
+        <label>
+          Message:
+          <textarea name="contact[body]" rows="5" required></textarea>
+        </label>
+
+        <button type="submit">Send</button>
       </form>
-
-      {status && <p className="status">{status}</p>}
     </div>
   );
 }

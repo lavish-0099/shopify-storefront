@@ -41,28 +41,20 @@ const GET_MENU = gql`
 /** Convert Shopify navigation URLs to SPA-relative paths */
 function toRelative(url) {
   if (!url) return "#";
-  // Already relative?
   if (url.startsWith("/")) return url;
 
   try {
     const u = new URL(url);
-    // Common Shopify resource types we expect in nav
-    // /collections/... , /products/... , /pages/... , /blogs/... , /policies/...
-    if (
-      u.pathname.startsWith("/collections") ||
-      u.pathname.startsWith("/products") ||
-      u.pathname.startsWith("/pages") ||
-      u.pathname.startsWith("/blogs") ||
-      u.pathname.startsWith("/policies")
-    ) {
-      return u.pathname + u.search + u.hash;
+    // Strip the Shopify domain
+    if (u.hostname.includes("myshopify.com")) {
+      return u.pathname; // e.g. /collections/the-evening-edit
     }
-    // Fallback: external link
-    return url;
+    return url; // external links untouched
   } catch {
     return url;
   }
 }
+
 
 export default function Header() {
   const location = useLocation();

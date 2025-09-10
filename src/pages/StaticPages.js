@@ -171,7 +171,7 @@ export const ReturnsPage = () => (
 
     <h2>Process</h2>
     <ol>
-      <li>Email support@delan.com within the timeframe with order ID</li>
+      <li>Email support@delan.in within the timeframe with order ID</li>
       <li>We will schedule a reverse pickup</li>
       <li>Refunds processed in 5–7 days after quality check</li>
       <li>Exchanges shipped within 2–3 business days subject to stock</li>
@@ -185,7 +185,7 @@ export const ReturnsPage = () => (
 
     <h2>Contact Us</h2>
     <p>
-      Email: <a href="mailto:support@delan.com">support@delan.com</a> <br />
+      Email: <a href="mailto:support@delan.in">support@delan.in</a> <br />
       Phone: <a href="tel:+919310329849">+91 93103 29849</a>
     </p>
   </PageWrapper>

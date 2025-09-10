@@ -11,6 +11,7 @@ import ShineSection from './ShineSection';
 import ReviewList from './ReviewList';
 import './ProductPage.css';
 import { FaHeart } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const GET_PRODUCT_BY_HANDLE = gql`
   query getProductByHandle($handle: String!) {
@@ -60,8 +61,6 @@ const GET_PRODUCT_BY_HANDLE = gql`
   }
 `;
 
-
-
 const ProductPage = () => {
   const { handle } = useParams();
   const [selectedOptions, setSelectedOptions] = useState({});
@@ -69,6 +68,7 @@ const ProductPage = () => {
   const [mainImage, setMainImage] = useState(null); 
   const { addToCart } = useCart();
   const [showPopup, setShowPopup] = useState(false); 
+  const [openSections, setOpenSections] = useState({}); // dropdown control
 
   useEffect(() => {
     if (handle) {
@@ -83,17 +83,16 @@ const ProductPage = () => {
     variables: { handle },
   });
 
-useEffect(() => {
-  if (data && data.product) {
-    const defaultOptions = {};
-    data.product.options.forEach(option => {
-      defaultOptions[option.name] = option.values[0];
-    });
-    setSelectedOptions(defaultOptions);
-    setMainImage(data.product.images.edges[0]?.node);
-  }
-}, [data]);
-
+  useEffect(() => {
+    if (data && data.product) {
+      const defaultOptions = {};
+      data.product.options.forEach(option => {
+        defaultOptions[option.name] = option.values[0];
+      });
+      setSelectedOptions(defaultOptions);
+      setMainImage(data.product.images.edges[0]?.node);
+    }
+  }, [data]);
 
   if (loading) return <p style={{ textAlign: 'center', padding: '100px 0' }}>Loading product...</p>;
   if (error) return <p style={{ textAlign: 'center', padding: '100px 0' }}>Error: {error.message}</p>;
@@ -134,24 +133,17 @@ useEffect(() => {
 
   // --- Reviews parsing from metafield ---
   let reviews = [];
-
-  // Check if the metafields array exists and is not empty
   if (product.metafields && product.metafields.length > 0) {
-    
-    // Find the specific metafield that contains the review data
     const reviewMetafield = product.metafields.find(
       mf => mf && mf.namespace === 'air_reviews_product' && mf.key === 'data'
     );
-
-    // If the metafield is found and has a value, parse it
     if (reviewMetafield && reviewMetafield.value) {
       try {
         const parsedData = JSON.parse(reviewMetafield.value);
-        // The actual reviews are likely nested inside the parsed JSON
         reviews = parsedData.reviews || [];
       } catch (e) {
         console.error("Error parsing reviews from metafield:", e);
-        reviews = []; // Reset to empty array on error
+        reviews = [];
       }
     }
   }
@@ -162,6 +154,9 @@ useEffect(() => {
     ? (approvedReviews.reduce((sum, r) => sum + (r.rate || 0), 0) / approvedReviews.length).toFixed(1)
     : null;
 
+  const toggleSection = (key) => {
+    setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
   return (
     <>
@@ -250,7 +245,8 @@ useEffect(() => {
           <div className="offer-banner">
             <p>Flat 10% off on first purchase, up to Rs.500</p>
           </div>
-          {/* Circular Media Section */}
+
+          {/* Circle thumbnails */}
           <div className="circle-thumbnails-below-offer">
             {product.images.edges.map(({ node }, index) => (
               <button
@@ -263,7 +259,25 @@ useEffect(() => {
             ))}
           </div>
 
-          <div className="product-description-new" dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
+          {/* Collapsible dropdown sections */}
+          <div className="product-dropdowns">
+            {[
+              { key: "love", title: "Why You'll Love This", content: product.descriptionHtml },
+              { key: "highlights", title: "Highlights", content: "<ul><li>Built in cups that stay in place</li><li>No see-through</li><li>Anti-camel toe</li><li>Chlorine resistant</li></ul>" },
+              { key: "fabric", title: "Fabric Details", content: "<ul><li>80% Nylon – Comfort & freedom in/out of water</li><li>20% Spandex – Durability and stretch</li></ul>" },
+              { key: "wash", title: "Wash-Care Details", content: "<ul><li>Line dry in shade</li></ul>" }
+            ].map(section => (
+              <div key={section.key} className="dropdown-section">
+                <button className="dropdown-header" onClick={() => toggleSection(section.key)}>
+                  <span>{section.title}</span>
+                  {openSections[section.key] ? <FaChevronUp /> : <FaChevronDown />}
+                </button>
+                {openSections[section.key] && (
+                  <div className="dropdown-content" dangerouslySetInnerHTML={{ __html: section.content }} />
+                )}
+              </div>
+            ))}
+          </div>
 
           <AddReviewForm 
             productId={product.id} 
@@ -281,10 +295,7 @@ useEffect(() => {
 
       <RelatedProducts productId={product.id} />
       <RecentlyViewed currentProductHandle={product.handle} />
-      
       <ShineSection text="#FOR THE MOMENTS THAT MATTER" />
-
-      {/* Customer Reviews Section */}
       <ReviewList reviews={approvedReviews} />
     </>
   );

@@ -46,29 +46,29 @@ const MainLayout = ({ children }) => {
 };
 
 const HomePage = () => {
-    const nextSectionRef = React.useRef(null);
-    return (
-        <>
-            <div className="hero-banner">
-                <video 
-                    src="/videos/intro.mp4" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                    className="hero-video"
-                />
-                <div className="hero-content">
-                    <h1>Timeless Elegance, Modern Sophistication</h1>
-                    <p>For the moments that matter.</p>
-                </div>
-            </div>
-            <WhyChooseUs />
-            <InteractiveModelSection nextSectionRef={nextSectionRef} />
-            <div ref={nextSectionRef}><TopProducts /></div>
-            <ProductReviews />
-        </>
-    );
+  const nextSectionRef = React.useRef(null);
+  return (
+    <>
+      <div className="hero-banner">
+        <video 
+          src="/videos/intro.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="hero-video"
+        />
+        <div className="hero-content">
+          <h1>Timeless Elegance, Modern Sophistication</h1>
+          <p>For the moments that matter.</p>
+        </div>
+      </div>
+      <WhyChooseUs />
+      <div ref={nextSectionRef}><TopProducts /></div>
+      <ProductReviews />
+      <InteractiveModelSection nextSectionRef={nextSectionRef} />
+    </>
+  );
 };
 
 function App() {

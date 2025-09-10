@@ -42,9 +42,7 @@ const MainLayout = ({ children }) => {
 const HomePage = () => {
   return (
     <>
-      {/* Cursor Bubble Effect */}
-      <BubbleTrail />
-
+     
       <div className="hero-banner">
         <video
           src="/videos/intro_vid.mp4"

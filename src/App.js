@@ -46,13 +46,14 @@ const HomePage = () => {
       <div className="hero-banner">
           <img
             src="/videos/hero.png" 
+            
             alt="Hero Banner"
             className="hero-video"
           />
 
       </div>
 
-      
+
 
       <WhyChooseUs />
       <VideoModelSection />  {/* ✅ Added here */}

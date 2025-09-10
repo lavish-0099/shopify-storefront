@@ -9,27 +9,21 @@ const Preloader = ({ onLoaded }) => {
         if (videoRef.current) {
             videoRef.current.play();
         }
-        setIsClicked(true); // Fix: update state so overlay disappears after click
+        setIsClicked(true);
     };
 
     return (
         <div className="preloader-container" onClick={handleClick}>
             <video
                 ref={videoRef}
-                src="/videos/intro_vid.mp4
-                "
-                muted
+                src="/videos/intro_vid.mp4"
                 playsInline
                 onEnded={onLoaded}
-                autoPlay={isClicked} // Fix: autoplay after click
+                autoPlay={isClicked}
+                controls={false}  // Hide default controls
             />
-            {!isClicked && (
-                <div className="overlay-text">
-                    <p>Click to Begin</p>
-                </div>
-            )}
         </div>
     );
 };
 
-export default Preloader
+export default Preloader;

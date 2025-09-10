@@ -49,17 +49,13 @@ const HomePage = () => {
 
       <div className="hero-banner">
         <video
-          src="/videos/intro_vid.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="hero-video"
-        />
-        <div className="hero-content">
-          <h1>Timeless Elegance, Modern Sophistication</h1>
-          <p>For the moments that matter.</p>
-        </div>
+        src="/videos/intro_vid.mp4"
+        autoPlay
+        loop
+        playsInline
+        className="hero-video"
+      />
+       
       </div>
 
       <WhyChooseUs />

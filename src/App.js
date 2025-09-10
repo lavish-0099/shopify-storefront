@@ -3,8 +3,6 @@ import TrackOrderPage from './components/TrackOrder';
 import ContactUs from "./components/ContactUs";
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import InteractiveModelSection from './components/InteractiveModelSection';
-
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header/Header';
@@ -56,8 +54,6 @@ const HomePage = () => {
       </div>
 
       <WhyChooseUs />
-       {/* NEW: Video Model Section */}
-      <InteractiveModelSection />
       <TopProducts />
       <ProductReviews />
       <InteractiveModelSection />

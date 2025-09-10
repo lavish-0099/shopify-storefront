@@ -22,7 +22,7 @@ const Preloader = ({ onVideoEnd }) => {
     <div className="preloader-container" onClick={handleScreenClick}>
       <video
         ref={videoRef}
-        src="/videos/intro_vidd.mp4"
+        src="/videos/intro_viddd.mp4"
         playsInline
         muted={false} // sound allowed
         controls={false}

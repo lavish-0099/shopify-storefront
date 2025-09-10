@@ -40,7 +40,6 @@ const MainLayout = ({ children }) => {
   );
 };
 
-
 const HomePage = () => {
   return (
     <>
@@ -49,13 +48,13 @@ const HomePage = () => {
 
       <div className="hero-banner">
         <video
-        src="/videos/intro_vid.mp4"
-        autoPlay
-        loop
-        playsInline
-        className="hero-video"
-      />
-       
+          src="/videos/hero_vid.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hero-video"
+        />
       </div>
 
       <WhyChooseUs />
@@ -66,16 +65,8 @@ const HomePage = () => {
   );
 };
 
-
 function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+  const [preloaderDone, setPreloaderDone] = useState(false);
 
   // --- AFFILIATE TRACKING ---
   useEffect(() => {
@@ -87,10 +78,16 @@ function App() {
   }, []);
   // --- END AFFILIATE TRACKING ---
 
+  const handlePreloaderVideoEnd = () => {
+    console.log("Preloader video finished, loading site...");
+    setPreloaderDone(true);
+  };
+
   return (
     <>
-      {loading && <Preloader />}
-      {!loading && (
+      {!preloaderDone ? (
+        <Preloader onVideoEnd={handlePreloaderVideoEnd} />
+      ) : (
         <Router>
           <AuthProvider>
             <CartProvider>

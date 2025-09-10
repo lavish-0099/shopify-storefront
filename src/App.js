@@ -3,6 +3,8 @@ import TrackOrderPage from './components/TrackOrder';
 import ContactUs from "./components/ContactUs";
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BubbleTrail from './components/BubbleTrail';
+
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header/Header';
@@ -38,9 +40,13 @@ const MainLayout = ({ children }) => {
   );
 };
 
+
 const HomePage = () => {
   return (
     <>
+      {/* Cursor Bubble Effect */}
+      <BubbleTrail />
+
       <div className="hero-banner">
         <video
           src="/videos/intro.mp4"
@@ -59,12 +65,11 @@ const HomePage = () => {
       <WhyChooseUs />
       <TopProducts />
       <ProductReviews />
-
-      {/* Moved Interactive Model Section to just above footer */}
       <InteractiveModelSection />
     </>
   );
 };
+
 
 function App() {
   const [loading, setLoading] = useState(true);

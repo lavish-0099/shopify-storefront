@@ -36,13 +36,13 @@ const UspShowcase = () => {
     if (componentRef.current) {
       const { top, height } = componentRef.current.getBoundingClientRect();
       // A small offset to trigger the change slightly earlier/later
-      const scrollOffset = window.innerHeight * 0.5; 
+      const scrollOffset = window.innerHeight * 0.5;
       const scrollPosition = window.scrollY + scrollOffset;
       const componentTop = componentRef.current.offsetTop;
-      
+
       const scrollProgress = scrollPosition - componentTop;
       const sectionHeight = height / usps.length;
-      
+
       const newIndex = Math.min(
         usps.length - 1,
         Math.max(0, Math.floor(scrollProgress / sectionHeight))
@@ -64,31 +64,32 @@ const UspShowcase = () => {
   const styles = {
     container: {
       display: 'flex',
-      minHeight: '350vh', // Increased height for a smoother scroll experience
-      backgroundColor: '#FFFFFF', // Changed to white as per screenshot
+      minHeight: '350vh',
+      backgroundColor: '#FFFFFF',
       fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     },
     leftPanel: {
       width: '50%',
       display: 'flex',
-      justifyContent: 'center', // Horizontally center the content
-      alignItems: 'center', // Vertically center the content
+      // The following styles move the text block "up and left"
+      justifyContent: 'flex-start', // Aligns block to the left
+      alignItems: 'flex-start',    // Aligns block to the top
+      padding: '30vh 0 0 10vw',     // Adds space from top (30%) and left (10%)
       position: 'sticky',
       top: 0,
       height: '100vh',
     },
     uspContent: {
-      maxWidth: '450px', // Adjusted max width
-      padding: '2rem',
-      textAlign: 'left', // Aligned text to the left as in screenshot
+      maxWidth: '450px',
+      textAlign: 'left',
     },
     uspItem: {
       transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out',
       position: 'absolute',
     },
     uspTitle: {
-      fontSize: '3rem', // Increased font size
-      fontWeight: '600', // Adjusted font weight
+      fontSize: '3rem',
+      fontWeight: '600',
       lineHeight: 1.2,
       marginBottom: '1rem',
       color: '#1a1a1a',
@@ -96,7 +97,7 @@ const UspShowcase = () => {
     uspDescription: {
       fontSize: '1rem',
       color: '#666',
-      maxWidth: '40ch', // Limit line length for readability
+      maxWidth: '40ch',
     },
     rightPanel: {
       width: '50%',
@@ -116,13 +117,12 @@ const UspShowcase = () => {
         position: 'relative',
     },
     image: {
-      maxWidth: '75%', // Ensure image doesn't get too big
+      maxWidth: '75%',
       maxHeight: '75%',
       objectFit: 'contain',
       position: 'absolute',
       transition: 'opacity 0.7s ease-in-out, transform 0.7s ease-in-out',
-      // This drop-shadow is perfect for transparent PNGs!
-      filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.1))', 
+      filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.1))',
     },
   };
 

@@ -5,8 +5,8 @@ const Preloader = ({ onVideoEnd }) => {
   const videoRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
 
-  const handleStart = () => {
-    if (videoRef.current) {
+  const handleScreenClick = () => {
+    if (videoRef.current && !hasStarted) {
       videoRef.current.play()
         .then(() => {
           setHasStarted(true);
@@ -19,23 +19,21 @@ const Preloader = ({ onVideoEnd }) => {
   };
 
   return (
-    <div className="preloader-container">
-      {!hasStarted && (
-        <div className="preloader-overlay">
-          <button className="preloader-start-btn" onClick={handleStart}>
-            Click to play
-          </button>
-        </div>
-      )}
+    <div className="preloader-container" onClick={handleScreenClick}>
       <video
         ref={videoRef}
         src="/videos/intro_vidd.mp4"
         playsInline
-        muted={false} // sound allowed after user click
+        muted={false} // sound allowed
         controls={false}
         onEnded={onVideoEnd}
         className="preloader-video"
       />
+      {!hasStarted && (
+        <div className="preloader-overlay">
+          <p className="preloader-hint"></p>
+        </div>
+      )}
     </div>
   );
 };

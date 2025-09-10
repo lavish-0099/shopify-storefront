@@ -2,74 +2,86 @@ import React, { useRef, useState, useEffect } from 'react';
 import './Preloader.css';
 
 const Preloader = ({ onLoaded }) => {
-    const videoRef = useRef(null);
-    const containerRef = useRef(null);
-    const [isClicked, setIsClicked] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
+  const videoRef = useRef(null);
+  const containerRef = useRef(null);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-    // Intersection Observer to detect visibility
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    setIsVisible(entry.isIntersecting);
-                });
-            },
-            { threshold: 0.5 } // 50% of the video should be visible to trigger
-        );
-
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
-
-        return () => {
-            if (containerRef.current) {
-                observer.unobserve(containerRef.current);
-            }
-        };
-    }, []);
-
-    // Play or pause video based on visibility
-    useEffect(() => {
-        if (videoRef.current) {
-            if (isVisible && isClicked) {
-                videoRef.current.play().catch((err) => {
-                    console.error("Error trying to play video:", err);
-                });
-            } else {
-                videoRef.current.pause();
-            }
-        }
-    }, [isVisible, isClicked]);
-
-    const handleClick = () => {
-        if (videoRef.current) {
-            videoRef.current.play()
-                .then(() => {
-                    console.log("Video playing with audio");
-                })
-                .catch(error => {
-                    console.error("Error playing video:", error);
-                });
-        }
-        setIsClicked(true);
-    };
-
-    return (
-        <div
-            className="preloader-container"
-            ref={containerRef}
-            onClick={handleClick}
-        >
-            <video
-                ref={videoRef}
-                src="/videos/intro_vid.mp4"
-                playsInline
-                controls={false}
-                onEnded={onLoaded}
-            />
-        </div>
+  // Detect when the video section is in the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 } // 30% of video must be visible
     );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
+  // Play/pause video based on visibility & user interaction
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isClicked) {
+        if (isVisible) {
+          videoRef.current.play().catch((err) => {
+            console.warn('Video play error:', err);
+          });
+        } else {
+          videoRef.current.pause();
+        }
+      }
+    }
+  }, [isVisible, isClicked]);
+
+  // User click to enable sound
+  const handleClick = () => {
+    if (videoRef.current) {
+      videoRef.current
+        .play()
+        .then(() => {
+          console.log('Video is now playing with sound.');
+        })
+        .catch((err) => {
+          console.error('Error trying to play video:', err);
+        });
+    }
+    setIsClicked(true);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="preloader-container"
+      onClick={handleClick}
+      style={{ cursor: isClicked ? 'default' : 'pointer' }}
+    >
+      <video
+        ref={videoRef}
+        src="/videos/intro_vid.mp4"
+        playsInline
+        controls={false}
+        muted={!isClicked} // Start muted, enable sound after click
+        onEnded={onLoaded}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
+      {!isClicked && (
+        <div className="overlay-text">
+          <p>Click to Play with Sound</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Preloader;

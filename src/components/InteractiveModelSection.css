@@ -3,7 +3,7 @@
   height: 400vh;
   position: relative;
   /* --- Style Updates Below --- */
-  background-image: url('/public/images/bg.jpg'); /* The new background image */
+  background-image: url('/public/images/bg.jpg');  The new background image */
   background-size: cover; /* Ensures the image covers the entire section */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */

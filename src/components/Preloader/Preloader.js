@@ -4,10 +4,11 @@ import './Preloader.css';
 const Preloader = ({ onLoaded }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
-  const [isClicked, setIsClicked] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
-  // Detect when the video section is in the viewport
+  const [isClicked, setIsClicked] = useState(false); // User has clicked to allow audio
+  const [isVisible, setIsVisible] = useState(false); // Video visibility status
+
+  // Detect when the video section enters or leaves the viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -15,7 +16,7 @@ const Preloader = ({ onLoaded }) => {
           setIsVisible(entry.isIntersecting);
         });
       },
-      { threshold: 0.3 } // 30% of video must be visible
+      { threshold: 0.4 } // 40% of video must be visible
     );
 
     if (containerRef.current) {
@@ -29,55 +30,65 @@ const Preloader = ({ onLoaded }) => {
     };
   }, []);
 
-  // Play/pause video based on visibility & user interaction
+  // Automatically play/pause when visibility changes
   useEffect(() => {
-    if (videoRef.current) {
-      if (isClicked) {
-        if (isVisible) {
-          videoRef.current.play().catch((err) => {
-            console.warn('Video play error:', err);
-          });
-        } else {
-          videoRef.current.pause();
-        }
-      }
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (!isClicked) {
+      // If user hasn't clicked yet, always keep video muted
+      video.muted = true;
+    }
+
+    if (isVisible && isClicked) {
+      // Play with audio when video is visible AND user has clicked
+      video.play().catch((err) => {
+        console.warn('Video play error:', err);
+      });
+    } else {
+      // Pause and mute when not visible
+      video.pause();
+      video.currentTime = 0; // Reset to start
+      video.muted = true;
     }
   }, [isVisible, isClicked]);
 
-  // User click to enable sound
+  // Handle user click to enable audio
   const handleClick = () => {
-    if (videoRef.current) {
-      videoRef.current
-        .play()
-        .then(() => {
-          console.log('Video is now playing with sound.');
-        })
-        .catch((err) => {
-          console.error('Error trying to play video:', err);
-        });
-    }
-    setIsClicked(true);
+    const video = videoRef.current;
+    if (!video) return;
+
+    video
+      .play()
+      .then(() => {
+        video.muted = false; // Unmute after click
+        setIsClicked(true);
+        console.log('User enabled video sound');
+      })
+      .catch((err) => {
+        console.error('Error trying to play video:', err);
+      });
   };
 
   return (
     <div
       ref={containerRef}
       className="preloader-container"
-      onClick={handleClick}
-      style={{ cursor: isClicked ? 'default' : 'pointer' }}
+      onClick={!isClicked ? handleClick : undefined}
+      style={{ cursor: !isClicked ? 'pointer' : 'default' }}
     >
       <video
         ref={videoRef}
         src="/videos/intro_vid.mp4"
         playsInline
         controls={false}
-        muted={!isClicked} // Start muted, enable sound after click
+        muted // Default muted to satisfy autoplay policies
         onEnded={onLoaded}
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
       {!isClicked && (
         <div className="overlay-text">
-          <p>Click to play</p>
+          <p>Click to Enable Sound</p>
         </div>
       )}
     </div>

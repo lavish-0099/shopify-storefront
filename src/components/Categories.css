@@ -1,0 +1,86 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 120px; /* left-right equal space */
+}
+
+/* Category List (Left) */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.category-item {
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-item:hover {
+  color: #555;
+}
+
+.category-item.active {
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Center Image and Blurred Images */
+.preview {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Needed for positioning blurred images */
+}
+
+.main-img {
+  width: 400px;
+  height: auto;
+  object-fit: cover;
+  z-index: 2; /* Ensure main image is on top */
+}
+
+.blurred-images {
+  position: absolute;
+  left: 50%; /* Position relative to the center of the preview div */
+  transform: translateX(200px); /* Adjust this value to control distance from main image */
+  display: flex;
+  gap: 10px; /* Space between blurred images */
+  z-index: 1; /* Below main image */
+}
+
+.blurred-img {
+  width: 200px; /* Smaller size for blurred images */
+  height: auto;
+  object-fit: cover;
+  filter: blur(5px); /* Apply blur */
+  opacity: 0.6; /* Make them semi-transparent */
+  transition: all 0.5s ease;
+}
+
+.deeper-blur {
+  filter: blur(8px); /* More blur for the furthest image */
+  opacity: 0.4; /* More transparent */
+}
+
+/* Right Empty Space */
+.right-space {
+  width: 300px; /* same width as category list for balance */
+}

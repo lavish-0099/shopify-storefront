@@ -11,7 +11,7 @@ const UspShowcase = () => {
     { title: 'Timeless Design', description: 'Elegant designs for everyday wear.', image: '/images/44.png' },
     { title: 'Responsibility', description: 'Style with care for the planet.', image: '/images/55.png' },
   ];
-  
+
 
   const handleScroll = () => {
     if (componentRef.current) {

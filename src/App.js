@@ -44,14 +44,12 @@ const HomePage = () => {
   return (
     <>
       <div className="hero-banner">
-        <video
-          src="/videos/intro_vid.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="hero-video"
-        />
+          <img
+            src="/videos/hero.png" 
+            alt="Hero Banner"
+            className="hero-video"
+          />
+
       </div>
 
       <WhyChooseUs />

@@ -4,7 +4,7 @@ import "./Categories.css";
 
 export default function Categories() {
   const categories = [
-    { name: "Maxi Dresses", img: "/images/8.png" },
+    { name: "Maxi Dresses", img: "/images/7.png" },
     { name: "Midi Dresses", img: "/images/6.png" },
     { name: "Short Dresses", img: "/images/1.png" },
     { name: "Co-Ords", img: "/images/2.png" },

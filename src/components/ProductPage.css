@@ -10,17 +10,16 @@
   padding: 0 5%;
 }
 
-@media (max-width: 992px) {
-  .product-page-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .product-details-column {
+    padding-top: 40px;
   }
 }
-
 /* --- Left Column: Image Gallery --- */
 .product-image-gallery {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 20px;
+  margin-bottom: 40px; /* Adds space below the image gallery */
+  position: relative;
+  z-index: 2;
 }
 
 .thumbnail-list {
@@ -86,7 +85,9 @@
 
 /* --- Right Column: Product Details --- */
 .product-details-column {
-  font-family: var(--font-secondary);
+  position: relative;
+  z-index: 1;
+  padding-top: 30px; /* Adds top spacing so text doesn't sit too close to the image */
 }
 
 .product-title-main {

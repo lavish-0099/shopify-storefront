@@ -3,7 +3,6 @@ import TrackOrderPage from './components/TrackOrder';
 import ContactUs from "./components/ContactUs";
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BubbleTrail from './components/BubbleTrail';
 
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
@@ -43,19 +42,7 @@ const MainLayout = ({ children }) => {
 const HomePage = () => {
   return (
     <>
-      {/* Cursor Bubble Effect */}
-      <BubbleTrail />
 
-      <div className="hero-banner">
-        <video
-          src="/videos/intro_vid.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="hero-video"
-        />
-      </div>
 
       <WhyChooseUs />
       <TopProducts />

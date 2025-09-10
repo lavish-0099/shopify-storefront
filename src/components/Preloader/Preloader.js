@@ -29,7 +29,7 @@ const Preloader = ({ onVideoEnd }) => {
       )}
       <video
         ref={videoRef}
-        src="/videos/intro_vid.mp4"
+        src="/videos/intro_vidd.mp4"
         playsInline
         muted={false} // sound allowed after user click
         controls={false}

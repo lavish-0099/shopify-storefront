@@ -17,6 +17,7 @@ import ProductReviews from './components/ProductReviews';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import CartPage from './components/CartPage';
+import VideoModelSection from './components/VideoModelSection';  // ✅ Import your component
 
 // Import static pages
 import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } from './pages/StaticPages';
@@ -41,7 +42,6 @@ const MainLayout = ({ children }) => {
 const HomePage = () => {
   return (
     <>
-     
       <div className="hero-banner">
         <video
           src="/videos/intro_vid.mp4"
@@ -54,6 +54,7 @@ const HomePage = () => {
       </div>
 
       <WhyChooseUs />
+      <VideoModelSection />  {/* ✅ Added here */}
       <TopProducts />
       <ProductReviews />
       <InteractiveModelSection />

@@ -376,3 +376,18 @@
   .dropdown-menu { width: 90vw; left: 5vw; }
 }
 */
+/* Smooth transition for hide/show header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.site-header.hidden {
+  transform: translateY(-100%);
+}
+
+.site-header.visible {
+  transform: translateY(0);
+}

@@ -1,4 +1,3 @@
-// src/components/Header/Header.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, useLocation } from "react-router-dom";
@@ -14,10 +13,6 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-/**
- * Storefront API: fetch a navigation menu by handle.
- * Your Shopify Admin → Navigation → "Main menu" has handle: "main-menu"
- */
 const GET_MENU = gql`
   query getMenu($handle: String!) {
     menu(handle: $handle) {
@@ -38,35 +33,28 @@ const GET_MENU = gql`
   }
 `;
 
-/** Convert Shopify navigation URLs to SPA-relative paths */
 function toRelative(url) {
   if (!url) return "#";
   if (url.startsWith("/")) return url;
 
   try {
     const u = new URL(url);
-    // Strip the Shopify domain
     if (u.hostname.includes("myshopify.com")) {
-      return u.pathname; // e.g. /collections/the-evening-edit
+      return u.pathname;
     }
-    return url; // external links untouched
+    return url;
   } catch {
     return url;
   }
 }
 
-
 export default function Header() {
   const location = useLocation();
-
-  // --- Fetch Shopify Main Menu ---
   const { loading, error, data } = useQuery(GET_MENU, {
     variables: { handle: "main-menu" },
   });
-
   const menuItems = useMemo(() => data?.menu?.items ?? [], [data]);
 
-  // --- App contexts ---
   const { cart } = useCart();
   const { customer, logout } = useAuth();
 
@@ -74,15 +62,36 @@ export default function Header() {
     ? cart.lines.edges.reduce((n, e) => n + e.node.quantity, 0)
     : 0;
 
-  // --- Desktop dropdown state ---
-  const [openDropdown, setOpenDropdown] = useState(null); // index of open parent or null
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-
-  // --- Mobile sidebar state ---
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [openMobileGroups, setOpenMobileGroups] = useState({}); // {index: bool}
+  const [openMobileGroups, setOpenMobileGroups] = useState({});
 
-  // Close menus on route change
+  // --- NEW: Scroll state ---
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Hide header on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // scrolling down
+        setShowHeader(false);
+      } else {
+        // scrolling up
+        setShowHeader(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  // Close menus when route changes
   useEffect(() => {
     setOpenDropdown(null);
     setIsUserMenuOpen(false);
@@ -92,13 +101,12 @@ export default function Header() {
 
   const toggleSidebar = () => setIsSidebarOpen((s) => !s);
   const closeSidebar = () => setIsSidebarOpen(false);
-
   const toggleMobileGroup = (idx) =>
     setOpenMobileGroups((m) => ({ ...m, [idx]: !m[idx] }));
 
   return (
     <>
-      <header className="site-header">
+      <header className={`site-header ${showHeader ? "visible" : "hidden"}`}>
         {/* Top Bar */}
         <div className="top-bar">
           <div className="top-bar-left">
@@ -118,7 +126,6 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Logo Center */}
           <div className="logo-container">
             <Link to="/" className="logo-link">
               <img
@@ -129,7 +136,6 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Right Icons */}
           <div className="top-bar-right">
             <Link to="/search" className="header-icon" title="Search">
               <FaSearch />
@@ -182,7 +188,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Main Nav (Desktop) */}
+        {/* Main Nav */}
         <nav className="main-nav" aria-label="Primary">
           <ul>
             {loading && <li>Loading…</li>}
@@ -232,126 +238,9 @@ export default function Header() {
                   </li>
                 );
               })}
-
-            {/* You can add extra static items if needed:
-                <li><Link to="/contact">Contact</Link></li>
-            */}
           </ul>
         </nav>
       </header>
-
-      {/* Sidebar (Mobile) */}
-      <div
-        className={`sidebar-overlay ${isSidebarOpen ? "open" : ""}`}
-        onClick={closeSidebar}
-      />
-      <aside className={`sidebar-container ${isSidebarOpen ? "open" : ""}`}>
-        <div className="sidebar-header">
-          <h3>Menu</h3>
-          <button
-            className="close-sidebar-btn"
-            onClick={closeSidebar}
-            aria-label="Close menu"
-          >
-            <FaTimes />
-          </button>
-        </div>
-
-        <nav className="sidebar-nav" aria-label="Mobile">
-          <ul>
-            {loading && <li>Loading…</li>}
-            {error && <li>Error loading menu</li>}
-
-            {!loading &&
-              !error &&
-              menuItems.map((item, idx) => {
-                const hasChildren = (item.items?.length ?? 0) > 0;
-                const open = !!openMobileGroups[idx];
-
-                if (!hasChildren) {
-                  return (
-                    <li key={`${item.title}-${idx}`}>
-                      <Link to={toRelative(item.url)} onClick={closeSidebar}>
-                        {item.title}
-                      </Link>
-                    </li>
-                  );
-                }
-
-                return (
-                  <li key={`${item.title}-${idx}`} className="sidebar-dropdown">
-                    <div
-                      className="sidebar-dropdown-toggle"
-                      onClick={() => toggleMobileGroup(idx)}
-                    >
-                      {item.title}
-                      <span className={`arrow ${open ? "up" : "down"}`}>▾</span>
-                    </div>
-
-                    {open && (
-                      <ul className="sidebar-dropdown-menu">
-                        {item.items.map((sub, sIdx) => (
-                          <li key={`${sub.title}-${sIdx}`}>
-                            <Link
-                              to={toRelative(sub.url)}
-                              onClick={closeSidebar}
-                            >
-                              {sub.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                );
-              })}
-
-            <li className="sidebar-divider">
-              <hr />
-            </li>
-
-            <li>
-              <Link to="/tools/track-order" onClick={closeSidebar}>
-                <FaTruck /> Track Order
-              </Link>
-            </li>
-
-            {customer ? (
-              <>
-                <li>
-                  <Link to="/account" onClick={closeSidebar}>
-                    <FaUser /> My Account
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    onClick={() => {
-                      logout();
-                      closeSidebar();
-                    }}
-                    className="sidebar-logout-button"
-                  >
-                    Log Out
-                  </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link to="/account/login" onClick={closeSidebar}>
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/account/register" onClick={closeSidebar}>
-                    Sign Up
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-      </aside>
     </>
   );
 }

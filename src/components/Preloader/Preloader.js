@@ -7,7 +7,13 @@ const Preloader = ({ onLoaded }) => {
 
     const handleClick = () => {
         if (videoRef.current) {
-            videoRef.current.play();
+            videoRef.current.play()
+                .then(() => {
+                    console.log("Video playing with audio");
+                })
+                .catch(error => {
+                    console.error("Error playing video:", error);
+                });
         }
         setIsClicked(true);
     };
@@ -18,9 +24,8 @@ const Preloader = ({ onLoaded }) => {
                 ref={videoRef}
                 src="/videos/intro_vid.mp4"
                 playsInline
+                controls={false}
                 onEnded={onLoaded}
-                autoPlay={isClicked}
-                controls={false}  // Hide default controls
             />
         </div>
     );

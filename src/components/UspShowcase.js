@@ -5,37 +5,16 @@ const UspShowcase = () => {
   const componentRef = useRef(null);
 
   const usps = [
-    {
-      title: 'Crafted from 100% natural fabrics',
-      description: 'Experience the pure comfort and breathability of materials sourced directly from nature, ensuring a soft touch on your skin and a clear conscience.',
-      image: '/images/11.png', // Make sure this is a transparent PNG
-    },
-    {
-      title: 'Uncompromised quality at fair prices',
-      description: 'We believe luxury should be accessible. Our direct-to-consumer model eliminates middlemen, allowing us to offer premium garments without the premium price tag.',
-      image: '/images/22.png', // Make sure this is a transparent PNG
-    },
-    {
-      title: 'Sustainable fashion for conscious living',
-      description: 'From ethical sourcing to eco-friendly packaging, every step of our process is designed to minimize our environmental footprint and promote a healthier planet.',
-      image: '/images/33.png', // Make sure this is a transparent PNG
-    },
-    {
-      title: 'Elegant designs, timeless everyday wear',
-      description: 'Our collections are thoughtfully designed to be both beautiful and versatile, creating staple pieces that you will cherish and wear for years to come.',
-      image: '/images/44.png', // Make sure this is a transparent PNG
-    },
-    {
-      title: 'Comfort, style, and responsibility combined',
-      description: 'You no longer have to choose. Our brand is a promise of clothing that looks good, feels good, and does good for the world.',
-      image: '/images/55.png', // Make sure this is a transparent PNG
-    },
+    { title: 'Natural Fabrics', description: '100% natural fabrics for comfort.', image: '/images/11.png' },
+    { title: 'Fair Prices', description: 'Premium quality at fair cost.', image: '/images/22.png' },
+    { title: 'Sustainable', description: 'Eco-friendly sourcing and packaging.', image: '/images/33.png' },
+    { title: 'Timeless Design', description: 'Elegant designs for everyday wear.', image: '/images/44.png' },
+    { title: 'Responsibility', description: 'Style with care for the planet.', image: '/images/55.png' },
   ];
 
   const handleScroll = () => {
     if (componentRef.current) {
       const { top, height } = componentRef.current.getBoundingClientRect();
-      // A small offset to trigger the change slightly earlier/later
       const scrollOffset = window.innerHeight * 0.5;
       const scrollPosition = window.scrollY + scrollOffset;
       const componentTop = componentRef.current.offsetTop;
@@ -65,39 +44,25 @@ const UspShowcase = () => {
     container: {
       display: 'flex',
       minHeight: '350vh',
-      backgroundColor: '#FFFFFF',
-      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      backgroundColor: '#fff',
+      fontFamily: 'system-ui, sans-serif',
     },
     leftPanel: {
       width: '50%',
       display: 'flex',
-      // The following styles move the text block "up and left"
-      justifyContent: 'flex-start', // Aligns block to the left
-      alignItems: 'flex-start',    // Aligns block to the top
-      padding: '30vh 0 0 10vw',     // Adds space from top (30%) and left (10%)
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      padding: '30vh 0 0 10vw',
       position: 'sticky',
       top: 0,
       height: '100vh',
     },
     uspContent: {
       maxWidth: '450px',
-      textAlign: 'left',
     },
     uspItem: {
       transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out',
       position: 'absolute',
-    },
-    uspTitle: {
-      fontSize: '3rem',
-      fontWeight: '600',
-      lineHeight: 1.2,
-      marginBottom: '1rem',
-      color: '#1a1a1a',
-    },
-    uspDescription: {
-      fontSize: '1rem',
-      color: '#666',
-      maxWidth: '40ch',
     },
     rightPanel: {
       width: '50%',
@@ -109,25 +74,66 @@ const UspShowcase = () => {
       alignItems: 'center',
     },
     imageContainer: {
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     image: {
-      maxWidth: '75%',
-      maxHeight: '75%',
-      objectFit: 'contain',
       position: 'absolute',
-      transition: 'opacity 0.7s ease-in-out, transform 0.7s ease-in-out',
-      filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.1))',
+      maxWidth: '70%',
+      transition: 'all 0.7s ease-in-out',
+      objectFit: 'contain',
     },
+  };
+
+  // Determine positions for 3 images (prev, current, next)
+  const getImageStyle = (index) => {
+    const total = usps.length;
+    const relativeIndex = (index - activeIndex + total) % total;
+
+    if (relativeIndex === 0) {
+      // Active (center)
+      return {
+        ...styles.image,
+        opacity: 1,
+        transform: 'translateY(0) scale(1)',
+        zIndex: 3,
+        filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.2))',
+      };
+    } else if (relativeIndex === 1) {
+      // Next (below)
+      return {
+        ...styles.image,
+        opacity: 0.6,
+        transform: 'translateY(200px) scale(0.8)',
+        zIndex: 2,
+        filter: 'blur(2px)',
+      };
+    } else if (relativeIndex === total - 1) {
+      // Previous (above)
+      return {
+        ...styles.image,
+        opacity: 0.6,
+        transform: 'translateY(-200px) scale(0.8)',
+        zIndex: 2,
+        filter: 'blur(2px)',
+      };
+    }
+    // Hidden others
+    return {
+      ...styles.image,
+      opacity: 0,
+      transform: 'translateY(0) scale(0.5)',
+      zIndex: 1,
+    };
   };
 
   return (
     <div ref={componentRef} style={styles.container}>
+      {/* Left side text */}
       <div style={styles.leftPanel}>
         <div style={styles.uspContent}>
           {usps.map((usp, index) => (
@@ -137,15 +143,16 @@ const UspShowcase = () => {
                 ...styles.uspItem,
                 opacity: activeIndex === index ? 1 : 0,
                 transform: activeIndex === index ? 'translateY(0)' : 'translateY(20px)',
-                pointerEvents: activeIndex === index ? 'auto' : 'none',
               }}
             >
-              <h2 style={styles.uspTitle}>{usp.title}</h2>
-              <p style={styles.uspDescription}>{usp.description}</p>
+              <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{usp.title}</h2>
+              <p style={{ fontSize: '1rem', color: '#555' }}>{usp.description}</p>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Right side images */}
       <div style={styles.rightPanel}>
         <div style={styles.imageContainer}>
           {usps.map((usp, index) => (
@@ -153,11 +160,7 @@ const UspShowcase = () => {
               key={index}
               src={usp.image}
               alt={usp.title}
-              style={{
-                ...styles.image,
-                opacity: activeIndex === index ? 1 : 0,
-                transform: activeIndex === index ? 'scale(1)' : 'scale(1.05)',
-              }}
+              style={getImageStyle(index)}
             />
           ))}
         </div>

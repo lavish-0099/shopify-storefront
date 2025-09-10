@@ -259,25 +259,34 @@ const ProductPage = () => {
             ))}
           </div>
 
-          {/* Collapsible dropdown sections */}
-          <div className="product-dropdowns">
-            {[
-              { key: "love", title: "Why You'll Love This", content: product.descriptionHtml },
-              { key: "highlights", title: "Highlights", content: "<ul><li>Built in cups that stay in place</li><li>No see-through</li><li>Anti-camel toe</li><li>Chlorine resistant</li></ul>" },
-              { key: "fabric", title: "Fabric Details", content: "<ul><li>80% Nylon – Comfort & freedom in/out of water</li><li>20% Spandex – Durability and stretch</li></ul>" },
-              { key: "wash", title: "Wash-Care Details", content: "<ul><li>Line dry in shade</li></ul>" }
-            ].map(section => (
-              <div key={section.key} className="dropdown-section">
-                <button className="dropdown-header" onClick={() => toggleSection(section.key)}>
-                  <span>{section.title}</span>
-                  {openSections[section.key] ? <FaChevronUp /> : <FaChevronDown />}
-                </button>
-                {openSections[section.key] && (
-                  <div className="dropdown-content" dangerouslySetInnerHTML={{ __html: section.content }} />
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Why You’ll Love This below product image */}
+        <div className="why-love-section">
+          <h2>Why You’ll Love This</h2>
+          <div
+            className="why-love-content"
+            dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+          />
+        </div>
+
+        {/* Collapsible dropdown sections */}
+        <div className="product-dropdowns">
+          {[
+            { key: "highlights", title: "Highlights", content: "<ul><li>Built in cups that stay in place</li><li>No see-through</li><li>Anti-camel toe</li><li>Chlorine resistant</li></ul>" },
+            { key: "fabric", title: "Fabric Details", content: "<ul><li>80% Nylon – Comfort & freedom in/out of water</li><li>20% Spandex – Durability and stretch</li></ul>" },
+            { key: "wash", title: "Wash-Care Details", content: "<ul><li>Line dry in shade</li></ul>" }
+          ].map(section => (
+            <div key={section.key} className="dropdown-section">
+              <button className="dropdown-header" onClick={() => toggleSection(section.key)}>
+                <span>{section.title}</span>
+                {openSections[section.key] ? <FaChevronUp /> : <FaChevronDown />}
+              </button>
+              {openSections[section.key] && (
+                <div className="dropdown-content" dangerouslySetInnerHTML={{ __html: section.content }} />
+              )}
+            </div>
+          ))}
+        </div>
+
 
           <AddReviewForm 
             productId={product.id} 

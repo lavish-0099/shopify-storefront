@@ -16,7 +16,8 @@ const Preloader = ({ onLoaded }) => {
         <div className="preloader-container" onClick={handleClick}>
             <video
                 ref={videoRef}
-                src="/videos/intro.mp4"
+                src="/videos/intro_vid.mp4
+                "
                 muted
                 playsInline
                 onEnded={onLoaded}

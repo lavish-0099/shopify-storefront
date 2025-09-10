@@ -50,7 +50,7 @@ const InteractiveModelSection = ({ nextSectionRef }) => {
   return (
     <section ref={sectionRef} className="interactive-section">
       <div className="sticky-container">
-        <Canvas camera={{ position: [0, 0, 7, fov: 50 }}>
+        <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
           <ambientLight intensity={1.5} />
           <directionalLight position={[10, 10, 5]} intensity={2} />
           <Model modelRotation={modelRotation} />

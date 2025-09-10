@@ -77,7 +77,7 @@ const Preloader = ({ onLoaded }) => {
       />
       {!isClicked && (
         <div className="overlay-text">
-          <p>Click to Play with Sound</p>
+          <p>Click to play</p>
         </div>
       )}
     </div>

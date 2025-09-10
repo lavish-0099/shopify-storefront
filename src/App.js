@@ -45,7 +45,7 @@ const HomePage = () => {
     <>
       <div className="hero-banner">
         <video
-          src="/videos/intro_vid.mp4"
+          src="/videos/hero.png"
           autoPlay
           loop
           muted

@@ -20,13 +20,13 @@ import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import CartPage from './components/CartPage';
 
-// Import the static pages
+// Import static pages
 import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } from './pages/StaticPages';
 
-// Import the new dynamic blog components
+// Import dynamic blog components
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
-import AffiliatePage from './pages/AffiliatePage'; // Import the new affiliate page
+import AffiliatePage from './pages/AffiliatePage';
 
 import './App.css';
 
@@ -48,7 +48,7 @@ const HomePage = () => {
 
       <div className="hero-banner">
         <video
-          src="/videos/intro.mp4"
+          src="/videos/intro_vid.mp4"
           autoPlay
           loop
           muted
@@ -78,7 +78,7 @@ function App() {
   }, []);
   // --- END AFFILIATE TRACKING ---
 
-  const handlePreloaderVideoEnd = () => {
+  const handlePreloaderFinish = () => {
     console.log("Preloader video finished, loading site...");
     setPreloaderDone(true);
   };
@@ -86,7 +86,7 @@ function App() {
   return (
     <>
       {!preloaderDone ? (
-        <Preloader onVideoEnd={handlePreloaderVideoEnd} />
+        <Preloader onVideoEnd={handlePreloaderFinish} />
       ) : (
         <Router>
           <AuthProvider>

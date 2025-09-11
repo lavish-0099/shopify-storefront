@@ -1,7 +1,6 @@
 /* src/components/ProductPage.css */
 
 /* --- Main Layout --- */
-/* --- Main Layout --- */
 .product-page-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -9,40 +8,24 @@
   max-width: 1400px;
   margin: 50px auto;
   padding: 0 5%;
-  position: relative; /* Ensure proper stacking */
-  align-items: flex-start; /* Align columns at the top */
-}
-
-@media (max-width: 992px) {
-  .product-page-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  align-items: flex-start;
 }
 
 /* --- Left Column: Image Gallery --- */
 .product-image-gallery {
   display: grid;
-  grid-template-columns: 80px 1fr; /* Thumbnails on left, main image on right */
+  grid-template-columns: 80px 1fr; /* Thumbnails left, main image right */
   gap: 20px;
-  position: relative;
-  z-index: 2; /* Stays above background but below text */
-}
-
-@media (max-width: 768px) {
-  .product-image-gallery {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
+  /* Use sticky position for the image column so it scrolls with the page */
+  position: sticky;
+  top: 100px; /* Adjust this value based on your header height */
 }
 
 .thumbnail-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow-y: auto;
-  max-height: 600px;
-  padding-right: 5px;
+  max-height: 600px; /* Match max-height of main image */
 }
 
 .thumbnail-item {
@@ -52,6 +35,7 @@
   overflow: hidden;
   transition: border-color 0.2s ease;
   background: none;
+  padding: 0;
 }
 
 .thumbnail-item.active {
@@ -66,7 +50,13 @@
 .main-image-viewer {
   width: 100%;
   height: auto;
-  min-height: 400px;
+}
+
+/* This is the container for the react-inner-image-zoom component */
+.main-image-viewer > div {
+  width: 100% !important;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .main-image-viewer img {
@@ -74,35 +64,21 @@
   height: auto;
   max-height: 600px;
   object-fit: cover;
-  border-radius: 10px;
   display: block;
 }
 
-/* --- Right Column: Product Details --- */
-.product-details-column {
-  position: relative;
-  z-index: 3; /* Keep product details above images */
-  padding-top: 20px;
-  background-color: white; /* Prevent image bleed-through */
+.image-and-love-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-@media (max-width: 768px) {
-  .product-details-column {
-    padding-top: 10px;
-  }
-}
-
-/* --- Fix Overlap Below Offer Section --- */
 .why-love-section {
-  margin-top: 30px;
   padding: 20px;
   border: 1px solid #eee;
   border-radius: 8px;
   background-color: #fafafa;
-  position: relative;
-  z-index: 3;
 }
-
 
 .why-love-section h2 {
   font-size: 1.4rem;
@@ -120,14 +96,6 @@
 /* --- Right Column: Product Details --- */
 .product-details-column {
   position: relative;
-  z-index: 1;
-  padding-top: 30px; /* Space so text does not sit too close to image */
-}
-
-@media (max-width: 768px) {
-  .product-details-column {
-    padding-top: 40px;
-  }
 }
 
 .product-title-main {
@@ -163,11 +131,9 @@
 
 .reviews-link {
   font-size: 0.9rem;
-  text-decoration: underline;
   cursor: pointer;
 }
 
-/* --- Variant Options --- */
 .variant-group {
   margin-bottom: 25px;
 }
@@ -206,24 +172,25 @@
   border-color: var(--color-deep-mauve);
 }
 
-/* --- Quantity, Add to Cart, Wishlist --- */
 .actions-row {
   display: grid;
-  grid-template-columns: 100px 1fr 50px;
+  grid-template-columns: 120px 1fr 50px;
   gap: 15px;
   margin: 30px 0;
+  align-items: center;
 }
 
 .quantity-input-new {
   display: flex;
   border: 1px solid var(--color-soft-blush);
   border-radius: 5px;
+  height: 50px;
 }
 
 .quantity-input-new button {
   background: none;
   border: none;
-  width: 30px;
+  width: 40px;
   font-size: 1.2rem;
   cursor: pointer;
 }
@@ -233,11 +200,17 @@
   text-align: center;
   border: none;
   font-size: 1rem;
+  -moz-appearance: textfield;
+}
+.quantity-input-new input::-webkit-outer-spin-button,
+.quantity-input-new input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .add-to-cart-button-new {
   width: 100%;
-  padding: 15px;
+  height: 50px;
   font-family: var(--font-secondary);
   font-size: 1rem;
   font-weight: 600;
@@ -261,9 +234,13 @@
   font-size: 1.2rem;
   cursor: pointer;
   color: var(--color-deep-mauve);
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* --- Offer Banner --- */
 .offer-banner {
   background-color: var(--color-soft-blush);
   padding: 15px;
@@ -272,7 +249,6 @@
   text-align: center;
 }
 
-/* --- Circle Thumbnails Row --- */
 .circle-thumbnails-below-offer {
   display: flex;
   gap: 15px;
@@ -290,20 +266,19 @@
   cursor: pointer;
   flex-shrink: 0;
   transition: border-color 0.2s ease;
+  padding: 0;
 }
 
 .circle-thumb:hover {
   border-color: var(--color-deep-mauve);
 }
 
-.circle-thumb img,
-.circle-thumb video {
+.circle-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* --- Add to Cart Popup --- */
 .cart-popup {
   position: fixed;
   bottom: 20px;
@@ -323,7 +298,6 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* --- Dropdown Sections --- */
 .product-dropdowns {
   margin-top: 30px;
   border-top: 1px solid #ddd;
@@ -354,36 +328,72 @@
   color: #444;
 }
 
-/* --- Review Section --- */
-.review-list {
-  margin: 40px auto;
-  max-width: 700px;
-  padding: 20px;
-  border-top: 1px solid #ddd;
-}
+/* --- MOBILE RESPONSIVE STYLES --- */
+@media (max-width: 992px) {
+  .product-page-layout {
+    /* Switch to a single column layout */
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
 
-.review-item {
-  padding: 15px 0;
-  border-bottom: 1px solid #eee;
-}
+  .product-image-gallery {
+    /* Remove sticky positioning and grid for thumbnails */
+    position: static;
+    display: block;
+  }
 
-.review-rating {
-  font-weight: bold;
-  color: #f39c12;
-}
+  .thumbnail-list {
+    /* Hide the vertical thumbnails on mobile for a cleaner look */
+    /* We will rely on the circular thumbnails instead */
+    display: none;
+  }
 
-.review-text {
-  font-style: italic;
-  margin: 8px 0;
-}
+  .image-and-love-wrapper {
+    /* Re-order elements for better mobile flow */
+    display: flex;
+    flex-direction: column-reverse;
+  }
 
-.review-author {
-  font-size: 0.9rem;
-  color: #555;
-}
+  .why-love-section {
+    margin: 0 15px 30px 15px; /* Add horizontal margin */
+  }
 
-.no-reviews {
-  text-align: center;
-  color: #777;
-  margin-top: 20px;
+  .product-details-column {
+    padding: 20px 15px; /* Add padding to the details section */
+  }
+
+  .product-title-main {
+    font-size: 2rem; /* Reduce title size */
+  }
+
+  .product-price-main {
+    font-size: 1.5rem; /* Reduce price size */
+  }
+
+  .actions-row {
+    /* Create a more robust layout for action buttons */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .quantity-input-new {
+    flex-grow: 1; /* Allow it to take available space */
+  }
+
+  .wishlist-button {
+    flex-shrink: 0; /* Prevent it from shrinking */
+  }
+
+  .add-to-cart-button-new {
+    width: 100%;
+    order: 3; /* Push to the next line */
+  }
+
+  .circle-thumbnails-below-offer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

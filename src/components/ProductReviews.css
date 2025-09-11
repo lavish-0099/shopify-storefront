@@ -1,6 +1,6 @@
 /* src/components/ProductReviews.css */
 .product-reviews-section {
-  background-color: #fdf6f7; /* A very light, soft blush */
+  background-color: #fdf6f7;
   padding: 80px 5%;
   overflow-x: hidden;
 }
@@ -49,7 +49,7 @@
 
 /* Slick dots custom styling */
 .slick-dots {
-  position: static; /* Let dots take up space below the carousel */
+  position: static;
   margin-top: 30px;
 }
 
@@ -61,4 +61,34 @@
 
 .slick-dots li.slick-active button:before {
   opacity: 1;
+}
+
+/* --- Mobile Responsive Styles --- */
+@media (max-width: 768px) {
+  .product-reviews-section {
+    padding: 40px 15px; /* Reduce padding */
+  }
+
+  .section-title {
+    font-size: 2rem; /* Make title smaller */
+    margin-bottom: 30px;
+  }
+
+  .review-slide {
+    padding: 0 5px; /* Reduce padding around the single card */
+  }
+
+  /* Reposition arrows to be inside the carousel on mobile */
+  .slick-prev,
+  .slick-next {
+    top: 50%;
+  }
+
+  .slick-prev {
+    left: 5px; /* Bring inside from the left */
+  }
+
+  .slick-next {
+    right: 5px; /* Bring inside from the right */
+  }
 }

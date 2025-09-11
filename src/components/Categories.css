@@ -6,15 +6,16 @@
   justify-content: center;
   align-items: center;
   font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Main */
 .main {
-  flex: 1;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 120px; /* left-right equal space */
+  padding: 0 120px;
 }
 
 /* Category List (Left) */
@@ -47,40 +48,71 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Needed for positioning blurred images */
+  position: relative;
 }
 
 .main-img {
   width: 400px;
   height: auto;
   object-fit: cover;
-  z-index: 2; /* Ensure main image is on top */
+  z-index: 2;
 }
 
 .blurred-images {
   position: absolute;
-  left: 50%; /* Position relative to the center of the preview div */
-  transform: translateX(200px); /* Adjust this value to control distance from main image */
+  left: 50%;
+  transform: translateX(200px);
   display: flex;
-  gap: 10px; /* Space between blurred images */
-  z-index: 1; /* Below main image */
+  gap: 10px;
+  z-index: 1;
 }
 
 .blurred-img {
-  width: 200px; /* Smaller size for blurred images */
+  width: 200px;
   height: auto;
   object-fit: cover;
-  filter: blur(5px); /* Apply blur */
-  opacity: 0.6; /* Make them semi-transparent */
+  filter: blur(5px);
+  opacity: 0.6;
   transition: all 0.5s ease;
 }
 
 .deeper-blur {
-  filter: blur(8px); /* More blur for the furthest image */
-  opacity: 0.4; /* More transparent */
+  filter: blur(8px);
+  opacity: 0.4;
 }
 
 /* Right Empty Space */
 .right-space {
-  width: 300px; /* same width as category list for balance */
+  width: 300px; /* Provides balance on desktop */
+}
+
+/* --- Mobile Responsive Styles --- */
+@media (max-width: 768px) {
+  .main {
+    /* Switch to a vertical layout */
+    flex-direction: column;
+    padding: 40px 20px; /* Reduce padding for smaller screens */
+    gap: 50px; /* Add space between stacked items */
+  }
+
+  .category-list {
+    font-size: 28px; /* Reduce font size to fit */
+    gap: 20px;
+    text-align: center;
+  }
+
+  .category-item.active {
+    transform: scale(1.05); /* Tone down the active effect */
+  }
+
+  .main-img {
+    width: 90%; /* Make the image responsive */
+    max-width: 300px;
+  }
+
+  .blurred-images,
+  .right-space {
+    /* Hide decorative elements on mobile for a cleaner look */
+    display: none;
+  }
 }

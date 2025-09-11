@@ -1,69 +1,24 @@
-/* src/components/ProductReviews.css */
+/* ... existing styles ... */
 
-.product-reviews-section {
-  background-color: #FDF6F7; /* A very light, soft blush */
-  padding: 80px 5%;
-  overflow-x: hidden; /* Prevent horizontal scroll on smaller screens */
-}
-
-.section-title {
-  text-align: center;
-  font-family: var(--font-primary);
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: var(--color-deep-mauve);
-  margin: 0 auto 50px auto;
-}
-
-.reviews-carousel {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: stretch;
-}
 .review-slide {
   padding: 0 15px;
   box-sizing: border-box;
-  width: 100% !important; /* Ensure proper sizing inside slick */
-  display: flex;
-  justify-content: center;
+  /* Ensure the slide itself has proper dimensions */
 }
 
-/* MODIFICATION: Removed conflicting styles from this rule.
-  The .review-card component now handles its own styling internally.
-  This wrapper no longer needs to apply background, shadow, or transforms.
-*/
+/* Review card ko proper height/width dena */
 .review-slide .review-card {
-  height: 100%;
+  /* These styles are applied to the outer .review-card container
+     which now primarily acts as the perspective container for the flip effect.
+     The inner .review-card-front and .review-card-back handle the visual styling. */
+  background: none; /* Remove background here as inner cards have it */
+  box-shadow: none; /* Remove shadow here as inner cards have it */
+  height: auto; /* Allow height to adjust to content */
+  transition: none; /* Transition handled by inner card */
 }
 
-/* Slick arrows */
-.slick-prev,
-.slick-next {
-  z-index: 2;
+.review-slide .review-card:hover {
+  transform: none; /* Transition handled by inner card */
 }
 
-.slick-prev:before,
-.slick-next:before {
-  color: var(--color-deep-mauve);
-  font-size: 28px;
-}
-
-/* Slick dots custom */
-.slick-dots {
-  position: static; /* Ensures dots are part of the flow */
-  margin-top: 30px;
-}
-
-.slick-dots li button:before {
-  color: var(--color-deep-mauve);
-  font-size: 12px;
-  opacity: 0.5;
-}
-
-.slick-dots li.slick-active button:before {
-  opacity: 1;
-}
-.slick-track {
-  display: flex !important;
-}
+/* ... rest of the existing styles ... */

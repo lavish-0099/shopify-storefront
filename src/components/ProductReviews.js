@@ -1,141 +1,280 @@
 // src/components/ProductReviews.js
+
 import React from "react";
+
 import { useQuery, gql } from "@apollo/client";
+
 import Slider from "react-slick";
+
 import ReviewCard from "./ReviewCard";
+
 import "./ProductReviews.css";
+
 import "slick-carousel/slick/slick.css";
+
 import "slick-carousel/slick/slick-theme.css";
 
+
+
 const GET_REVIEWS_QUERY = gql`
-  query getProductsWithReviews {
-    products(first: 12, sortKey: UPDATED_AT, reverse: true) {
-      edges {
-        node {
-          id
-          title
-          handle
-          images(first: 1) {
-            edges {
-              node {
-                url
-                altText
-              }
-            }
-          }
-          metafields(
-            identifiers: [{ namespace: "air_reviews_product", key: "data" }]
-          ) {
-            key
-            namespace
-            value
-          }
-        }
-      }
-    }
-  }
+
+  query getProductsWithReviews {
+
+    products(first: 12, sortKey: UPDATED_AT, reverse: true) {
+
+      edges {
+
+        node {
+
+          id
+
+          title
+
+          handle
+
+          images(first: 1) {
+
+            edges {
+
+              node {
+
+                url
+
+                altText
+
+              }
+
+            }
+
+          }
+
+          metafields(
+
+            identifiers: [{ namespace: "air_reviews_product", key: "data" }]
+
+          ) {
+
+            key
+
+            namespace
+
+            value
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
 `;
 
+
+
 const ProductReviews = () => {
-  const { loading, error, data } = useQuery(GET_REVIEWS_QUERY);
 
-  if (loading) {
-    return (
-      <p style={{ textAlign: "center", padding: "50px" }}>Loading reviews...</p>
-    );
-  }
+  const { loading, error, data } = useQuery(GET_REVIEWS_QUERY);
 
-  if (error) {
-    return (
-      <p style={{ textAlign: "center", padding: "50px" }}>
-        Error loading reviews: {error.message}
-      </p>
-    );
-  }
 
-  const reviews = data.products.edges.flatMap((edge) => {
-    const product = edge.node;
 
-    const reviewMetafield = product.metafields?.find(
-      (mf) =>
-        mf &&
-        mf.namespace === "air_reviews_product" &&
-        mf.key === "data"
-    );
+  if (loading) {
 
-    if (!reviewMetafield || !reviewMetafield.value) {
-      return [];
-    }
+    return (
 
-    try {
-      const reviewPayload = JSON.parse(reviewMetafield.value);
-      const reviewsArray = reviewPayload.reviews || [];
+      <p style={{ textAlign: "center", padding: "50px" }}>Loading reviews...</p>
 
-      const approvedReview = reviewsArray.find(
-        (review) => review.status === "approved"
-      );
+    );
 
-      if (!approvedReview) return [];
+  }
 
-      return {
-        id: `${product.id}-${approvedReview.id}`,
-        author:
-          approvedReview.author ||
-          approvedReview.name ||
-          approvedReview.user ||
-          "Valued Customer",
-        rating: approvedReview.rate,
-        reviewText:
-          approvedReview.text ||
-          approvedReview.body ||
-          approvedReview.content ||
-          "",
-        productTitle: product.title,
-        productImage: product.images.edges[0]?.node.url,
-      };
-    } catch (e) {
-      console.error("Error parsing review JSON:", e, reviewMetafield.value);
-      return [];
-    }
-  });
 
-  if (reviews.length === 0) {
-    return null;
-  }
 
-  // Slick carousel settings
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: { slidesToShow: 2, slidesToScroll: 2 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 1, slidesToScroll: 1 },
-      },
-    ],
-  };
+  if (error) {
 
-  return (
-    <section className="product-reviews-section">
-      <h2 className="section-title">Words from Our Customers</h2>
-      <Slider {...settings} className="reviews-carousel">
-        {reviews.map((review) => (
-          <div key={review.id} className="review-slide">
-            <ReviewCard review={review} />
-          </div>
-        ))}
-      </Slider>
-    </section>
-  );
+    return (
+
+      <p style={{ textAlign: "center", padding: "50px" }}>
+
+        Error loading reviews: {error.message}
+
+      </p>
+
+    );
+
+  }
+
+
+
+  const reviews = data.products.edges.flatMap((edge) => {
+
+    const product = edge.node;
+
+
+
+    const reviewMetafield = product.metafields?.find(
+
+      (mf) =>
+
+        mf &&
+
+        mf.namespace === "air_reviews_product" &&
+
+        mf.key === "data"
+
+    );
+
+
+
+    if (!reviewMetafield || !reviewMetafield.value) {
+
+      return [];
+
+    }
+
+
+
+    try {
+
+      const reviewPayload = JSON.parse(reviewMetafield.value);
+
+      const reviewsArray = reviewPayload.reviews || [];
+
+
+
+      const approvedReview = reviewsArray.find(
+
+        (review) => review.status === "approved"
+
+      );
+
+
+
+      if (!approvedReview) return [];
+
+
+
+      return {
+
+        id: `${product.id}-${approvedReview.id}`,
+
+        author:
+
+          approvedReview.author ||
+
+          approvedReview.name ||
+
+          approvedReview.user ||
+
+          "Valued Customer",
+
+        rating: approvedReview.rate,
+
+        reviewText:
+
+          approvedReview.text ||
+
+          approvedReview.body ||
+
+          approvedReview.content ||
+
+          "",
+
+        productTitle: product.title,
+
+        productImage: product.images.edges[0]?.node.url,
+
+      };
+
+    } catch (e) {
+
+      console.error("Error parsing review JSON:", e, reviewMetafield.value);
+
+      return [];
+
+    }
+
+  });
+
+
+
+  if (reviews.length === 0) {
+
+    return null;
+
+  }
+
+
+
+  // Slick carousel settings
+
+  const settings = {
+
+    dots: true,
+
+    infinite: true,
+
+    speed: 600,
+
+    slidesToShow: 3,
+
+    slidesToScroll: 3,
+
+    arrows: true,
+
+    responsive: [
+
+      {
+
+        breakpoint: 992,
+
+        settings: { slidesToShow: 2, slidesToScroll: 2 },
+
+      },
+
+      {
+
+        breakpoint: 768,
+
+        settings: { slidesToShow: 1, slidesToScroll: 1 },
+
+      },
+
+    ],
+
+  };
+
+
+
+  return (
+
+    <section className="product-reviews-section">
+
+      <h2 className="section-title">Words from Our Customers</h2>
+
+      <Slider {...settings} className="reviews-carousel">
+
+        {reviews.map((review) => (
+
+          <div key={review.id} className="review-slide">
+
+            <ReviewCard review={review} />
+
+          </div>
+
+        ))}
+
+      </Slider>
+
+    </section>
+
+  );
+
 };
+
+
 
 export default ProductReviews;
 

@@ -39,7 +39,7 @@ const UspShowcase = () => {
 
   const handleScroll = () => {
     if (componentRef.current) {
-      const { top, height } = componentRef.current.getBoundingClientRect();
+      const { height } = componentRef.current.getBoundingClientRect();
       const scrollOffset = window.innerHeight * 0.5;
       const scrollPosition = window.scrollY + scrollOffset;
       const componentTop = componentRef.current.offsetTop;
@@ -94,6 +94,7 @@ const UspShowcase = () => {
     },
     uspContent: {
       maxWidth: '500px',
+      lineHeight: '1.6',
     },
     uspItem: {
       transition: 'opacity 0.6s ease, transform 0.6s ease',
@@ -121,7 +122,6 @@ const UspShowcase = () => {
     const relativeIndex = (index - activeIndex + total) % total;
 
     if (relativeIndex === 0) {
-      // Active (center)
       return {
         ...styles.image,
         opacity: 1,
@@ -130,7 +130,6 @@ const UspShowcase = () => {
         filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
       };
     } else if (relativeIndex === 1) {
-      // Next (floating slightly left + down)
       return {
         ...styles.image,
         opacity: 0.7,
@@ -139,7 +138,6 @@ const UspShowcase = () => {
         filter: 'blur(2px)',
       };
     } else if (relativeIndex === total - 1) {
-      // Previous (floating slightly left + up)
       return {
         ...styles.image,
         opacity: 0.5,
@@ -190,7 +188,7 @@ const UspShowcase = () => {
               <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
                 {usp.title}
               </h2>
-              <p style={{ fontSize: '1rem', color: '#555' }}>
+              <p style={{ fontSize: '1.1rem', color: '#444', marginBottom: '1rem', lineHeight: '1.8' }}>
                 {usp.description}
               </p>
             </div>

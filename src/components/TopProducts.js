@@ -18,7 +18,7 @@ function NextArrow(props) {
       className={`${className} slick-arrow-custom slick-arrow-custom--next`}
       onClick={onClick}
     >
-      {'>'}
+      {'→'}
     </div>
   );
 }
@@ -30,7 +30,7 @@ function PrevArrow(props) {
       className={`${className} slick-arrow-custom slick-arrow-custom--prev`}
       onClick={onClick}
     >
-      {'<'}
+      {'←'}
     </div>
   );
 }
@@ -102,13 +102,13 @@ const TopProducts = () => {
     ]
   };
 
-  if (loading) return <p style={{textAlign: 'center', padding: '50px'}}>Loading top products...</p>;
+  if (loading) return <p style={{textAlign: 'center', padding: '50px'}}>Loading Our Curated Collection...</p>;
   if (error) return <p style={{textAlign: 'center', padding: '50px'}}>Error loading products: {error.message}</p>;
 
   if (!data || !data.collection || data.collection.products.edges.length === 0) {
     return (
       <div className="top-products-section">
-        <h2 className="section-title">Top Products</h2>
+        <h2 className="section-title">Our Curated Collection</h2>
         <p>The "top-products" collection could not be found or is empty.</p>
       </div>
     );

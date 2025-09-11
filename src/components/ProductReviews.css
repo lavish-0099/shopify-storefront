@@ -1,47 +1,5 @@
-/* src/components/ProductReviews.css */
-
 .product-reviews-section {
   background-color: #FDF6F7; /* A very light, soft blush */
-  padding: 80px 5%;
-}
-
-.section-title {
-  text-align: center;
-  font-family: var(--font-primary);
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: var(--color-deep-mauve);
-  margin: 0 auto 50px auto;
-}
-
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Responsive adjustments for tablet and mobile */
-@media (max-width: 992px) {
-  .reviews-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .reviews-grid {
-    grid-template-columns: 1fr;
-  }
-  .section-title {
-    font-size: 2rem;
-  }
-  .product-reviews-section {
-    padding: 60px 5%;
-  }
-}
-.product-reviews-section {
-  background-color: #fdf6f7;
   padding: 80px 5%;
 }
 
@@ -61,10 +19,46 @@
 
 .review-slide {
   padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Review card ko proper height/width dena */
+.review-slide .review-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.review-slide .review-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Slick arrows */
+.slick-prev,
+.slick-next {
+  z-index: 2;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: var(--color-deep-mauve);
+  font-size: 28px;
 }
 
 /* Slick dots custom */
+.slick-dots {
+  margin-top: 20px;
+}
+
 .slick-dots li button:before {
   color: var(--color-deep-mauve);
   font-size: 12px;
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
 }

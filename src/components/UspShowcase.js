@@ -115,7 +115,7 @@ const UspShowcase = () => {
     },
   };
 
-  // Circular illusion effect
+  // Floating up/down illusion
   const getImageStyle = (index) => {
     const total = usps.length;
     const relativeIndex = (index - activeIndex + total) % total;
@@ -125,25 +125,25 @@ const UspShowcase = () => {
       return {
         ...styles.image,
         opacity: 1,
-        transform: 'translateX(0) scale(1)',
+        transform: 'translate(0, 0) scale(1)',
         zIndex: 3,
         filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
       };
     } else if (relativeIndex === 1) {
-      // Next (coming in from left)
+      // Next (floating slightly left + down)
       return {
         ...styles.image,
         opacity: 0.7,
-        transform: 'translateX(-200px) scale(0.8)',
+        transform: 'translate(-60px, 120px) scale(0.8)',
         zIndex: 2,
         filter: 'blur(2px)',
       };
     } else if (relativeIndex === total - 1) {
-      // Previous (going back to right)
+      // Previous (floating slightly left + up)
       return {
         ...styles.image,
         opacity: 0.5,
-        transform: 'translateX(200px) scale(0.6)',
+        transform: 'translate(-60px, -120px) scale(0.8)',
         zIndex: 1,
         filter: 'blur(3px)',
       };
@@ -151,7 +151,7 @@ const UspShowcase = () => {
     return {
       ...styles.image,
       opacity: 0,
-      transform: 'translateX(0) scale(0.4)',
+      transform: 'translate(0, 0) scale(0.4)',
       zIndex: 0,
     };
   };

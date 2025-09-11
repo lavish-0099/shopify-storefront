@@ -4,7 +4,6 @@ const UspShowcase = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const componentRef = useRef(null);
 
-  // Updated USP content
   const usps = [
     {
       title: 'Crafted from 100% natural fabrics',
@@ -73,7 +72,6 @@ const UspShowcase = () => {
       backgroundColor: '#fff',
       fontFamily: 'system-ui, sans-serif',
     },
-    // Now left = images, right = text
     leftPanel: {
       width: '50%',
       position: 'sticky',
@@ -82,6 +80,7 @@ const UspShowcase = () => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      overflow: 'hidden',
     },
     rightPanel: {
       width: '50%',
@@ -97,7 +96,7 @@ const UspShowcase = () => {
       maxWidth: '500px',
     },
     uspItem: {
-      transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out',
+      transition: 'opacity 0.6s ease, transform 0.6s ease',
       position: 'absolute',
     },
     imageContainer: {
@@ -111,46 +110,49 @@ const UspShowcase = () => {
     image: {
       position: 'absolute',
       maxWidth: '70%',
-      transition: 'all 0.7s ease-in-out',
+      transition: 'all 0.8s ease-in-out',
       objectFit: 'contain',
     },
   };
 
-  // Handle image transitions (prev, current, next)
+  // Circular illusion effect
   const getImageStyle = (index) => {
     const total = usps.length;
     const relativeIndex = (index - activeIndex + total) % total;
 
     if (relativeIndex === 0) {
+      // Active (center)
       return {
         ...styles.image,
         opacity: 1,
-        transform: 'translateY(0) scale(1)',
+        transform: 'translateX(0) scale(1)',
         zIndex: 3,
-        filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.2))',
+        filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
       };
     } else if (relativeIndex === 1) {
+      // Next (coming in from left)
       return {
         ...styles.image,
-        opacity: 0.6,
-        transform: 'translateY(200px) scale(0.8)',
+        opacity: 0.7,
+        transform: 'translateX(-200px) scale(0.8)',
         zIndex: 2,
         filter: 'blur(2px)',
       };
     } else if (relativeIndex === total - 1) {
+      // Previous (going back to right)
       return {
         ...styles.image,
-        opacity: 0.6,
-        transform: 'translateY(-200px) scale(0.8)',
-        zIndex: 2,
-        filter: 'blur(2px)',
+        opacity: 0.5,
+        transform: 'translateX(200px) scale(0.6)',
+        zIndex: 1,
+        filter: 'blur(3px)',
       };
     }
     return {
       ...styles.image,
       opacity: 0,
-      transform: 'translateY(0) scale(0.5)',
-      zIndex: 1,
+      transform: 'translateX(0) scale(0.4)',
+      zIndex: 0,
     };
   };
 
@@ -179,11 +181,18 @@ const UspShowcase = () => {
               style={{
                 ...styles.uspItem,
                 opacity: activeIndex === index ? 1 : 0,
-                transform: activeIndex === index ? 'translateY(0)' : 'translateY(20px)',
+                transform:
+                  activeIndex === index
+                    ? 'translateY(0)'
+                    : 'translateY(20px)',
               }}
             >
-              <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>{usp.title}</h2>
-              <p style={{ fontSize: '1rem', color: '#555' }}>{usp.description}</p>
+              <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
+                {usp.title}
+              </h2>
+              <p style={{ fontSize: '1rem', color: '#555' }}>
+                {usp.description}
+              </p>
             </div>
           ))}
         </div>

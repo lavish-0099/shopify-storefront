@@ -20,6 +20,8 @@ import CartPage from './components/CartPage';
 import VideoModelSection from './components/VideoModelSection';  // ✅ Import your component
 import UspShowcase from './components/UspShowcase';
 
+
+
 // Import static pages
 import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } from './pages/StaticPages';
 

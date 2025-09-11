@@ -86,7 +86,7 @@ export const PrivacyPolicyPage = () => (
 
     <h2>8. Contact / Grievance Officer</h2>
     <p>
-      Email: <a href="mailto:privacy@delan.com">privacy@delan.com</a> <br />
+      Email: <a href="mailto:privacy@delan.in">privacy@delan.in</a> <br />
       Phone: <a href="tel:+919310329849">+91 93103 29849</a>
     </p>
   </PageWrapper>

@@ -18,11 +18,15 @@
 .reviews-carousel {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: stretch;
 }
-
 .review-slide {
   padding: 0 15px;
   box-sizing: border-box;
+  width: 100% !important; /* Ensure proper sizing inside slick */
+  display: flex;
+  justify-content: center;
 }
 
 /* MODIFICATION: Removed conflicting styles from this rule.
@@ -59,4 +63,7 @@
 
 .slick-dots li.slick-active button:before {
   opacity: 1;
+}
+.slick-track {
+  display: flex !important;
 }

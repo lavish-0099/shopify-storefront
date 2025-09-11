@@ -1,24 +1,64 @@
-/* ... existing styles ... */
+/* src/components/ProductReviews.css */
+.product-reviews-section {
+  background-color: #fdf6f7; /* A very light, soft blush */
+  padding: 80px 5%;
+  overflow-x: hidden;
+}
+
+.section-title {
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--color-deep-mauve);
+  margin: 0 auto 50px auto;
+}
+
+.reviews-carousel {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 .review-slide {
   padding: 0 15px;
   box-sizing: border-box;
-  /* Ensure the slide itself has proper dimensions */
 }
 
-/* Review card ko proper height/width dena */
-.review-slide .review-card {
-  /* These styles are applied to the outer .review-card container
-     which now primarily acts as the perspective container for the flip effect.
-     The inner .review-card-front and .review-card-back handle the visual styling. */
-  background: none; /* Remove background here as inner cards have it */
-  box-shadow: none; /* Remove shadow here as inner cards have it */
-  height: auto; /* Allow height to adjust to content */
-  transition: none; /* Transition handled by inner card */
+/* Slick arrows custom styling */
+.slick-prev,
+.slick-next {
+  z-index: 2;
+  width: 40px;
+  height: 40px;
 }
 
-.review-slide .review-card:hover {
-  transform: none; /* Transition handled by inner card */
+.slick-prev:before,
+.slick-next:before {
+  color: var(--color-deep-mauve);
+  font-size: 28px;
+  opacity: 0.8;
 }
 
-/* ... rest of the existing styles ... */
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+/* Slick dots custom styling */
+.slick-dots {
+  position: static; /* Let dots take up space below the carousel */
+  margin-top: 30px;
+}
+
+.slick-dots li button:before {
+  color: var(--color-deep-mauve);
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+}

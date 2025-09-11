@@ -1,6 +1,8 @@
+/* src/components/ReviewCard.css */
+
 .review-card {
   perspective: 1000px;
-  /* height: 260px; Removed this fixed height */
+  /* MODIFICATION: Removed fixed height. The container's size will be determined by its content. */
   border-radius: 12px;
 }
 
@@ -21,7 +23,8 @@
 .review-card-back {
   position: absolute;
   width: 100%;
-  min-height: 260px; /* Set a min-height for consistent card size */
+  /* MODIFICATION: Changed from height to min-height to ensure a consistent size but allow for growth. */
+  min-height: 260px; 
   border-radius: 12px;
   backface-visibility: hidden;
   background: #fff;
@@ -31,7 +34,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  box-sizing: border-box; /* Ensure padding is included in the width/height */
+  box-sizing: border-box; /* Ensures padding doesn't break layout */
 }
 
 .review-card-front {
@@ -42,9 +45,11 @@
   font-style: italic;
   color: #333;
   margin-bottom: 12px;
-  flex-grow: 1; /* Allow text to take up available space */
+  /* MODIFICATION: Allow this element to grow to push other content to the bottom */
+  flex-grow: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .review-author {

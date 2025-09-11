@@ -1,6 +1,9 @@
+/* src/components/ProductReviews.css */
+
 .product-reviews-section {
   background-color: #FDF6F7; /* A very light, soft blush */
   padding: 80px 5%;
+  overflow-x: hidden; /* Prevent horizontal scroll on smaller screens */
 }
 
 .section-title {
@@ -22,18 +25,12 @@
   box-sizing: border-box;
 }
 
-/* Review card ko proper height/width dena */
+/* MODIFICATION: Removed conflicting styles from this rule.
+  The .review-card component now handles its own styling internally.
+  This wrapper no longer needs to apply background, shadow, or transforms.
+*/
 .review-slide .review-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 20px;
   height: 100%;
-  transition: transform 0.3s ease;
-}
-
-.review-slide .review-card:hover {
-  transform: translateY(-6px);
 }
 
 /* Slick arrows */
@@ -50,7 +47,8 @@
 
 /* Slick dots custom */
 .slick-dots {
-  margin-top: 20px;
+  position: static; /* Ensures dots are part of the flow */
+  margin-top: 30px;
 }
 
 .slick-dots li button:before {
@@ -61,24 +59,4 @@
 
 .slick-dots li.slick-active button:before {
   opacity: 1;
-}
-.review-slide {
-  padding: 0 15px;
-  box-sizing: border-box;
-  /* Ensure the slide itself has proper dimensions */
-}
-
-/* Review card ko proper height/width dena */
-.review-slide .review-card {
-  /* These styles are applied to the outer .review-card container
-     which now primarily acts as the perspective container for the flip effect.
-     The inner .review-card-front and .review-card-back handle the visual styling. */
-  background: none; /* Remove background here as inner cards have it */
-  box-shadow: none; /* Remove shadow here as inner cards have it */
-  height: auto; /* Allow height to adjust to content */
-  transition: none; /* Transition handled by inner card */
-}
-
-.review-slide .review-card:hover {
-  transform: none; /* Transition handled by inner card */
 }

@@ -132,24 +132,25 @@ const getImageStyle = (index) => {
       filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
     };
   } else if (relativeIndex === 1) {
-    // Next (bottom-left, thoda aur left)
-    return {
-      ...styles.image,
-      opacity: 0.7,
-      transform: 'translate(-120px, 120px) scale(0.8)', // 👈 changed from -60px
-      zIndex: 2,
-      filter: 'blur(2px)',
-    };
-  } else if (relativeIndex === total - 1) {
-    // Previous (top-left, thoda aur left)
-    return {
-      ...styles.image,
-      opacity: 0.5,
-      transform: 'translate(-120px, -120px) scale(0.8)', // 👈 changed from -60px
-      zIndex: 1,
-      filter: 'blur(3px)',
-    };
-  }
+  // Next (bottom-left, thoda aur left + neeche)
+  return {
+    ...styles.image,
+    opacity: 0.7,
+    transform: 'translate(-120px, 160px) scale(0.8)', // 👈 120px se 160px kiya
+    zIndex: 2,
+    filter: 'blur(2px)',
+  };
+} else if (relativeIndex === total - 1) {
+  // Previous (top-left, thoda aur left + upar)
+  return {
+    ...styles.image,
+    opacity: 0.5,
+    transform: 'translate(-120px, -160px) scale(0.8)', // 👈 -120px se -160px kiya
+    zIndex: 1,
+    filter: 'blur(3px)',
+  };
+}
+
   return {
     ...styles.image,
     opacity: 0,

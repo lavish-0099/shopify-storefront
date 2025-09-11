@@ -15,13 +15,11 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 // runtime-first, fall back to build-time env
-const SHOPIFY_API_ENDPOINT =
-  (typeof window !== 'undefined' && window.SHOPIFY_API_ENDPOINT) ||
-  process.env.REACT_APP_SHOPIFY_API_ENDPOINT;
-
-const SHOPIFY_STOREFRONT_TOKEN =
-  (typeof window !== 'undefined' && window.SHOPIFY_STOREFRONT_TOKEN) ||
-  process.env.REACT_APP_SHOPIFY_STOREFRONT_TOKEN; // note exact name
+const SHOPIFY_API_ENDPOINT = process.env.REACT_APP_SHOPIFY_API_ENDPOINT;
+const SHOPIFY_STOREFRONT_TOKEN = process.env.REACT_APP_SHOPIFY_STOREFRONT_TOKEN;
+if (!SHOPIFY_API_ENDPOINT || !SHOPIFY_STOREFRONT_TOKEN) {
+  console.error("❌ Missing Shopify environment variables");
+} // note exact name
 
 const httpLink = createHttpLink({
   uri: SHOPIFY_API_ENDPOINT,

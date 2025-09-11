@@ -193,9 +193,20 @@ const getImageStyle = (index) => {
               <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
                 {usp.title}
               </h2>
-              <p style={{ fontSize: '1.1rem', color: '#444', marginBottom: '1rem', lineHeight: '1.8' }}>
-                {usp.description}
-              </p>
+             <p
+                style={{
+                  fontSize: '1.1rem',
+                  color: '#444',
+                  marginBottom: '1rem',
+                  lineHeight: '1.8',
+                  maxWidth: '45ch', // 👈 ek line me approx 10 words
+                  wordWrap: 'break-word',
+                  whiteSpace: 'normal',
+                }}
+              >
+  {usp.description}
+</p>
+
             </div>
           ))}
         </div>

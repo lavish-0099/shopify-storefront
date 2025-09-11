@@ -118,7 +118,7 @@ const TopProducts = () => {
 
   return (
     <div className="top-products-section">
-      <h2 className="section-title">{data.collection.title}</h2>
+      <h2 className="section-title">{'Our Curated Collection'}</h2>
       
       <div className="slider-wrapper">
         <Slider {...sliderSettings} className="product-slider">

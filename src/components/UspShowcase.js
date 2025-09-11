@@ -95,10 +95,12 @@ const UspShowcase = () => {
     uspContent: {
       maxWidth: '500px',
       lineHeight: '1.6',
+      paddingRight: '80px',
     },
     uspItem: {
       transition: 'opacity 0.6s ease, transform 0.6s ease',
       position: 'absolute',
+      width: '420px',
     },
     imageContainer: {
       position: 'relative',

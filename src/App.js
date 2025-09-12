@@ -19,6 +19,7 @@ import SignUpPage from './components/SignUpPage';
 import CartPage from './components/CartPage';
 import VideoModelSection from './components/VideoModelSection';  // ✅ Import your component
 import UspShowcase from './components/UspShowcase';
+import Offers from "./components/Offers";
 
 
 
@@ -60,6 +61,7 @@ const HomePage = () => {
       <WhyChooseUs />
       <VideoModelSection />  {/* ✅ Added here */}
       <TopProducts />
+      <Offers />
       <ProductReviews />
       <UspShowcase />
     </>

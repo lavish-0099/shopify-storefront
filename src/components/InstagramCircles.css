@@ -1,37 +1,19 @@
-.instagram-section {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.section-heading {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
 .circle-thumbnails-below-offer {
   display: flex;
-  justify-content: center;
   gap: 20px;
-  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .circle-thumb {
-  width: 100px;
-  height: 100px;
-  border: 2px solid #a020f0; /* Purple border */
+  width: 120px;
+  height: 120px;
+  border: 2px solid #a000ff;
   border-radius: 50%;
-  overflow: hidden;
+  overflow: hidden; /* Ensures video stays inside circle */
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.circle-thumb:hover {
-  transform: scale(1.1);
 }
 
 .circle-video,

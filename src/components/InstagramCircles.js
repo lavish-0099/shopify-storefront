@@ -6,34 +6,33 @@ const InstagramCircles = () => {
     {
       id: 1,
       type: "video",
-       videoUrl: "videos/video1.mp4",
+      videoUrl: "/videos/video1.mp4", // ✅ leading slash
     },
     {
       id: 2,
       type: "video",
-      videoUrl: "videos/video2.mp4",
+      videoUrl: "/videos/video2.mp4",
     },
     {
       id: 3,
       type: "video",
-       videoUrl: "videos/video3.mp4",
+      videoUrl: "/videos/video3.mp4",
     },
     {
       id: 4,
       type: "video",
-      videoUrl: "videos/video4.mp4",
+      videoUrl: "/videos/video4.mp4",
     },
     {
       id: 5,
       type: "video",
-       videoUrl: "videos/video5.mp4",
+      videoUrl: "/videos/video5.mp4",
     },
-    
   ];
 
   return (
     <div className="instagram-section">
-      <h2 className="section-heading"></h2>
+      <h2 className="section-heading">Our Instagram Highlights</h2>
 
       <div className="circle-thumbnails-below-offer">
         {instagramContent.map((item) => (

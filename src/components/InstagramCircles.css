@@ -1,24 +1,77 @@
-.circle-thumbnails-below-offer {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
+/* src/components/InstagramCircles.css */
+
+/* Section Styling */
+.instagram-section {
+  padding: 50px 20px;
+  background: #fff;
+  text-align: center;
 }
 
+/* Heading Styling */
+.section-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #642C44;
+  margin-bottom: 40px;
+}
+
+/* Grid Layout for Videos */
+.circle-thumbnails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Circle Container */
 .circle-thumb {
   width: 120px;
   height: 120px;
-  border: 2px solid #a000ff;
   border-radius: 50%;
-  overflow: hidden; /* Ensures video stays inside circle */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #642C44;
+  background: #f9f9f9;
+  cursor: pointer;
 }
 
-.circle-video,
-.circle-image {
+.circle-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Video Styling */
+.circle-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .circle-thumb {
+    width: 90px;
+    height: 90px;
+  }
+
+  .section-heading {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .circle-thumb {
+    width: 70px;
+    height: 70px;
+  }
+
+  .section-heading {
+    font-size: 1.25rem;
+  }
 }

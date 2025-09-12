@@ -9,6 +9,7 @@ import RelatedProducts from './RelatedProducts';
 import RecentlyViewed from './RecentlyViewed';
 import ShineSection from './ShineSection';
 import ReviewList from './ReviewList';
+import ProductUSP from './ProductUSP';
 import './ProductPage.css';
 import InstagramCircles from './InstagramCircles';
 
@@ -305,8 +306,9 @@ const ProductPage = () => {
 
       <RelatedProducts productId={product.id} />
       <RecentlyViewed currentProductHandle={product.handle} />
-      <ShineSection text="#FOR THE MOMENTS THAT MATTER" />
+      <ProductUSP />
       <ReviewList reviews={approvedReviews} />
+      <ShineSection text="#FOR THE MOMENTS THAT MATTER" />
     </>
   );
 };

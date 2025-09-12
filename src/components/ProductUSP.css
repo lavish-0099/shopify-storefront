@@ -1,0 +1,21 @@
+.product-usp-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.usp-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  max-width: 120px;
+}
+
+.usp-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+}

@@ -12,6 +12,7 @@ export default function Offers() {
         </h2>
       </div>
 
+
       {/* Marquee Scroller */}
       <div className="bg-[#FFF0F5] py-4">
         <Marquee gradient={false} speed={60} pauseOnHover={true}>

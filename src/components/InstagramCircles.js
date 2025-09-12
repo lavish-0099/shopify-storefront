@@ -26,7 +26,7 @@ const InstagramCircles = () => {
       id: 4,
       type: "video",
       thumbnail: "https://via.placeholder.com/150/FFFF00/000000?text=Reel+3",
-      videoUrl: "hhttps://www.instagram.com/reel/DKcPv2ESvfF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      videoUrl: "https://www.instagram.com/reel/DKcPv2ESvfF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       id: 5,

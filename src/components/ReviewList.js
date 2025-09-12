@@ -55,10 +55,15 @@ const ReviewList = () => {
       {reviews.map((review, index) => (
         <div key={index} className="review-item">
           <p className="review-rating">⭐ {review.rate}/5</p>
-          <p className="review-text">“{review.text}”</p>
-          <p className="review-author">— {review.author || "Valued Customer"}</p>
+          <p className="review-text">
+            “{review.text || review.body || review.content || "No comment"}”
+          </p>
+          <p className="review-author">
+            — {review.author || review.name || review.user || "Valued Customer"}
+          </p>
         </div>
       ))}
+
     </div>
   );
 };

@@ -1,74 +1,42 @@
-/* Container for Instagram Section */
 .instagram-section {
   text-align: center;
-  padding: 30px 20px;
+  margin: 40px 0;
 }
 
-/* Section Heading */
 .section-heading {
   font-size: 1.8rem;
+  font-weight: bold;
   margin-bottom: 20px;
-  font-weight: 600;
   color: #333;
 }
 
-/* Circles Layout */
 .circle-thumbnails-below-offer {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-top: 20px;
 }
 
-/* Individual Circle */
 .circle-thumb {
-  position: relative;
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #a020f0; /* Purple border */
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  flex-shrink: 0;
-  transition: border-color 0.2s ease;
-  padding: 0;
-  background: #fff;
+  transition: transform 0.3s ease;
 }
 
 .circle-thumb:hover {
-  border-color: #8a2be2; /* Deep mauve color */
+  transform: scale(1.1);
 }
 
-/* Circle Image */
-.circle-thumb img {
+.circle-video,
+.circle-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-/* Play Icon for Videos */
-.circle-thumb[data-type="video"]::after {
-  content: '▶';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 1.2rem;
-  opacity: 0.85;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Main Image Viewer */
-.main-image-viewer {
-  margin-top: 30px;
-}
-
-.main-image-viewer img {
-  max-width: 400px;
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }

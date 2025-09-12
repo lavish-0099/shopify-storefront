@@ -4,32 +4,36 @@ import Marquee from "react-fast-marquee";
 
 export default function Offers() {
   return (
-    <section className="relative bg-white overflow-x-hidden">
-      
+    <section className="relative w-full">
       {/* Banner Header */}
-      <div className="w-full bg-[#F7F7F7] text-center py-4">
+      <div className="w-full bg-[#F7F7F7] text-center py-6 shadow-sm">
         <h2 
-          className="text-2xl md:text-3xl font-bold tracking-wide"
+          className="text-3xl md:text-4xl font-bold"
           style={{ color: "#642C44" }}
         >
           Our Offers
         </h2>
       </div>
 
-      {/* Scrolling Offer Marquee */}
-      <div className="overflow-x-hidden py-3">
+      {/* Scrolling Offer Section */}
+      <div className="bg-[#FFF0F5] py-4">
         <Marquee
           gradient={false}
           speed={50}
           pauseOnHover
           className="select-none w-full"
-          style={{ overflow: "hidden", backgroundColor: "#FFF0F5" }}
         >
           <span
-            className="mx-12 text-lg md:text-2xl font-semibold whitespace-nowrap"
+            className="mx-8 text-xl md:text-2xl font-semibold whitespace-nowrap tracking-wide"
             style={{ color: "#642C44" }}
           >
-            ₹200 off + free shipping for first order
+            ₹200 off + Free Shipping for First Order
+          </span>
+          <span
+            className="mx-8 text-xl md:text-2xl font-semibold whitespace-nowrap tracking-wide"
+            style={{ color: "#642C44" }}
+          >
+            ₹200 off + Free Shipping for First Order
           </span>
         </Marquee>
       </div>

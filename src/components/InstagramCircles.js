@@ -6,27 +6,27 @@ const InstagramCircles = () => {
     {
       id: 1,
       type: "video",
-       videoUrl: "https://www.instagram.com/reel/DJn8kFQSR9i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+       videoUrl: "/videos/video1.mp4",
     },
     {
       id: 2,
       type: "video",
-      videoUrl: "https://www.instagram.com/reel/DJgvpwLyLWz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      videoUrl: "/videos/video2.mp4",
     },
     {
       id: 3,
       type: "video",
-       videoUrl: "https://www.instagram.com/reel/DKcPv2ESvfF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+       videoUrl: "/videos/video3.mp4",
     },
     {
       id: 4,
       type: "video",
-      videoUrl: "https://www.instagram.com/reel/DKpE90JSbZx/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      videoUrl: "/videos/video4.mp4",
     },
     {
       id: 5,
       type: "video",
-       videoUrl: "https://www.instagram.com/reel/DHlhqZay166/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+       videoUrl: "/videos/video5.mp4",
     },
     
   ];

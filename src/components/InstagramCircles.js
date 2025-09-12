@@ -1,4 +1,4 @@
-// src/components/InstagramCircles.jsx
+// src/components/InstagramCircles.js
 import React from "react";
 import "./InstagramCircles.css";
 
@@ -12,10 +12,9 @@ const InstagramCircles = () => {
   ];
 
   return (
-    <section className="instagram-section">
+    <div className="instagram-section">
       <h2 className="section-heading">Our Instagram</h2>
-
-      <div className="circle-thumbnails">
+      <div className="circle-thumbnails-container">
         {instagramContent.map((item) => (
           <div key={item.id} className="circle-thumb">
             <video
@@ -29,7 +28,7 @@ const InstagramCircles = () => {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 

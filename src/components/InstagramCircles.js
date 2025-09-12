@@ -5,46 +5,55 @@ const InstagramCircles = () => {
   const instagramContent = [
     {
       id: 1,
-      type: "instagram",
-      url: "https://www.instagram.com/reel/DJn8kFQSR9i/",
+      type: "video",
+       videoUrl: "https://www.instagram.com/reel/DJn8kFQSR9i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 2,
-      type: "instagram",
-      url: "https://www.instagram.com/reel/DJgvpwLyLWz/",
+      type: "video",
+      videoUrl: "https://www.instagram.com/reel/DJgvpwLyLWz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 3,
-      type: "instagram",
-      url: "https://www.instagram.com/reel/DKcPv2ESvfF/",
+      type: "video",
+       videoUrl: "https://www.instagram.com/reel/DKcPv2ESvfF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 4,
-      type: "instagram",
-      url: "https://www.instagram.com/reel/DKpE90JSbZx/",
+      type: "video",
+      videoUrl: "https://www.instagram.com/reel/DKpE90JSbZx/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 5,
-      type: "instagram",
-      url: "https://www.instagram.com/reel/DHlhqZay166/",
+      type: "video",
+       videoUrl: "https://www.instagram.com/reel/DHlhqZay166/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
+    
   ];
 
   return (
     <div className="instagram-section">
-      <h2 className="section-heading">Our Instagram Highlights</h2>
+      <h2 className="section-heading"></h2>
 
       <div className="circle-thumbnails-below-offer">
         {instagramContent.map((item) => (
           <div key={item.id} className="circle-thumb">
-            <iframe
-              src={`${item.url}embed`}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              title={`Instagram Reel ${item.id}`}
-              className="instagram-embed-video"
-            ></iframe>
+            {item.type === "video" ? (
+              <video
+                src={item.videoUrl}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="circle-video"
+              />
+            ) : (
+              <img
+                src={item.thumbnail}
+                alt={`Instagram ${item.id}`}
+                className="circle-image"
+              />
+            )}
           </div>
         ))}
       </div>

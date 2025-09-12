@@ -261,19 +261,9 @@ const ProductPage = () => {
           <div className="offer-banner">
             <p>Flat 10% off on first purchase, up to Rs.500</p>
           </div>
-
-          {/* Circle thumbnails below offer */}
-          <div className="circle-thumbnails-below-offer">
-            {product.images.edges.map(({ node }, index) => (
-              <button
-                key={index}
-                className="circle-thumb"
-                onClick={() => setMainImage(node)}
-              >
-                <img src={node.url} alt={node.altText || product.title} />
-              </button>
-            ))}
-          </div>
+          
+          <InstagramCircles />
+         
 
           {/* Dropdown Sections */}
           <div className="product-dropdowns">

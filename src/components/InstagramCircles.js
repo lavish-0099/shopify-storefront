@@ -6,27 +6,27 @@ const InstagramCircles = () => {
     {
       id: 1,
       type: "video",
-      videoUrl: "/videos/video1.mp4", // ✅ leading slash
+      videoUrl: "/videos/Video1.mp4", // ✅ leading slash
     },
     {
       id: 2,
       type: "video",
-      videoUrl: "/videos/video2.mp4",
+      videoUrl: "/videos/Video2.mp4",
     },
     {
       id: 3,
       type: "video",
-      videoUrl: "/videos/video3.mp4",
+      videoUrl: "/videos/Video3.mp4",
     },
     {
       id: 4,
       type: "video",
-      videoUrl: "/videos/video4.mp4",
+      videoUrl: "/videos/Video4.mp4",
     },
     {
       id: 5,
       type: "video",
-      videoUrl: "/videos/video5.mp4",
+      videoUrl: "/videos/Video5.mp4",
     },
   ];
 

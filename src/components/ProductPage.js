@@ -10,6 +10,8 @@ import RecentlyViewed from './RecentlyViewed';
 import ShineSection from './ShineSection';
 import ReviewList from './ReviewList';
 import './ProductPage.css';
+import InstagramCircles from './InstagramCircles';
+
 import { FaHeart, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const GET_PRODUCT_BY_HANDLE = gql`

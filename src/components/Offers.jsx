@@ -1,28 +1,26 @@
 // src/components/Offers.jsx
 import React from "react";
 import Marquee from "react-fast-marquee";
+import "./Offers.css"; // Import the CSS file
 
 export default function Offers() {
   return (
-    <section className="w-full">
+    <section className="offers-section">
       {/* Section Title */}
-      <div className="bg-white py-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#642C44]">
-          Our Offers
-        </h2>
+      <div className="offers-header">
+        <h2 className="offers-title">Our Offers</h2>
       </div>
 
-
       {/* Marquee Scroller */}
-      <div className="bg-[#FFF0F5] py-4">
+      <div className="offers-marquee-container">
         <Marquee gradient={false} speed={60} pauseOnHover={true}>
-          <span className="mx-12 text-xl md:text-2xl font-semibold text-[#642C44] whitespace-nowrap">
+          <span className="offers-marquee-text">
             ₹200 off + Free Shipping for First Order
           </span>
-          <span className="mx-12 text-xl md:text-2xl font-semibold text-[#642C44] whitespace-nowrap">
+          <span className="offers-marquee-text">
             ₹200 off + Free Shipping for First Order
           </span>
-          <span className="mx-12 text-xl md:text-2xl font-semibold text-[#642C44] whitespace-nowrap">
+          <span className="offers-marquee-text">
             ₹200 off + Free Shipping for First Order
           </span>
         </Marquee>

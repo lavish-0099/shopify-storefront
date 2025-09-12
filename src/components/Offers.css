@@ -1,0 +1,50 @@
+/* Main section container */
+.offers-section {
+  width: 100%;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+/* Header container */
+.offers-header {
+  background-color: #ffffff;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Title text */
+.offers-title {
+  font-size: 2rem; /* default for small screens */
+  font-weight: bold;
+  color: #642C44;
+}
+
+@media (min-width: 768px) {
+  .offers-title {
+    font-size: 2.5rem; /* larger on bigger screens */
+  }
+}
+
+/* Marquee container */
+.offers-marquee-container {
+  background-color: #FFF0F5;
+  padding: 16px 0;
+  overflow: hidden;
+}
+
+/* Individual marquee text */
+.offers-marquee-text {
+  margin: 0 3rem;
+  font-size: 1.25rem; /* default size */
+  font-weight: 600;
+  color: #642C44;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .offers-marquee-text {
+    font-size: 1.5rem; /* slightly bigger on medium+ screens */
+  }
+}

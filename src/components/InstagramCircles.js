@@ -6,38 +6,34 @@ const InstagramCircles = () => {
     {
       id: 1,
       type: "video",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4", // Demo video
+       videoUrl: "https://www.instagram.com/reel/DJn8kFQSR9i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 2,
       type: "video",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+      videoUrl: "https://www.instagram.com/reel/DJgvpwLyLWz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 3,
       type: "video",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+       videoUrl: "https://www.instagram.com/reel/DKcPv2ESvfF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 4,
       type: "video",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+      videoUrl: "https://www.instagram.com/reel/DKpE90JSbZx/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
       id: 5,
       type: "video",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+       videoUrl: "https://www.instagram.com/reel/DHlhqZay166/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
-    {
-      id: 6,
-      type: "video",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-    },
+    
   ];
 
   return (
     <div className="instagram-section">
-      <h2 className="section-heading">Our Instagram Highlights</h2>
+      <h2 className="section-heading"></h2>
 
       <div className="circle-thumbnails-below-offer">
         {instagramContent.map((item) => (

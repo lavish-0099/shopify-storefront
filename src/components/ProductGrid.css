@@ -1,7 +1,7 @@
 /* src/components/ProductGrid.css */
 
 .top-products-section {
-  padding: 80px 5%;
+  padding: 0px 5%;
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
@@ -90,7 +90,7 @@
   font-family: var(--font-secondary);
   font-size: 1.1rem;
   font-weight: 500;
-  margin: 0 0 8px 0;
+  margin: 5 0 8px 0;
 }
 
 .product-price {
@@ -112,7 +112,11 @@
   margin: 0 auto;
   width: 100%;
 }
-
+.slick-dots
+{
+    position: static;
+    margin-top: 30px;
+}
 .slider-wrapper .slick-track {
     display: flex;
     align-items: stretch;
@@ -199,7 +203,7 @@
 /* --- VIEW ALL BUTTON STYLES --- */
 .view-all-button {
   display: inline-block;
-  margin-top: 80px;
+  margin-top: 5px;
   padding: 12px 30px;
   font-family: var(--font-secondary);
   font-size: 1rem;
@@ -235,7 +239,7 @@
 
 /* --- Existing Desktop Styles --- */
 .top-products-section, .recently-viewed-section {
-  padding: 80px 5%;
+  padding: 0px 5%;
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
@@ -322,7 +326,7 @@
   font-family: var(--font-secondary);
   font-size: 1.1rem;
   font-weight: 500;
-  margin: 0 0 8px 0;
+  margin: 5 0 8px 0;
 }
 
 .product-price {

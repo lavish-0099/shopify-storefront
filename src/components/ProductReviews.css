@@ -1,17 +1,17 @@
 /* src/components/ProductReviews.css */
 .product-reviews-section {
   background-color: #fdf6f7;
-  padding: 80px 5%;
+  padding: 15px 5%;
   overflow-x: hidden;
 }
 
 .section-title {
   text-align: center;
   font-family: var(--font-primary);
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 500;
   color: var(--color-deep-mauve);
-  margin: 0 auto 50px auto;
+  margin: 0 auto 15px auto;
 }
 
 .reviews-carousel {

@@ -11,10 +11,10 @@ const InstagramCircles = () => {
     { id: 5, videoUrl: "/videos/Video5.mp4" },
   ];
 
-  
+
   return (
     <div className="instagram-section">
-      <h2 className="section-heading">Our Instagram</h2>
+      
       <div className="circle-thumbnails-container">
         {instagramContent.map((item) => (
           <div key={item.id} className="circle-thumb">

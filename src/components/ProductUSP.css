@@ -1,8 +1,8 @@
 .product-usp-section {
   display: flex;
   justify-content: center;
-  gap: 80px; /* 👈 increase spacing between items */
-  margin: 50px 0;
+  gap: 40px;
+  margin: 40px 0;
   text-align: center;
 }
 

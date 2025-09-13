@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  min-height: 100vh;
+  padding: 80px 0;
   background: #fff;
   display: flex;
   justify-content: center;
@@ -89,10 +89,10 @@
 /* --- Mobile Responsive Styles --- */
 @media (max-width: 768px) {
   .main {
-    /* Switch to a vertical layout */
     flex-direction: column;
-    padding: 40px 20px; /* Reduce padding for smaller screens */
-    gap: 50px; /* Add space between stacked items */
+    padding: 40px 20px;
+    /* CHANGED: Reduced vertical gap on mobile from 50px */
+    gap: 30px;
   }
 
   .category-list {

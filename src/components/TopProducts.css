@@ -64,7 +64,7 @@
 /* Add this to the bottom of src/components/TopProducts.css */
 .view-all-button {
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 0px;
   padding: 12px 30px;
   font-family: var(--font-secondary);
   font-size: 1rem;

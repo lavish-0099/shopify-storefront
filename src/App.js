@@ -9,7 +9,6 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Preloader from './components/Preloader/Preloader';
 import WhyChooseUs from './components/WhyChooseUs';
-import InteractiveModelSection from './components/InteractiveModelSection';
 import TopProducts from './components/TopProducts';
 import ProductPage from './components/ProductPage';
 import CollectionPage from './components/CollectionPage';

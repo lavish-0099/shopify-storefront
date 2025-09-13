@@ -1,30 +1,10 @@
+/* src/components/Offers.css */
+
 /* Main section container */
 .offers-section {
   width: 100%;
   background-color: #ffffff;
-  text-align: center;
-}
-
-/* Header container */
-.offers-header {
-  background-color: #ffffff;
-  padding: 24px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Title text */
-.offers-title {
-  font-size: 2rem; /* default for small screens */
-  font-weight: bold;
-  color: #642C44;
-}
-
-@media (min-width: 768px) {
-  .offers-title {
-    font-size: 2.5rem; /* larger on bigger screens */
-  }
+  overflow: hidden;
 }
 
 /* Marquee container */

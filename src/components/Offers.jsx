@@ -1,16 +1,11 @@
 // src/components/Offers.jsx
 import React from "react";
 import Marquee from "react-fast-marquee";
-import "./Offers.css"; // Import the CSS file
+import "./Offers.css"; // Import the traditional CSS
 
 export default function Offers() {
   return (
     <section className="offers-section">
-      {/* Section Title */}
-      <div className="offers-header">
-        <h2 className="offers-title">Our Offers</h2>
-      </div>
-
       {/* Marquee Scroller */}
       <div className="offers-marquee-container">
         <Marquee gradient={false} speed={60} pauseOnHover={true}>

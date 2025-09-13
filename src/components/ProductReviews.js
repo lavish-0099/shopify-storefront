@@ -76,7 +76,7 @@ const ProductReviews = () => {
         // Create a card for each approved review for a product
         return approvedReviews.map((review) => ({
           id: `${product.id}-${review.id}`,
-          author: review.author || review.name || review.user || "Valued Customer",
+          author: review.firstName || review.author || review.name || review.user || "Valued Customer",
           rating: review.rate,
           reviewText: review.text || review.body || review.content || "",
           productTitle: product.title,

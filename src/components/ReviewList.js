@@ -65,9 +65,10 @@ const ReviewList = () => {
           <p style={styles.text}>
             “{review.text || review.body || review.content || "No comment"}”
           </p>
-          <p style={styles.author}>
-            — {review.author || review.name || review.user || "Valued Customer"}
-          </p>
+         <p style={styles.author}>
+          — {review.firstName || review.author || review.name || review.user || "Valued Customer"}
+        </p>
+
         </div>
       ))}
 

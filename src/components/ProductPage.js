@@ -12,7 +12,7 @@ import ReviewList from './ReviewList';
 import ProductUSP from './ProductUSP';
 import './ProductPage.css';
 import InstagramCircles from './InstagramCircles';
-
+import TopProductsMarquee from './TopProductsMarquee';
 import { FaHeart, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const GET_PRODUCT_BY_HANDLE = gql`
@@ -162,6 +162,7 @@ const ProductPage = () => {
 
   return (
     <>
+    <TopProductsMarquee />
       <div className="product-page-layout">
         {/* LEFT COLUMN: IMAGES & WHY YOU'LL LOVE THIS */}
         <div className="product-image-gallery">

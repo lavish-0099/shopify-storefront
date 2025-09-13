@@ -1,3 +1,6 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap');
+
 /* --- Keyframe animation for moving background texture --- */
 @keyframes move-texture {
   from {
@@ -30,7 +33,7 @@
 
 .stats-counter-container .stat-number {
   font-size: 2rem; /* Slightly smaller number text */
-  font-weight: bold;
+  font-weight: 900;
   color: #642c44;
   line-height: 1.2;
 }
@@ -48,9 +51,9 @@
 }
 
 .shine-text {
-  font-family: var(--font-primary, Arial, sans-serif);
-  font-size: 4rem; /* Slightly smaller for balance */
-  font-weight: 700;
+  font-family: 'Poppins', Arial, sans-serif; /* ✅ Updated to Poppins */
+  font-size: 4rem;
+  font-weight: 900; /* Extra bold */
   text-transform: uppercase;
   margin: 0;
 
@@ -59,7 +62,7 @@
   background-color: #642c44;
   background-size: cover;
   animation: move-texture 30s linear infinite;
-  
+
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;

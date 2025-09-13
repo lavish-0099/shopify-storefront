@@ -118,47 +118,43 @@ const UspShowcase = () => {
     },
   };
 
-// Floating up/down illusion
-const getImageStyle = (index) => {
-  const total = usps.length;
-  const relativeIndex = (index - activeIndex + total) % total;
+  const getImageStyle = (index) => {
+    const total = usps.length;
+    const relativeIndex = (index - activeIndex + total) % total;
 
-  if (relativeIndex === 0) {
+    if (relativeIndex === 0) {
+      return {
+        ...styles.image,
+        opacity: 1,
+        transform: 'translate(0, 0) scale(1)',
+        zIndex: 3,
+        filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
+      };
+    } else if (relativeIndex === 1) {
+      return {
+        ...styles.image,
+        opacity: 0.7,
+        transform: 'translate(-120px, 160px) scale(0.8)',
+        zIndex: 2,
+        filter: 'blur(2px)',
+      };
+    } else if (relativeIndex === total - 1) {
+      return {
+        ...styles.image,
+        opacity: 0.5,
+        transform: 'translate(-120px, -160px) scale(0.8)',
+        zIndex: 1,
+        filter: 'blur(3px)',
+      };
+    }
+
     return {
       ...styles.image,
-      opacity: 1,
-      transform: 'translate(0, 0) scale(1)',
-      zIndex: 3,
-      filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
+      opacity: 0,
+      transform: 'translate(0, 0) scale(0.4)',
+      zIndex: 0,
     };
-  } else if (relativeIndex === 1) {
-  // Next (bottom-left, thoda aur left + neeche)
-  return {
-    ...styles.image,
-    opacity: 0.7,
-    transform: 'translate(-120px, 160px) scale(0.8)', // 👈 120px se 160px kiya
-    zIndex: 2,
-    filter: 'blur(2px)',
   };
-} else if (relativeIndex === total - 1) {
-  // Previous (top-left, thoda aur left + upar)
-  return {
-    ...styles.image,
-    opacity: 0.5,
-    transform: 'translate(-120px, -160px) scale(0.8)', // 👈 -120px se -160px kiya
-    zIndex: 1,
-    filter: 'blur(3px)',
-  };
-}
-
-  return {
-    ...styles.image,
-    opacity: 0,
-    transform: 'translate(0, 0) scale(0.4)',
-    zIndex: 0,
-  };
-};
-
 
   return (
     <div ref={componentRef} style={styles.container}>
@@ -191,23 +187,28 @@ const getImageStyle = (index) => {
                     : 'translateY(20px)',
               }}
             >
-              <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
+              <h2
+                style={{
+                  fontSize: '2rem',
+                  marginBottom: '1rem',
+                  whiteSpace: 'nowrap', // 👈 ADDED: Prevents the title from wrapping
+                }}
+              >
                 {usp.title}
               </h2>
-             <p
+              <p
                 style={{
                   fontSize: '1.1rem',
                   color: '#444',
                   marginBottom: '1rem',
                   lineHeight: '1.8',
-                  maxWidth: '45ch', // 👈 ek line me approx 10 words
+                  maxWidth: '70ch', // 👈 CHANGED: Adjusted for ~15 words per line
                   wordWrap: 'break-word',
                   whiteSpace: 'normal',
                 }}
               >
-  {usp.description}
-</p>
-
+                {usp.description}
+              </p>
             </div>
           ))}
         </div>

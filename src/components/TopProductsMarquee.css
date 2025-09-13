@@ -1,0 +1,54 @@
+/* src/components/TopProductsMarquee.css */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 15px 0;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.marquee-track {
+  display: flex;
+  /* CHANGED: Use CSS variables for dynamic width and duration */
+  width: calc(var(--item-width) * var(--num-products) * 2);
+  animation: scroll var(--animation-duration) linear infinite;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* CHANGED: Use CSS variables for a dynamic animation distance */
+    transform: translateX(calc(var(--item-width) * var(--num-products) * -1));
+  }
+}
+
+.marquee-item {
+  flex-shrink: 0;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #333;
+  overflow: hidden;
+}
+
+.marquee-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.marquee-title {
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

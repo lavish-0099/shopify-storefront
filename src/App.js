@@ -19,7 +19,7 @@ import CartPage from './components/CartPage';
 import VideoModelSection from './components/VideoModelSection';  // ✅ Import your component
 import UspShowcase from './components/UspShowcase';
 import Offers from "./components/Offers";
-
+import CategoriesSection from "./components/CategoriesSection";
 
 
 // Import static pages
@@ -56,7 +56,7 @@ const HomePage = () => {
       </div>
 
 
-
+      <CategoriesSection />
       <WhyChooseUs />
       <VideoModelSection />  {/* ✅ Added here */}
       <TopProducts />

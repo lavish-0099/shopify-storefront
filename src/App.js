@@ -58,9 +58,9 @@ const HomePage = () => {
           />
 
       </div>
-
-      <WhyChooseUs />
       <CategoriesSection />
+      <WhyChooseUs />
+      
       {/*<MomentsThatMatterSection />*/}
       <VideoModelSection /> 
        <StickyNav /> {/* ✅ 2. Add the sticky navigation bar here */}

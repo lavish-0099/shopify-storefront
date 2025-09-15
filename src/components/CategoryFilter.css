@@ -1,0 +1,62 @@
+/* Main container for the filter component */
+.category-filter-container {
+  font-family: var(--font-primary);
+  width: 350px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Removes default list styling */
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styles for each category row */
+.filter-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Remove border from the last item */
+.filter-item:last-child {
+  border-bottom: none;
+}
+
+.filter-item:hover {
+  background-color: #f9f9f9;
+}
+
+/* Custom styles for the checkbox */
+.filter-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 16px;
+  accent-color: #5a5a5a; /* Modern way to color checkboxes */
+}
+
+/* The icon placeholder box */
+.icon-placeholder {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  margin-right: 16px;
+}
+
+/* Styles for the category name label */
+.filter-item label {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}

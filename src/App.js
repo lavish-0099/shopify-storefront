@@ -20,8 +20,12 @@ import VideoModelSection from './components/VideoModelSection';  // ✅ Import y
 import UspShowcase from './components/UspShowcase';
 import Offers from "./components/Offers";
 import CategoriesSection from "./components/CategoriesSection";
-
-
+import TrousersSection from './components/TrousersSection';
+import ShortDressSection from './components/ShortDressSection';
+import MaxiMidiDressSection from './components/MaxiMidiDressSection';
+import CoOrdsSection from './components/CoOrdsSection';
+import StickyNav from './components/StickyNav';
+import MomentsThatMatterSection from './components/MomentsThatMatterSection';
 // Import static pages
 import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } from './pages/StaticPages';
 
@@ -55,13 +59,35 @@ const HomePage = () => {
 
       </div>
 
-
-      <CategoriesSection />
       <WhyChooseUs />
-      <VideoModelSection />  {/* ✅ Added here */}
-      <TopProducts />
+      <CategoriesSection />
+      {/*<MomentsThatMatterSection />*/}
+      <VideoModelSection /> 
+       <StickyNav /> {/* ✅ 2. Add the sticky navigation bar here */}
+      <section id="top-products-section">
+        <TopProducts />
+      </section>
+
+      <section id="trousers-section">
+        <TrousersSection />
+      </section>
+
+      <section id="short-dress-section">
+        <ShortDressSection />
+      </section>
+
+      <section id="maxi-midi-dress-section">
+        <MaxiMidiDressSection />
+      </section>
+
+      <section id="co-ords-section">
+        <CoOrdsSection />
+      </section>
+
+      <section id="reviews-section">
+        <ProductReviews />
+      </section>
       <Offers />
-      <ProductReviews />
       <UspShowcase />
     </>
   );

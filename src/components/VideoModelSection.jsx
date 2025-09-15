@@ -1,39 +1,45 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom"; // ✅ 1. Import Link
 import "./Categories.css";
 
 export default function Categories() {
+  // ✅ 2. Add a 'handle' for the URL to each category
   const categories = [
-    { name: "Maxi Dresses", img: "/images/7.png" },
-    { name: "Midi Dresses", img: "/images/6.png" },
-    { name: "Short Dresses", img: "/images/1.png" },
-    { name: "Co-Ords", img: "/images/2.png" },
-    { name: "Trousers", img: "/images/3.png" },
+    { name: "Maxi Dresses", img: "/images/7.png", handle: "maxi-midi-dress" },
+    { name: "Midi Dresses", img: "/images/6.png", handle: "maxi-midi-dress" },
+    { name: "Short Dresses", img: "/images/1.png", handle: "short-dress" },
+    { name: "Co-Ords", img: "/images/2.png", handle: "co-ords" },
+    { name: "Trousers", img: "/images/3.png", handle: "trousers" },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Calculate next and next-next indices for the blurred images
   const nextIndex = (activeIndex + 1) % categories.length;
   const nextNextIndex = (activeIndex + 2) % categories.length;
 
   return (
     <div className="container">
       <div className="main">
-        {/* Left Category List */}
         <div className="category-list">
           {categories.map((cat, idx) => (
-            <span
-              key={cat.name}
-              onMouseEnter={() => setActiveIndex(idx)} // hover par change
-              className={`category-item ${activeIndex === idx ? "active" : ""}`}
+            // ✅ 3. Wrap the span with a Link component
+            <Link 
+              key={cat.name} 
+              to={`/collections/${cat.handle}`} 
+              className="category-link"
             >
-              {cat.name}
-            </span>
+              <span
+                onMouseEnter={() => setActiveIndex(idx)}
+                className={`category-item ${activeIndex === idx ? "active" : ""}`}
+              >
+                {cat.name}
+              </span>
+            </Link>
           ))}
         </div>
 
-        {/* Center Product Preview */}
+        {/* Center Product Preview (no changes here) */}
         <div className="preview">
           <AnimatePresence mode="wait">
             <motion.img
@@ -48,7 +54,6 @@ export default function Categories() {
             />
           </AnimatePresence>
 
-          {/* Blurred Images */}
           <div className="blurred-images">
             <AnimatePresence mode="wait">
               <motion.img
@@ -77,7 +82,6 @@ export default function Categories() {
           </div>
         </div>
 
-        {/* Right Empty Space for Balance */}
         <div className="right-space"></div>
       </div>
     </div>

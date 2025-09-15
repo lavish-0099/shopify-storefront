@@ -8,10 +8,10 @@ import "swiper/css/navigation";
 import "./CategoriesSection.css";
 
 const baseCategories = [
-  { title: "Maxi & Midi Dress", handle: "maxi-midi-dress", image: "/images/11.png", subtitle: "Made for every mood" },
-  { title: "Short Dress", handle: "short-dress", image: "/images/22.png", subtitle: "Chic & stylish" },
-  { title: "Co-ords", handle: "co-ords", image: "/images/33.png", subtitle: "Effortless sets" },
-  { title: "Trousers", handle: "trousers", image: "/images/44.png", subtitle: "Comfort redefined" },
+  { title: "Maxi & Midi Dress", handle: "maxi-midi-dress", image: "/images/6.png", subtitle: "Made for every mood" },
+  { title: "Short Dress", handle: "short-dress", image: "/images/1.png", subtitle: "Chic & stylish" },
+  { title: "Co-ords", handle: "co-ords", image: "/images/2.png", subtitle: "Effortless sets" },
+  { title: "Trousers", handle: "trousers", image: "/images/3.png", subtitle: "Comfort redefined" },
 ];
 
 const categories = [...baseCategories, ...baseCategories];

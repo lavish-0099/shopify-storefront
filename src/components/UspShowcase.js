@@ -189,20 +189,21 @@ const UspShowcase = () => {
             >
               <h2
                 style={{
-                  fontSize: '2rem',
+                  fontSize: '4rem',
                   marginBottom: '1rem',
                   whiteSpace: 'nowrap', // 👈 ADDED: Prevents the title from wrapping
+                  fontFamily: 'var(--font-primary)', // 👈 ADDED: Uses the primary font
                 }}
               >
                 {usp.title}
               </h2>
               <p
                 style={{
-                  fontSize: '1.1rem',
-                  color: '#444',
+                  fontSize: '1.3rem',
+                  color: 'a64d79;',
                   marginBottom: '1rem',
                   lineHeight: '1.8',
-                  maxWidth: '70ch', // 👈 CHANGED: Adjusted for ~15 words per line
+                  maxWidth: '500ch', // 👈 CHANGED: Adjusted for ~15 words per line
                   wordWrap: 'break-word',
                   whiteSpace: 'normal',
                 }}

@@ -116,3 +116,9 @@
     display: none;
   }
 }
+
+/* Add this to your Categories.css file */
+.category-link {
+  text-decoration: none; /* Removes the underline from links */
+  color: inherit; /* Makes the link inherit the color from its parent */
+}

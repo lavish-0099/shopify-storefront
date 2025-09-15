@@ -1,4 +1,3 @@
-/* src/components/TopProducts.css */
 .top-products-section {
   padding: 80px 5%;
   background-color: var(--color-white);
@@ -13,29 +12,38 @@
   color: var(--color-deep-mauve);
 }
 
+/* ✅ KEY CHANGE: Updated grid layout for 4 columns */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Creates 4 equal-width columns */
+  grid-template-columns: repeat(4, 1fr); 
   gap: 30px;
+  margin-bottom: 50px; /* Added margin to space from "View All" button */
+}
+
+/* The .product-card-wrapper is now the direct child of the grid */
+.product-card-wrapper {
+  text-align: left;
 }
 
 .product-card {
   text-decoration: none;
   color: var(--color-deep-mauve);
-  text-align: left;
+  display: block; /* Ensure the link fills the wrapper */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .product-image-container {
   width: 100%;
-  aspect-ratio: 3 / 4; /* Creates a nice portrait aspect ratio */
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background-color: var(--color-soft-blush);
   margin-bottom: 15px;
+  position: relative; /* Needed for positioning the QUICK VIEW overlay */
 }
 
 .product-image-container img {
@@ -46,7 +54,32 @@
 }
 
 .product-card:hover .product-image-container img {
-    transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+/* Styling for QUICK VIEW overlay */
+.quick-view {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: var(--font-secondary);
+  font-weight: 600;
+}
+
+.product-card:hover .quick-view {
+  opacity: 1;
+}
+
+
+.product-info {
+    padding: 0 5px; /* Add slight padding for text */
 }
 
 .product-title {
@@ -59,12 +92,17 @@
 .product-price {
   font-family: var(--font-secondary);
   font-size: 1rem;
-  margin: 0;
+  margin: 0 0 10px 0;
 }
-/* Add this to the bottom of src/components/TopProducts.css */
+
+.star-rating {
+    color: #ffd700;
+    font-size: 1.1rem;
+}
+
 .view-all-button {
   display: inline-block;
-  margin-top: 0px;
+  /* margin-top is adjusted by the grid's margin-bottom */
   padding: 12px 30px;
   font-family: var(--font-secondary);
   font-size: 1rem;
@@ -81,4 +119,22 @@
 .view-all-button:hover {
   background-color: var(--color-deep-mauve);
   color: var(--color-white);
+}
+
+/* ✅ KEY CHANGE: Added media queries for responsiveness */
+@media (max-width: 1024px) {
+  .product-grid {
+    /* 2 columns for tablets */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid {
+    /* 1 column for mobile */
+    grid-template-columns: 1fr;
+  }
+  .section-title {
+    font-size: 2.2rem;
+  }
 }

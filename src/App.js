@@ -63,7 +63,9 @@ const HomePage = () => {
       <MomentsThatMatterSection />
       <VideoModelSection /> 
       <WhyChooseUs />
-       <StickyNav />
+        <div className="hide-on-mobile">
+        <StickyNav />
+      </div>
       <section id="top-products-section">
         <TopProducts />
       </section>
@@ -88,7 +90,9 @@ const HomePage = () => {
         <ProductReviews />
       </section>
       <Offers />
-      <UspShowcase />
+      <div className="hide-on-mobile">
+        <UspShowcase />
+      </div>
      <StorySection />
      <ShineSection text="Own It. #TrustYourStyle" />
      <WatchAndBuy/>

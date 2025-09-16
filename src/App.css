@@ -89,3 +89,9 @@ section:not(:last-child) {
   font-weight: 600;
 }
 
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}

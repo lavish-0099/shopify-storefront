@@ -28,6 +28,7 @@ import StickyNav from './components/StickyNav';
 import MomentsThatMatterSection from './components/MomentsThatMatterSection';
 import StorySection from './components/StorySection';
 import ShineSection from './components/ShineSection';
+import AccountPage from './components/AccountPage';
 // Import the new slider component
 import HeroSlider from './components/HeroSlider'; 
 // Import static pages
@@ -233,6 +234,14 @@ function App() {
                     </MainLayout>
                   }
                 />
+                <Route
+                    path="/account"
+                    element={
+                      <MainLayout>
+                        <AccountPage />
+                      </MainLayout>
+                    }
+                  />
                 <Route
                   path="/cart"
                   element={

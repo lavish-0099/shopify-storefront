@@ -35,7 +35,7 @@ import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } f
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AffiliatePage from './pages/AffiliatePage';
-
+import CoOrds_Section from './components/CoOrds_Section';
 import './App.css';
 
 const MainLayout = ({ children }) => {
@@ -56,7 +56,7 @@ const HomePage = () => {
       
       <CategoriesSection />
       <WhyChooseUs />
-      
+      <CoOrds_Section />
       <MomentsThatMatterSection />
       <VideoModelSection /> 
        <StickyNav />

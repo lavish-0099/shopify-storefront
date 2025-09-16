@@ -1,3 +1,4 @@
+// src/components/CategoriesSection.js
 import React from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,36 +9,48 @@ import "swiper/css/navigation";
 import "./CategoriesSection.css";
 
 const baseCategories = [
-  { title: "Maxi & Midi Dress", handle: "maxi-midi-dress", image: "/images/6.png", subtitle: "Made for every mood" },
-  { title: "Short Dress", handle: "short-dress", image: "/images/1.png", subtitle: "Chic & stylish" },
-  { title: "Co-ords", handle: "co-ords", image: "/images/2.png", subtitle: "Effortless sets" },
-  { title: "Trousers", handle: "trousers", image: "/images/3.png", subtitle: "Comfort redefined" },
+  { title: "Maxi & Midi Dress", handle: "maxi-midi-dress", image: "/images/categories1.png" },
+  { title: "Short Dress", handle: "short-dress", image: "/images/categories2.png" },
+  { title: "Co-ords", handle: "co-ords", image: "/images/categories3.png" },
+  { title: "Trousers", handle: "trousers", image: "/images/categories4.png" },
 ];
 
-const categories = [...baseCategories, ...baseCategories];
+const categories = [...baseCategories, ...baseCategories]; 
 
 const CategoriesSection = () => {
   return (
     <section className="categories-section">
+      <h2 className="categories-title">Shop by Category</h2>
       <Swiper
         modules={[Navigation]}
-        effect={"slide"}
-        speed={100}
+        speed={600}
         grabCursor={true}
         centeredSlides={true}
-        slidesPerView={3}
         loop={true}
         navigation
         className="categories-carousel"
+        // ✅ Set slidesPerView directly and update breakpoints
+        slidesPerView={3} 
+        spaceBetween={30}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        }}
       >
         {categories.map((cat, index) => (
           <SwiperSlide key={`${cat.handle}-${index}`} className="category-slide">
             <Link to={`/collections/${cat.handle}`} className="category-card">
               <img src={cat.image} alt={cat.title} className="category-img" />
-              <div className="category-overlay">
-                <h3>{cat.title}</h3>
-                <p>{cat.subtitle}</p>
-              </div>
             </Link>
           </SwiperSlide>
         ))}

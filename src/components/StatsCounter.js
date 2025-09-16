@@ -4,7 +4,7 @@ import './StatsCounter.css';
 const StatsCounter = () => {
   // ✅ CHANGED: Updated the stats to match your image
   const stats = [
-    { id: 1, label: 'Happy Blissqueens', target: 10, suffix: 'L+' },
+    { id: 1, label: 'Happy Customers', target: 10, suffix: 'L+' },
     { id: 2, label: 'Styles Purchased', target: 3, suffix: 'M+' },
     { id: 3, label: 'Offline Stores Near You', target: 15, suffix: '' }
   ];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import Marquee from 'react-fast-marquee'; // The library that handles the animation
+import Marquee from 'react-fast-marquee'; 
 import './TopProductsMarquee.css';
 
 const GET_TOP_PRODUCTS = gql`
@@ -33,6 +33,7 @@ const TopProductsMarquee = () => {
     variables: { handle: "top-products" },
   });
 
+  // Don't render anything if loading or error
   if (loading || error || !data?.collection?.products?.edges?.length) {
     return null;
   }
@@ -40,16 +41,18 @@ const TopProductsMarquee = () => {
   const products = data.collection.products.edges;
 
   return (
-    // The container style is now the only thing we need from our CSS
-    <div className="marquee-container">
+    <div className="marquee-wrapper">
       <Marquee
-        pauseOnHover={true}
-        speed={40} // You can adjust this value for speed
-        gradient={false} // Removes the fading edge effect
+        pauseOnHover={true}     // ✅ Stops moving when hovered
+        speed={40}              // Speed of scroll
+        gradient={false}        // Removes fade effect
       >
-        {/* We no longer need to duplicate the product list! The library handles it. */}
         {products.map(({ node: product }) => (
-          <Link to={`/products/${product.handle}`} key={product.id} className="marquee-item">
+          <Link
+            to={`/products/${product.handle}`} 
+            key={product.id}
+            className="marquee-item"
+          >
             <img
               src={product.images.edges[0]?.node.url}
               alt={product.images.edges[0]?.node.altText || product.title}

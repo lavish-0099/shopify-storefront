@@ -162,7 +162,9 @@ const ProductPage = () => {
 
   return (
     <>
-    <TopProductsMarquee />
+     <div className="marquee-wrapper">
+      <TopProductsMarquee />
+    </div>
       <div className="product-page-layout">
         {/* LEFT COLUMN: IMAGES & WHY YOU'LL LOVE THIS */}
         <div className="product-image-gallery">
@@ -309,7 +311,7 @@ const ProductPage = () => {
       <RecentlyViewed currentProductHandle={product.handle} />
       <ProductUSP />
       <ReviewList reviews={approvedReviews} />
-      <ShineSection text="Own It. #TrustYourStyle" />
+      <ShineSection text="Own It #TrustYourStyle" />
     </>
   );
 };

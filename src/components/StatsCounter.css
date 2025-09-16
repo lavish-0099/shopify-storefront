@@ -1,7 +1,6 @@
 /* src/components/StatsCounter.css */
 
 .stats-section {
-  /* Using a color consistent with your other sections */
   background-color: #fdf5f5;
   padding: 5rem 1rem;
   text-align: center;
@@ -11,26 +10,24 @@
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around; /* Evenly space the items */
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem; /* Add a small gap for wrapping */
+  gap: 1rem;
 }
 
 .stat-item {
-  flex: 1; /* Allow items to share space equally */
-  min-width: 280px; /* Prevent items from becoming too small */
+  flex: 1;
+  min-width: 280px;
   padding: 1rem 2rem;
-  position: relative; /* For the divider pseudo-element */
-  transition: transform 0.3s ease; /* For hover effect */
+  position: relative;
+  transition: transform 0.3s ease;
 }
 
-/* Add a subtle lift on hover */
 .stat-item:hover {
   transform: translateY(-5px);
 }
 
-/* Create a vertical divider for all items except the last one */
 .stat-item:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -39,21 +36,22 @@
   transform: translateY(-50%);
   height: 60%;
   width: 1px;
-  background-color: rgba(100, 44, 68, 0.2); /* A subtle divider color */
+  background-color: rgba(100, 44, 68, 0.2);
 }
 
 .stat-number {
   color: #642c44;
-  font-family: 'Poppins', sans-serif; /* A modern, bold font */
-  font-size: 3.5rem; /* 56px */
+  font-family: 'Poppins', sans-serif;
+  /* ✅ INCREASED SIZE */
+  font-size: 4.5rem; /* 72px */
   font-weight: 700;
   margin: 0;
 }
 
 .stat-label {
-  color: #888; /* A slightly lighter grey */
+  color: #888;
   margin-top: 0.75rem;
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -66,18 +64,17 @@
     gap: 2rem;
   }
 
-  /* Remove vertical dividers on mobile */
   .stat-item:not(:last-child)::after {
     display: none;
   }
   
-  /* Optional: Add a horizontal divider on mobile */
   .stat-item:not(:last-child) {
       border-bottom: 1px solid rgba(100, 44, 68, 0.1);
       padding-bottom: 2rem;
   }
 
   .stat-number {
-    font-size: 3rem; /* 48px */
+    /* ✅ INCREASED SIZE FOR MOBILE */
+    font-size: 3.5rem; /* 56px */
   }
 }

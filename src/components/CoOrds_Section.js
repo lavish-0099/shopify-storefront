@@ -1,6 +1,7 @@
 // src/components/CoOrdsSection.js
 import React, { useState, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { useNavigate } from 'react-router-dom'; // ✅ 1. Import the useNavigate hook
 import './CoOrdsSection.css';
 
 // ... (GraphQL query remains the same)
@@ -32,6 +33,7 @@ const GET_COLLECTION_PRODUCTS = gql`
 const CoOrdsSection = () => {
   const collectionHandle = "co-ords";
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const navigate = useNavigate(); // ✅ 2. Initialize the hook
 
   // ... (useQuery hook and data mapping remain the same)
   const { loading, error, data } = useQuery(GET_COLLECTION_PRODUCTS, {
@@ -81,7 +83,6 @@ const CoOrdsSection = () => {
   return (
     <section className="co-ords-section">
       <div className="co-ords-text-grid">
-        {/* ✅ CHANGED: Each word is now in a span */}
         <div className="co-ords-headline-left">
           <span>FIND</span>
           <span>YOUR</span>
@@ -94,7 +95,6 @@ const CoOrdsSection = () => {
         </div>
       </div>
 
-      {/* ... (Rest of the JSX remains the same) */}
       {loading ? (
         <div className="co-ords-loading-placeholder">Loading...</div>
       ) : products.length === 0 ? (
@@ -140,7 +140,8 @@ const CoOrdsSection = () => {
         <p className="co-ords-tagline">
           Designed for confidence, comfort, and modern elegance
         </p>
-        <button className="co-ords-shop-button" onClick={() => window.location.href=`/collections/${collectionHandle}`}>
+        {/* ✅ 3. Update the onClick handler to use navigate */}
+        <button className="co-ords-shop-button" onClick={() => navigate(`/collections/${collectionHandle}`)}>
           SHOP NOW
         </button>
       </div>

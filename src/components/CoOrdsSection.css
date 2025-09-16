@@ -1,82 +1,87 @@
-/* src/components/CoOrdsSection.css */
-
+/* --- Section Wrapper --- */
 .co-ords-section {
-  background-color: #f7e9e9; /* Light pink background */
+  background-color: #f7e9e9;
   padding: 50px 0;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden; /* Hide overflowing carousel items */
-  position: relative; /* For absolute positioning of text/arrows */
-}
-
-/* --- Large Headline Text --- */
-.co-ords-text-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns */
-  width: 100%;
-  max-width: 1200px;
-  margin-bottom: 20px;
-  text-align: left;
-  padding: 0 5vw;
-  pointer-events: none;
-  position: absolute;
-  top: 10%; /* Adjust as needed */
-  z-index: 10;
-}
-
-.co-ords-headline-left,
-.co-ords-headline-right {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 5vw;
-  font-weight: bold;
-  color: #642c44;
-  line-height: 1;
-  letter-spacing: -1px;
+  overflow: hidden;
   position: relative;
+}
+
+/* --- Top Layout: Text + Carousel Centered --- */
+.co-ords-top-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1400px;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+/* --- Text Blocks --- */
+.co-ords-text-block {
   display: flex;
   flex-direction: column;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 4.5vw;
+  font-weight: bold;
+  color: #642c44;
+  line-height: 1.1;
 }
-.co-ords-headline-left {
-  grid-column: 1;
-  transform: rotate(-10deg);
-  transform-origin: bottom left;
-  top: 10px;
-  left: -20px;
+
+.left-text {
   align-items: flex-start;
 }
 
-.co-ords-headline-right {
-  grid-column: 2;
-  transform: rotate(10deg);
-  transform-origin: top right;
-  top: -10px;
-  right: -20px;
+.right-text {
   align-items: flex-end;
 }
 
+.text-line {
+  display: block;
+  margin-bottom: 15px;
+}
 
-/* --- Carousel Styles --- */
+.left-text .line-2 {
+  margin-left: 63px;
+}
+.left-text .line-3 {
+  margin-left: 142px;
+}
+.right-text .line-1 {
+  margin-right: -50px;
+}
+.right-text .line-2 {
+  margin-right: 23px;
+}
+.right-text .line-3 {
+  margin-right: 41px;
+}
+/* --- Center Carousel --- */
+.co-ords-carousel-center {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .co-ords-carousel-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 900px;
-  margin: 80px auto;
   position: relative;
 }
 
 .co-ords-products-wrapper {
   overflow: hidden;
-  width: 300px;
-  height: 400px;
-  position: relative;
+  width: 280px;
+  height: 380px;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #fff;
 }
 
 .co-ords-products-carousel {
@@ -86,14 +91,11 @@
 }
 
 .co-ords-product-card {
-  min-width: 300px;
+  min-width: 280px;
   height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  border-radius: 10px;
 }
 
 .co-ords-product-image {
@@ -115,11 +117,11 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  margin: 0 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .co-ords-nav-arrow:hover {
@@ -128,17 +130,9 @@
   transform: scale(1.1);
 }
 
-.co-ords-nav-left {
-  margin-right: 30px;
-}
-
-.co-ords-nav-right {
-  margin-left: 30px;
-}
-
 /* --- Description Area --- */
 .co-ords-description-area {
-  margin-top: 1px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -146,14 +140,12 @@
 }
 
 .co-ords-subtitle {
-  font-family: var(--font-primary);
   font-size: 1.8rem;
   color: #642c44;
   margin-bottom: 10px;
 }
 
 .co-ords-tagline {
-  font-family: Arial, sans-serif;
   font-size: 1.1rem;
   color: #a64d79;
   max-width: 600px;
@@ -161,7 +153,6 @@
   margin-bottom: 30px;
 }
 
-/* --- Shop Now Button --- */
 .co-ords-shop-button {
   background-color: #642c44;
   color: #fff;
@@ -171,107 +162,42 @@
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 8px 20px rgba(100, 44, 68, 0.3);
+  transition: all 0.3s ease;
 }
 
 .co-ords-shop-button:hover {
-  background-color: #642c44;
   transform: translateY(-3px);
   box-shadow: 0 12px 25px rgba(100, 44, 68, 0.4);
 }
 
-
-/* --- Responsive Design --- */
-
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-  .co-ords-section {
-    padding: 30px 0;
-    min-height: 60vh;
-  }
-
-  .co-ords-text-grid {
-    /* Override desktop styles for mobile */
-    grid-template-columns: 1fr; /* Stack headlines */
-    position: static; /* Remove absolute positioning */
-    margin-bottom: 30px;
-    gap: 10px;
-  }
-
-  .co-ords-headline-left,
-  .co-ords-headline-right {
-    font-size: 8vw;
-    text-align: center;
-    /* Remove slant and positioning for mobile */
-    transform: none;
-    top: auto;
-    left: auto;
-    right: auto;
-  }
-
-  .co-ords-headline-right {
-    margin-top: -10px; /* Reduce space between stacked lines */
-  }
-
-  .co-ords-carousel-container {
+  .co-ords-top-layout {
     flex-direction: column;
-    margin: 20px auto;
-    max-width: 300px;
+    align-items: center;
   }
 
-  .co-ords-nav-arrow {
-    position: static;
-    margin: 15px 0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  .co-ords-text-block {
+    font-size: 7vw;
+    align-items: center;
+  }
+
+  .left-text .line-2,
+  .left-text .line-3 {
+    margin-left: 0;
+  }
+
+  .right-text {
+    margin-top: 20px;
   }
 
   .co-ords-products-wrapper {
-    width: 250px;
-    height: 350px;
+    width: 240px;
+    height: 320px;
   }
 
   .co-ords-product-card {
-    min-width: 250px;
-  }
-
-  .co-ords-subtitle {
-    font-size: 1.5rem;
-  }
-
-  .co-ords-tagline {
-    font-size: 1rem;
-    padding: 0 15px;
-  }
-
-  .co-ords-shop-button {
-    padding: 12px 25px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .co-ords-section {
-    min-height: 50vh;
-  }
-
-  .co-ords-headline-left,
-  .co-ords-headline-right {
-    font-size: 8vw;
-    align-items: center; 
-    transform: none;
-    top: auto;
-    left: auto;
-    right: auto;
-  }
-  .co-ords-products-wrapper {
-    width: 220px;
-    height: 300px;
-  }
-
-  .co-ords-product-card {
-    min-width: 220px;
+    min-width: 240px;
   }
 }

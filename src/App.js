@@ -26,6 +26,7 @@ import MaxiMidiDressSection from './components/MaxiMidiDressSection';
 import CoOrdsSection from './components/CoOrdsSection';
 import StickyNav from './components/StickyNav';
 import MomentsThatMatterSection from './components/MomentsThatMatterSection';
+import StorySection from './components/StorySection';
 // Import the new slider component
 import HeroSlider from './components/HeroSlider'; 
 // Import static pages
@@ -85,6 +86,7 @@ const HomePage = () => {
       </section>
       <Offers />
       <UspShowcase />
+     <StorySection />
     </>
   );
 };

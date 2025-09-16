@@ -1,0 +1,17 @@
+/* src/components/StorySection.css */
+
+.story-section {
+  /* You can set a background color that shows while the image loads */
+  background-color: #fdf5f5; 
+  /* Adjust padding as needed */
+  padding: 40px 0;
+  width: 100%;
+}
+
+.story-banner-image {
+  /* Make the image responsive */
+  width: 100%;
+  height: auto;
+  /* Removes any extra space below the image */
+  display: block; 
+}

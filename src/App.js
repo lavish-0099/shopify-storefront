@@ -29,6 +29,7 @@ import MomentsThatMatterSection from './components/MomentsThatMatterSection';
 import StorySection from './components/StorySection';
 import ShineSection from './components/ShineSection';
 import AccountPage from './components/AccountPage';
+import WatchAndBuy from './components/WatchAndBuy';
 // Import the new slider component
 import HeroSlider from './components/HeroSlider'; 
 // Import static pages
@@ -58,10 +59,11 @@ const HomePage = () => {
       <HeroSlider /> 
       
       <CategoriesSection />
-      <WhyChooseUs />
+      
       <CoOrds_Section />
       <MomentsThatMatterSection />
       <VideoModelSection /> 
+      <WhyChooseUs />
        <StickyNav />
       <section id="top-products-section">
         <TopProducts />
@@ -90,6 +92,7 @@ const HomePage = () => {
       <UspShowcase />
      <StorySection />
      <ShineSection text="Own It. #TrustYourStyle" />
+     <WatchAndBuy/>
     </>
   );
 };
@@ -243,7 +246,7 @@ function App() {
                     }
                   />
                 <Route
-                
+
                   path="/cart"
                   element={
                     <MainLayout>

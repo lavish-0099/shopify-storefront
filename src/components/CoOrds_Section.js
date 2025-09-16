@@ -1,4 +1,4 @@
-// src/components/CoOrdsSection.js
+// src/components/CoOrds_Section.js
 import React, { useState, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom'; // ✅ 1. Import the useNavigate hook

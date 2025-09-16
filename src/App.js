@@ -27,6 +27,7 @@ import CoOrdsSection from './components/CoOrdsSection';
 import StickyNav from './components/StickyNav';
 import MomentsThatMatterSection from './components/MomentsThatMatterSection';
 import StorySection from './components/StorySection';
+import ShineSection from './components/ShineSection';
 // Import the new slider component
 import HeroSlider from './components/HeroSlider'; 
 // Import static pages
@@ -87,6 +88,7 @@ const HomePage = () => {
       <Offers />
       <UspShowcase />
      <StorySection />
+     <ShineSection text="Own It. #TrustYourStyle" />
     </>
   );
 };

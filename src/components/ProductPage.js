@@ -309,7 +309,7 @@ const ProductPage = () => {
       <RecentlyViewed currentProductHandle={product.handle} />
       <ProductUSP />
       <ReviewList reviews={approvedReviews} />
-      <ShineSection text="#FOR THE MOMENTS THAT MATTER" />
+      <ShineSection text="Own It. #TrustYourStyle" />
     </>
   );
 };

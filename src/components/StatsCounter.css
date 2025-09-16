@@ -1,6 +1,9 @@
+/* src/components/StatsCounter.css */
+
 .stats-section {
-  background-color: #f9fafb; /* A light grey background */
-  padding: 4rem 1rem;
+  /* Using a color consistent with your other sections */
+  background-color: #fdf5f5;
+  padding: 5rem 1rem;
   text-align: center;
 }
 
@@ -8,35 +11,70 @@
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
+  justify-content: space-around; /* Evenly space the items */
+  align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  gap: 1rem; /* Add a small gap for wrapping */
 }
 
 .stat-item {
-  flex: 1 1 250px; /* Allows items to grow and shrink, with a base size */
-  padding: 1rem;
+  flex: 1; /* Allow items to share space equally */
+  min-width: 280px; /* Prevent items from becoming too small */
+  padding: 1rem 2rem;
+  position: relative; /* For the divider pseudo-element */
+  transition: transform 0.3s ease; /* For hover effect */
+}
+
+/* Add a subtle lift on hover */
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Create a vertical divider for all items except the last one */
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 1px;
+  background-color: rgba(100, 44, 68, 0.2); /* A subtle divider color */
 }
 
 .stat-number {
-  color: #642c44; /* Your specified color */
-  font-size: 3.75rem; /* 60px */
-  font-weight: bold;
-  letter-spacing: -0.025em;
+  color: #642c44;
+  font-family: 'Poppins', sans-serif; /* A modern, bold font */
+  font-size: 3.5rem; /* 56px */
+  font-weight: 700;
   margin: 0;
 }
 
 .stat-label {
-  color: #6b7280; /* A medium grey for the text */
-  margin-top: 0.5rem;
-  font-size: 1.125rem; /* 18px */
+  color: #888; /* A slightly lighter grey */
+  margin-top: 0.75rem;
+  font-size: 1rem; /* 16px */
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Responsive styling for smaller screens */
+/* --- Responsive Styling --- */
 @media (max-width: 768px) {
   .stats-container {
     flex-direction: column;
-    align-items: center;
+    gap: 2rem;
+  }
+
+  /* Remove vertical dividers on mobile */
+  .stat-item:not(:last-child)::after {
+    display: none;
+  }
+  
+  /* Optional: Add a horizontal divider on mobile */
+  .stat-item:not(:last-child) {
+      border-bottom: 1px solid rgba(100, 44, 68, 0.1);
+      padding-bottom: 2rem;
   }
 
   .stat-number {

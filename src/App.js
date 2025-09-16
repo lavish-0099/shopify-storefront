@@ -243,6 +243,7 @@ function App() {
                     }
                   />
                 <Route
+                
                   path="/cart"
                   element={
                     <MainLayout>

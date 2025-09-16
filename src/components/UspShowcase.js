@@ -189,9 +189,9 @@ const UspShowcase = () => {
             >
               <h2
                 style={{
-                  fontSize: '4rem',
+                  fontSize: '2.5rem',
                   marginBottom: '1rem',
-                  whiteSpace: 'nowrap', // 👈 ADDED: Prevents the title from wrapping
+                  whiteSpace: 'nowrap',
                   fontFamily: 'var(--font-primary)', // 👈 ADDED: Uses the primary font
                 }}
               >

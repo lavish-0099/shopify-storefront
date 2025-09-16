@@ -27,8 +27,7 @@ import CoOrdsSection from './components/CoOrdsSection';
 import StickyNav from './components/StickyNav';
 import MomentsThatMatterSection from './components/MomentsThatMatterSection';
 // Import the new slider component
-import HeroSlider from './components/HeroSlider'; // ✅ IMPORT THE NEW SLIDER
-
+import HeroSlider from './components/HeroSlider'; 
 // Import static pages
 import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } from './pages/StaticPages';
 
@@ -52,13 +51,13 @@ const MainLayout = ({ children }) => {
 const HomePage = () => {
   return (
     <>
-      {/* ✅ REPLACE THE OLD HERO BANNER WITH THE NEW SLIDER */}
+      
       <HeroSlider /> 
       
       <CategoriesSection />
       <WhyChooseUs />
       
-      {/*<MomentsThatMatterSection />*/}
+      <MomentsThatMatterSection />
       <VideoModelSection /> 
        <StickyNav />
       <section id="top-products-section">

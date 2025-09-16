@@ -7,11 +7,11 @@ import './InteractiveModelSection.css';
 
 // USPs to display at different scroll stages
 const usps = [
-  { text: 'Crafted from 100% natural fabrics', position: { top: '20%', left: '25%' } },
-  { text: 'Uncompromised quality at fair prices', position: { top: '40%', left: '70%' } },
-  { text: 'Sustainable fashion for conscious living', position: { top: '60%', left: '15%' } },
-  { text: 'Elegant designs, timeless everyday wear', position: { top: '75%', left: '70%' } },
-  { text: 'Comfort, style, and responsibility combined', position: { top: '90%', left: '30%' } },
+  { text: 'Like every piece is designed just for you.', position: { top: '20%', left: '25%' } },
+  { text: 'Comfort that hugs, style that truly stays.', position: { top: '40%', left: '70%' } },
+  { text: 'A wardrobe choice you’ll never regret making.', position: { top: '60%', left: '15%' } },
+  { text: 'Outfits that vibe with every mood and moment.', position: { top: '75%', left: '70%' } },
+  { text: 'Quality that speaks before you even say a word.', position: { top: '90%', left: '30%' } },
 ];
 
 const UspItem = ({ usp, index, scrollYProgress }) => {

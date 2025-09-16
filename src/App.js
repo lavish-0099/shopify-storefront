@@ -25,11 +25,11 @@ import ShortDressSection from './components/ShortDressSection';
 import MaxiMidiDressSection from './components/MaxiMidiDressSection';
 import CoOrdsSection from './components/CoOrdsSection';
 import StickyNav from './components/StickyNav';
-import MomentsThatMatterSection from './components/MomentsThatMatterSection';
 import StorySection from './components/StorySection';
 import ShineSection from './components/ShineSection';
 import AccountPage from './components/AccountPage';
 import WatchAndBuy from './components/WatchAndBuy';
+import IntractiveModelSection from './components/InteractiveModelSection';
 // Import the new slider component
 import HeroSlider from './components/HeroSlider'; 
 // Import static pages
@@ -57,10 +57,11 @@ const HomePage = () => {
     <>
       
       <HeroSlider /> 
+      <IntractiveModelSection />
       <CategoriesSection />
       
       <CoOrds_Section />
-      <MomentsThatMatterSection />
+      
       <VideoModelSection /> 
       <WhyChooseUs />
         <div className="hide-on-mobile">

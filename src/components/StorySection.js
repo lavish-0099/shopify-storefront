@@ -1,16 +1,25 @@
-// src/components/StorySection.js
 import React from 'react';
-import './StorySection.css'; // We'll update this file next
+import './StorySection.css';
 
 const StorySection = () => {
   return (
     <section className="story-section">
-      {/* The component now only contains one single image */}
+      {/* Banner Image */}
       <img 
-        src="/images/story-background.png" // Replace with the correct path to your full banner image
-        alt="Story Behind Delan: Where Dreams Meet Modern Fashion" 
+        src="/images/story-background.png" 
+   
         className="story-banner-image"
       />
+
+      {/* Title */}
+      <h4 className="story-text">The Delan Essence</h4>
+
+      {/* Description */}
+      <h5 className="story-subtext">
+        From timeless co-ord sets to empowering silhouettes, we’ve reimagined what modern fashion means for women.
+        Across India, women aren’t just wearing Delan—they’re expressing confidence, embracing individuality, and
+        shaping their own stories with every outfit.
+      </h5>
     </section>
   );
 };

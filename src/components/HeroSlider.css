@@ -1,0 +1,26 @@
+/* src/components/HeroSlider.css */
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 90vh; /* Adjust height as needed */
+  overflow: hidden;
+  background-color: #f0f0f0; /* Fallback color */
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container */
+  opacity: 0; /* Hide slides by default */
+  transition: opacity 1.5s ease-in-out; /* Smooth fade transition */
+  z-index: 1;
+}
+
+.slide.active {
+  opacity: 1; /* Show the active slide */
+  z-index: 2;
+}

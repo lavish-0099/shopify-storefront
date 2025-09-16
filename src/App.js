@@ -16,7 +16,7 @@ import ProductReviews from './components/ProductReviews';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import CartPage from './components/CartPage';
-import VideoModelSection from './components/VideoModelSection';  // ✅ Import your component
+import VideoModelSection from './components/VideoModelSection';
 import UspShowcase from './components/UspShowcase';
 import Offers from "./components/Offers";
 import CategoriesSection from "./components/CategoriesSection";
@@ -26,6 +26,9 @@ import MaxiMidiDressSection from './components/MaxiMidiDressSection';
 import CoOrdsSection from './components/CoOrdsSection';
 import StickyNav from './components/StickyNav';
 import MomentsThatMatterSection from './components/MomentsThatMatterSection';
+// Import the new slider component
+import HeroSlider from './components/HeroSlider'; // ✅ IMPORT THE NEW SLIDER
+
 // Import static pages
 import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } from './pages/StaticPages';
 
@@ -49,21 +52,15 @@ const MainLayout = ({ children }) => {
 const HomePage = () => {
   return (
     <>
-      <div className="hero-banner">
-          <img
-            src="/videos/hero.png" 
-            
-            alt="Hero Banner"
-            className="hero-video"
-          />
-
-      </div>
+      {/* ✅ REPLACE THE OLD HERO BANNER WITH THE NEW SLIDER */}
+      <HeroSlider /> 
+      
       <CategoriesSection />
       <WhyChooseUs />
       
       {/*<MomentsThatMatterSection />*/}
       <VideoModelSection /> 
-       <StickyNav /> {/* ✅ 2. Add the sticky navigation bar here */}
+       <StickyNav />
       <section id="top-products-section">
         <TopProducts />
       </section>
@@ -92,6 +89,7 @@ const HomePage = () => {
     </>
   );
 };
+
 
 function App() {
   const [preloaderDone, setPreloaderDone] = useState(false);

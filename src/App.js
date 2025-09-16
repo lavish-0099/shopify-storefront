@@ -57,7 +57,6 @@ const HomePage = () => {
     <>
       
       <HeroSlider /> 
-      
       <CategoriesSection />
       
       <CoOrds_Section />

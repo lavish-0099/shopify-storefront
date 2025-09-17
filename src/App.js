@@ -94,13 +94,10 @@ const HomePage = () => {
         <ProductReviews />
       </section>
 
-      
-      <WatchAndBuy />
-
       <div className="App">
         <FlippingCard />
       </div>
-      <ShineSection text="Own It. #TrustYourStyle" />
+      <ShineSection text="Own It #TrustYourStyle" />
     </>
   );
 };

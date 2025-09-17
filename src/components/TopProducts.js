@@ -86,7 +86,7 @@ const TopProducts = () => {
             return (
                 // The key is now on the top-level element inside the map
                 <div key={product.id} className="product-card-wrapper">
-                  <Link to={`/products/${product.handle}`} className="product-card">
+                  <Link to={`/products/₹{product.handle}`} className="product-card">
                       <div className="product-image-container">
                           <img src={imageUrl} alt={product.images?.edges?.[0]?.node?.altText || product.title} />
                           <div className="quick-view">QUICK VIEW</div>
@@ -94,7 +94,7 @@ const TopProducts = () => {
                       <div className="product-info">
                           <h3 className="product-title">{product.title}</h3>
                           <p className="product-price">
-                              ${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)} {product.priceRange.minVariantPrice.currencyCode}
+                              ₹{parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)} {product.priceRange.minVariantPrice.currencyCode}
                           </p>
                           {ratingValue > 0 && (
                               <div className="star-rating">

@@ -37,7 +37,7 @@ const MaxiMidiDressSection = () => {
         <div className="product-grid">
           {data.collection.products.edges.map(({ node: product }) => (
             <div key={product.id} className="product-card-wrapper">
-              <Link to={`/products/${product.handle}`} className="product-card">
+              <Link to={`/products/₹{product.handle}`} className="product-card">
                 <div className="product-image-container">
                   <img src={product.images.edges[0]?.node.url} alt={product.images.edges[0]?.node.altText || product.title} />
                   <div className="quick-view">QUICK VIEW</div>
@@ -45,7 +45,7 @@ const MaxiMidiDressSection = () => {
                 <div className="product-info">
                   <h3 className="product-title">{product.title}</h3>
                   <p className="product-price">
-                    ${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)} {product.priceRange.minVariantPrice.currencyCode}
+                    ₹{parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)} {product.priceRange.minVariantPrice.currencyCode}
                   </p>
                 </div>
               </Link>

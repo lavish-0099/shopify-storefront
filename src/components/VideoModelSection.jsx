@@ -6,11 +6,10 @@ import "./Categories.css";
 export default function Categories() {
   // ✅ 2. Add a 'handle' for the URL to each category
   const categories = [
-    { name: "Maxi Dresses", img: "/images/7.png", handle: "maxi-midi-dress" },
-    { name: "Midi Dresses", img: "/images/6.png", handle: "maxi-midi-dress" },
-    { name: "Short Dresses", img: "/images/1.png", handle: "short-dress" },
-    { name: "Co-Ords", img: "/images/2.png", handle: "co-ords" },
-    { name: "Trousers", img: "/images/3.png", handle: "trousers" },
+    { name: "THE 9-TO-5 WARDROBE", img: "/images/7.png", handle: "maxi-midi-dress" },
+    { name: "FOR A TABLE FOR TWO", img: "/images/6.png", handle: "maxi-midi-dress" },
+    { name: "THE MAIN EVENT", img: "/images/1.png", handle: "short-dress" },
+    { name: "THE FESTIVE CHAPTER", img: "/images/2.png", handle: "co-ords" },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);

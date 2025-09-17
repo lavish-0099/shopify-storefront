@@ -11,7 +11,7 @@ const usps = [
   { text: 'Comfort that hugs, style that truly stays.', position: { top: '20%', left: '70%' } },
   { text: 'A wardrobe choice you’ll never regret making.', position: { top: '60%', left: '25%' } },
   { text: 'Outfits that vibe with every mood and moment.', position: { top: '60%', left: '70%' } },
-  { text: 'Quality that speaks before you even say a word.', position: { top: '90%', left: '50%' } },
+  { text: 'Quality that speaks before you even say a word.', position: { top: '80%', left: '50%' } },
 ];
 
 const UspItem = ({ usp, index, scrollYProgress }) => {
@@ -50,6 +50,13 @@ const InteractiveModelSection = ({ nextSectionRef }) => {
   return (
     <section ref={sectionRef} className="interactive-section">
       <div className="sticky-container">
+        
+        {/* ✅ Heading above the model */}
+        <div className="interactive-heading">
+          <h2>Why Delan Feels Like You:</h2>
+          <p>Because fashion should vibe with your story.</p>
+        </div>
+
         <Canvas camera={{ position: [0, 0, 6.5], fov: 50 }}>
           <ambientLight intensity={1.5} />
           <directionalLight position={[10, 10, 5]} intensity={2} />

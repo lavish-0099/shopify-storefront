@@ -93,36 +93,42 @@ const ProductReviews = () => {
     return null;
   }
 
-  const settings = {
-    dots: true,
-    infinite: reviews.length > 3,
-    speed: 600,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: reviews.length > 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: reviews.length > 1,
-        },
-      },
-    ],
-  };
+ const settings = {
+  dots: true,
+  infinite: reviews.length > 3,
+  speed: 600,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  arrows: true,
 
-  return (
-    <section className="product-reviews-section">
-      <h2 className="section-title">Words from Our Customers</h2>
+  // Added autoplay settings
+  autoplay: true,           
+  autoplaySpeed: 2000,      
+
+  responsive: [
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        infinite: reviews.length > 2,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: reviews.length > 1,
+      },
+    },
+  ],
+};
+
+return (
+  <section className="product-reviews-section">
+    <h2 className="section-title">Words from Our Customers</h2>
+    <div className="carousel-wrapper">
       <Slider {...settings} className="reviews-carousel">
         {reviews.map((review) => (
           <div key={review.id} className="review-slide">
@@ -130,8 +136,9 @@ const ProductReviews = () => {
           </div>
         ))}
       </Slider>
-    </section>
-  );
+    </div>
+  </section>
+);
 };
 
 export default ProductReviews;

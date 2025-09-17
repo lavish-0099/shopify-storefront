@@ -12,7 +12,7 @@
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px 30px;
+  gap: 20px 30px;
 }
 
 /* --- Reusable Product Card Styles --- */
@@ -204,6 +204,7 @@
 .view-all-button {
   display: inline-block;
   margin-top: 5px;
+  margin-bottom: 50px;
   padding: 12px 30px;
   font-family: var(--font-secondary);
   font-size: 1rem;

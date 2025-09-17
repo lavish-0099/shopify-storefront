@@ -60,14 +60,13 @@
 
 /* Generic Section Styling for Consistent Spacing */
 section {
-  /* CHANGED: Reduced vertical padding from 60px to 40px */
-  padding-top: 40px;  /* Space above each section */
-  padding-bottom: 40px; /* Space below each section */
+  padding-top: 10px;  /* Space above each section */
+  padding-bottom: 10px; /* Space below each section */
 }
 
 section:not(:last-child) {
   /* CHANGED: Reduced margin between sections from 60px to 40px */
-  margin-bottom: 40px; /* Gap between consecutive sections */
+  margin-bottom: 10px; /* Gap between consecutive sections */
 }
 
 /* Next Section */
@@ -80,7 +79,7 @@ section:not(:last-child) {
   background-color: var(--color-deep-mauve);
   color: var(--color-white);
   text-align: center;
-  padding: 80px 20px; /* Extra padding inside next section */
+  padding: 20px 20px; /* Extra padding inside next section */
 }
 
 .next-section h2 {

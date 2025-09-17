@@ -2,13 +2,12 @@
 import TrackOrderPage from './components/TrackOrder';
 import ContactUs from "./components/ContactUs";
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'; // ✅ Added useLocation
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Preloader from './components/Preloader/Preloader';
-import WhyChooseUs from './components/WhyChooseUs';
 import TopProducts from './components/TopProducts';
 import ProductPage from './components/ProductPage';
 import CollectionPage from './components/CollectionPage';
@@ -18,7 +17,6 @@ import SignUpPage from './components/SignUpPage';
 import CartPage from './components/CartPage';
 import VideoModelSection from './components/VideoModelSection';
 import UspShowcase from './components/UspShowcase';
-import Offers from "./components/Offers";
 import CategoriesSection from "./components/CategoriesSection";
 import TrousersSection from './components/TrousersSection';
 import ShortDressSection from './components/ShortDressSection';
@@ -31,21 +29,25 @@ import AccountPage from './components/AccountPage';
 import WatchAndBuy from './components/WatchAndBuy';
 import IntractiveModelSection from './components/InteractiveModelSection';
 import FlippingCard from './components/FlippingCard';
-// Import the new slider component
 import HeroSlider from './components/HeroSlider'; 
-// Import static pages
+import Marquee from "./components/Marquee";
 import { ContactPage, PrivacyPolicyPage, TermsPage, ReturnsPage, AboutUsPage } from './pages/StaticPages';
-
-// Import dynamic blog components
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AffiliatePage from './pages/AffiliatePage';
 import CoOrds_Section from './components/CoOrds_Section';
 import './App.css';
 
+
+// ✅ Create MainLayout with useLocation to check current route
 const MainLayout = ({ children }) => {
+  const location = useLocation(); // ✅ get current URL
+
   return (
     <>
+      {/* Show Marquee only on homepage */}
+      {location.pathname === "/" && <Marquee />}
+      
       <Header />
       <main>{children}</main>
       <Footer />
@@ -56,35 +58,34 @@ const MainLayout = ({ children }) => {
 const HomePage = () => {
   return (
     <>
-      
       <HeroSlider /> 
       <CategoriesSection />
       <IntractiveModelSection />
       
-      
-      <CoOrds_Section />
-      
-      <VideoModelSection /> 
-      <WhyChooseUs />
-
-        <div className="hide-on-mobile">
-        <StickyNav />
-      </div>
       <section id="top-products-section">
         <TopProducts />
       </section>
 
+      <CoOrds_Section />
+      <StickyNav />
+      
       <section id="trousers-section">
         <TrousersSection />
       </section>
 
+      <VideoModelSection /> 
+
       <section id="short-dress-section">
         <ShortDressSection />
       </section>
-
+      
       <section id="maxi-midi-dress-section">
         <MaxiMidiDressSection />
       </section>
+
+      <div className="hide-on-mobile">
+        <UspShowcase />
+      </div>
 
       <section id="co-ords-section">
         <CoOrdsSection />
@@ -93,16 +94,13 @@ const HomePage = () => {
       <section id="reviews-section">
         <ProductReviews />
       </section>
-      <Offers />
-      <div className="hide-on-mobile">
-        <UspShowcase />
+
+      <ShineSection text="Own It. #TrustYourStyle" />
+      <WatchAndBuy />
+
+      <div className="App">
+        <FlippingCard />
       </div>
-     <StorySection />
-     <ShineSection text="Own It. #TrustYourStyle" />
-     <WatchAndBuy/>
-     <div className="App">
-      <FlippingCard />
-    </div>
     </>
   );
 };
@@ -248,15 +246,15 @@ function App() {
                   }
                 />
                 <Route
-                    path="/account"
-                    element={
-                      <MainLayout>
-                        <AccountPage />
-                      </MainLayout>
-                    }
-                  />
-                <Route
+                  path="/account"
+                  element={
+                    <MainLayout>
+                      <AccountPage />
+                    </MainLayout>
+                  }
+                />
 
+                <Route
                   path="/cart"
                   element={
                     <MainLayout>

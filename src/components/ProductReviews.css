@@ -14,10 +14,6 @@
   margin: 0 auto 15px auto;
 }
 
-.reviews-carousel {
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
 .review-slide {
   padding: 0 15px;
@@ -91,4 +87,10 @@
   .slick-next {
     right: 5px; /* Bring inside from the right */
   }
+}
+.carousel-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative; /* Keeps arrows positioned correctly */
+  overflow: hidden;  /* This is the key to clipping the arrows */
 }

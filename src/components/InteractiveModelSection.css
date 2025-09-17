@@ -1,3 +1,27 @@
+/* Heading above model */
+.interactive-heading {
+  position: absolute;
+  top: 5%;  /* Distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  color: #642c44; /* Deep mauve */
+  font-family: var(--font-primary);
+}
+
+.interactive-heading h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.interactive-heading p {
+  font-size: 1.5rem;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
 /* src/components/InteractiveModelSection.css */
 .interactive-section {
   height: 400vh;

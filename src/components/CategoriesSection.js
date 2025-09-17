@@ -20,7 +20,8 @@ const categories = [...baseCategories, ...baseCategories];
 const CategoriesSection = () => {
   return (
     <section className="categories-section">
-      <h2 className="categories-title">Browse by Style</h2>
+      <h2 className="categories-title">change into The Delan Edit</h2>
+      <p className="categories-subtitle"> Discover Your Signature Look</p>
       <Swiper
         modules={[Navigation]}
         speed={600}

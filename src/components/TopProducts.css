@@ -1,5 +1,5 @@
 .top-products-section {
-  padding: 80px 5%;
+  padding: 40px 5%;
   background-color: var(--color-white);
   text-align: center;
 }
@@ -16,12 +16,11 @@
 .product-grid {
   display: grid;
   /* Creates 4 equal-width columns */
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-  margin-bottom: 50px; /* Added margin to space from "View All" button */
+  margin-bottom: 30px; 
 }
 
-/* The .product-card-wrapper is now the direct child of the grid */
 .product-card-wrapper {
   text-align: left;
 }
@@ -102,8 +101,8 @@
 
 .view-all-button {
   display: inline-block;
-  /* margin-top is adjusted by the grid's margin-bottom */
   padding: 12px 30px;
+  margin-bottom: 50px;
   font-family: var(--font-secondary);
   font-size: 1rem;
   font-weight: 600;

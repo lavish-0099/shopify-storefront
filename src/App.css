@@ -95,3 +95,11 @@ section:not(:last-child) {
     display: none !important;
   }
 }
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background-color: var(--color-soft-blush);
+  margin-top: 0%;
+}

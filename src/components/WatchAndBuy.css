@@ -77,11 +77,11 @@
 
 /* Buy Button */
 .buy-button {
-  background-color: #000000;
-  color: #fff;
+  background-color: #642c44;;
+  color: #ffffff;
   padding: 5px 12px;
   border-radius: 5px;
-  font-size: 13px;
+  font-size: 16px;
   text-decoration: none;
   transition: background 0.3s ease;
 }

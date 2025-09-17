@@ -83,7 +83,7 @@ const CoOrdsSection = () => {
         <div className="co-ords-text-block left-text">
           <span className="text-line line-1">FIND</span>
           <span className="text-line line-2">YOUR</span>
-          <span className="text-line line-3">VIBE,</span>
+          <span className="text-line line-3">VIBE</span>
         </div>
 
         {/* Center Carousel */}
@@ -137,7 +137,7 @@ const CoOrdsSection = () => {
         <div className="co-ords-text-block right-text">
           <span className="text-line line-1">OWN</span>
           <span className="text-line line-2">YOUR</span>
-          <span className="text-line line-3">MOMENT.</span>
+          <span className="text-line line-3">MOMENT</span>
         </div>
       </div>
 

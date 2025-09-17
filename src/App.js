@@ -30,6 +30,7 @@ import ShineSection from './components/ShineSection';
 import AccountPage from './components/AccountPage';
 import WatchAndBuy from './components/WatchAndBuy';
 import IntractiveModelSection from './components/InteractiveModelSection';
+import FlippingCard from './components/FlippingCard';
 // Import the new slider component
 import HeroSlider from './components/HeroSlider'; 
 // Import static pages
@@ -57,13 +58,15 @@ const HomePage = () => {
     <>
       
       <HeroSlider /> 
-      <IntractiveModelSection />
       <CategoriesSection />
+      <IntractiveModelSection />
+      
       
       <CoOrds_Section />
       
       <VideoModelSection /> 
       <WhyChooseUs />
+
         <div className="hide-on-mobile">
         <StickyNav />
       </div>
@@ -97,6 +100,9 @@ const HomePage = () => {
      <StorySection />
      <ShineSection text="Own It. #TrustYourStyle" />
      <WatchAndBuy/>
+     <div className="App">
+      <FlippingCard />
+    </div>
     </>
   );
 };

@@ -8,10 +8,10 @@ import './InteractiveModelSection.css';
 // USPs to display at different scroll stages
 const usps = [
   { text: 'Like every piece is designed just for you.', position: { top: '20%', left: '25%' } },
-  { text: 'Comfort that hugs, style that truly stays.', position: { top: '40%', left: '70%' } },
-  { text: 'A wardrobe choice you’ll never regret making.', position: { top: '60%', left: '15%' } },
-  { text: 'Outfits that vibe with every mood and moment.', position: { top: '75%', left: '70%' } },
-  { text: 'Quality that speaks before you even say a word.', position: { top: '90%', left: '30%' } },
+  { text: 'Comfort that hugs, style that truly stays.', position: { top: '20%', left: '70%' } },
+  { text: 'A wardrobe choice you’ll never regret making.', position: { top: '60%', left: '25%' } },
+  { text: 'Outfits that vibe with every mood and moment.', position: { top: '60%', left: '70%' } },
+  { text: 'Quality that speaks before you even say a word.', position: { top: '90%', left: '50%' } },
 ];
 
 const UspItem = ({ usp, index, scrollYProgress }) => {

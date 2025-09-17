@@ -50,7 +50,7 @@ const WatchAndBuy = () => {
 
   return (
     <section className="watch-buy-section">
-      <h2 className="section-title">Watch n Buy</h2>
+      <h2 className="section-title">Discover Your Look</h2>
       <div className="videos-container">
         {videos.map((item) => (
           <div key={item.id} className="video-card">

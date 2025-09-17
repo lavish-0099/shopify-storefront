@@ -20,7 +20,7 @@ const categories = [...baseCategories, ...baseCategories];
 const CategoriesSection = () => {
   return (
     <section className="categories-section">
-      <h2 className="categories-title">Shop by Category</h2>
+      <h2 className="categories-title">Browse by Style</h2>
       <Swiper
         modules={[Navigation]}
         speed={600}

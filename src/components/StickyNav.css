@@ -1,18 +1,22 @@
 /* src/components/StickyNav.css */
 
+/* MAIN NAV WRAPPER */
 .sticky-nav-bar {
-  position: sticky;
-  top: 0;
+  position: sticky; 
+  top: 0; 
+  left: 0;
   width: 100%;
   background-color: #f8f5f2;
   padding: 15px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10000; /* Higher to stay above everything */
   border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+/* LINKS */
 .nav-link {
   font-family: sans-serif;
   font-size: 1rem;
@@ -29,9 +33,29 @@
   white-space: nowrap;
 }
 
+/* ACTIVE LINK */
 .nav-link.active,
 .nav-link:hover {
   background-color: #642c44;
   color: white;
   border-color: #642c44;
+}
+
+/* PREVENT CONTENT FROM HIDING BEHIND FIXED NAV */
+.page-content {
+  padding-top: 80px; /* Same height as navbar */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sticky-nav-bar {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+
+  .nav-link {
+    padding: 8px 14px;
+    margin: 4px;
+    font-size: 0.9rem;
+  }
 }

@@ -19,24 +19,30 @@ const StickyNav = () => {
   const [activeLink, setActiveLink] = useState(navItems[0].targetId);
 
   return (
-    <nav className="sticky-nav-bar">
-      {navItems.map((item) => (
-        <Link
-          key={item.label}
-          to={item.targetId}
-          spy={true}
-          smooth={true}
-          offset={-90} // Fine-tune this value based on your header's height
-          duration={500}
-          className={`nav-link ${activeLink === item.targetId ? 'active' : ''}`}
-          onClick={() => setActiveLink(item.targetId)}
-          // onSetActive will automatically update the style as you scroll
-          onSetActive={() => setActiveLink(item.targetId)}
-        >
-          {item.label}
-        </Link>
-      ))}
-    </nav>
+    <>
+      <nav className="sticky-nav-bar">
+        {navItems.map((item) => (
+          <Link
+            key={item.label}
+            to={item.targetId}
+            spy={true}
+            smooth={true}
+            offset={-90} // Offset for fixed nav
+            duration={500}
+            className={`nav-link ${activeLink === item.targetId ? 'active' : ''}`}
+            onClick={() => setActiveLink(item.targetId)}
+            onSetActive={() => setActiveLink(item.targetId)}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Add a wrapper to prevent content from being hidden under navbar */}
+      <div className="page-content">
+        {/* All your sections go here */}
+      </div>
+    </>
   );
 };
 

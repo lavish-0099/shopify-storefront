@@ -18,21 +18,34 @@ const Preloader = ({ onVideoEnd }) => {
     }
   };
 
+  const handleSkip = (e) => {
+    e.stopPropagation(); // prevent play on skip click
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    onVideoEnd(); // end preloader
+  };
+
   return (
     <div className="preloader-container" onClick={handleScreenClick}>
       <video
         ref={videoRef}
         src="/videos/intro_viddd.mp4"
         playsInline
-        muted={false} // sound allowed
+        muted={false}
         controls={false}
         onEnded={onVideoEnd}
         className="preloader-video"
       />
       {!hasStarted && (
         <div className="preloader-overlay">
-          <p className="preloader-hint"></p>
+          <p className="preloader-hint">Click to Start</p>
         </div>
+      )}
+      {hasStarted && (
+        <button className="skip-button" onClick={handleSkip}>
+          Skip Video
+        </button>
       )}
     </div>
   );

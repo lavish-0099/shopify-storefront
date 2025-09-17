@@ -9,7 +9,7 @@
   align-items: center;
   z-index: 9999;
   overflow: hidden;
-  cursor: pointer; /* make whole screen clickable */
+  cursor: pointer;
 }
 
 .preloader-video {
@@ -29,11 +29,30 @@
   justify-content: center;
   align-items: center;
   z-index: 2;
-  background: rgba(0,0,0,0.4); /* dim background until click */
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .preloader-hint {
   color: #fff;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+.skip-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.2s ease-in-out;
+}
+
+.skip-button:hover {
+  background: rgba(255, 255, 255, 1);
 }

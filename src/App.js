@@ -36,6 +36,7 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AffiliatePage from './pages/AffiliatePage';
 import CoOrds_Section from './components/CoOrds_Section';
+import StatsCounter from './components/StatsCounter'; 
 import './App.css';
 
 
@@ -61,7 +62,8 @@ const HomePage = () => {
       <HeroSlider /> 
       <CategoriesSection />
       <IntractiveModelSection />
-      
+      <StatsCounter /> {/* Stats Counter Component */}
+
       <section id="top-products-section">
         <TopProducts />
       </section>
@@ -86,21 +88,19 @@ const HomePage = () => {
       <div className="hide-on-mobile">
         <UspShowcase />
       </div>
-
-      <section id="co-ords-section">
-        <CoOrdsSection />
-      </section>
+       <WatchAndBuy />
 
       <section id="reviews-section">
         <ProductReviews />
       </section>
 
-      <ShineSection text="Own It. #TrustYourStyle" />
+      
       <WatchAndBuy />
 
       <div className="App">
         <FlippingCard />
       </div>
+      <ShineSection text="Own It. #TrustYourStyle" />
     </>
   );
 };

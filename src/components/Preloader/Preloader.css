@@ -35,14 +35,16 @@
 .preloader-hint {
   color: #fff;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  margin-top: 1px;
 }
 
 .skip-button {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.85);
+  background: #642c44;
   border: none;
   padding: 8px 14px;
   font-size: 0.9rem;
